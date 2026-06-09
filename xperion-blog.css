@@ -1,0 +1,645 @@
+/* ════════════════════════════════════════════════════════════════════
+   XPERION · Blog stylesheet · 2026-05-22
+   Lighter theme for reading pages — sand/cream background, ink text,
+   wider line-height, calmer chrome. Loaded AFTER xperion.css so these
+   rules win for blog-only pages.
+   Design north star: human-centred reading, not dashboard chrome.
+   ════════════════════════════════════════════════════════════════════ */
+
+/* ───── 1. Body & shell ────────────────────────────────────────────── */
+
+body.xp-blog {
+  background: var(--sand);
+  color: var(--ink);
+}
+
+/* The page-hero on blog pages stays dark for visual anchoring but uses
+   a softer mesh — no aggressive violet glow. */
+body.xp-blog .page-hero {
+  /* Slightly shorter than the marketing pages — readers want to get to text. */
+  padding: 84px 0 56px;
+  min-height: auto;
+  background: linear-gradient(180deg, var(--obsidian) 0%, #0A0E1F 100%);
+  border-bottom: 1px solid rgba(255,255,255,0.04);
+}
+body.xp-blog .page-hero h1 {
+  /* The hero stays dark, but the body theme is light (--ink), so the h1's
+     non-gradient words inherited dark navy and vanished. Force light. */
+  color: var(--white);
+  font-size: clamp(30px, 4.4vw, 56px);
+  line-height: 1.08;
+  letter-spacing: -0.03em;
+  max-width: 22ch;
+  text-wrap: balance;
+}
+body.xp-blog .page-hero-sub {
+  font-size: clamp(16px, 1.3vw, 19px);
+  color: rgba(255,255,255,0.74);
+  max-width: 58ch;
+  line-height: 1.6;
+}
+
+/* ───── 2. Reader progress bar lives on dark hero ────────────────── */
+.reader-progress {
+  position: absolute; left: 0; right: 0; bottom: -2px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--teal), var(--amber));
+  transform: scaleX(0); transform-origin: left center;
+  transition: transform 0.06s linear;
+}
+
+/* ───── 3. Animated SVG hero illustration ────────────────────────── */
+.article-hero-art {
+  position: relative;
+  max-width: 760px;
+  margin: -40px auto 0;
+  padding: 0 24px;
+  z-index: 2;
+}
+.article-hero-art svg {
+  display: block;
+  width: 100%; height: auto;
+  border-radius: 18px;
+  background: #ffffff;
+  border: 1px solid rgba(8,11,24,0.06);
+  box-shadow: 0 24px 60px -28px rgba(8,11,24,0.18);
+}
+
+/* ───── 4. Article shell — wider breathing, ink on sand ─────────── */
+body.xp-blog .section { padding: 56px 0 96px; }
+body.xp-blog .section.tight { padding: 36px 0 48px; }
+
+body.xp-blog .article-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+body.xp-blog .article-meta-row {
+  display: flex; flex-wrap: wrap; gap: 14px;
+  font-size: 12.5px; font-weight: 600;
+  letter-spacing: 0.04em; text-transform: uppercase;
+  color: rgba(8,11,24,0.52);
+  margin-bottom: 32px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid rgba(8,11,24,0.10);
+  align-items: center;
+}
+body.xp-blog .article-meta-row .dot {
+  width: 3px; height: 3px; border-radius: 50%;
+  background: rgba(8,11,24,0.32);
+}
+body.xp-blog .article-type {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px;
+  background: rgba(245,158,11,0.10);
+  color: var(--amber-deep);
+  border-radius: 6px;
+  letter-spacing: 0.08em;
+  border: 1px solid rgba(245,158,11,0.18);
+}
+body.xp-blog .article-tag {
+  display: inline-flex; align-items: center;
+  padding: 4px 10px;
+  background: rgba(0,201,167,0.08);
+  color: #007a63;
+  border-radius: 6px;
+  letter-spacing: 0.06em;
+  text-transform: none;
+  font-weight: 600;
+  border: 1px solid rgba(0,201,167,0.18);
+}
+
+body.xp-blog .article-byline {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  gap: 16px;
+  align-items: center;
+  padding: 24px 0;
+  border-top: 1px solid rgba(8,11,24,0.10);
+  border-bottom: 1px solid rgba(8,11,24,0.10);
+  margin: 0 0 48px;
+}
+body.xp-blog .article-byline-avatar {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal), var(--amber));
+  color: var(--obsidian);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 800; font-size: 17px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.32);
+  flex-shrink: 0;
+}
+body.xp-blog .article-byline-text {
+  font-size: 14px;
+  color: var(--body-dark);
+  line-height: 1.5;
+}
+body.xp-blog .article-byline-text strong {
+  display: block;
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 15.5px;
+  margin-bottom: 2px;
+}
+
+/* ───── 5. Lead paragraph & prose — readable, calm ──────────────── */
+body.xp-blog .article-lead {
+  font-size: clamp(20px, 1.7vw, 24px);
+  line-height: 1.5;
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  font-weight: 500;
+  margin-bottom: 48px;
+  max-width: 38ch;
+}
+body.xp-blog .article-lead .grad {
+  color: var(--amber-deep);
+  background: linear-gradient(135deg, #008a72, #c47d00);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+@media (forced-colors: active) {
+  body.xp-blog .article-lead .grad { -webkit-text-fill-color: currentColor; color: currentColor; }
+}
+
+body.xp-blog .article-prose {
+  font-size: 18px;
+  line-height: 1.78;
+  color: var(--body-dark);
+}
+body.xp-blog .article-prose > p {
+  margin-bottom: 26px;
+  max-width: 62ch;
+}
+body.xp-blog .article-prose > h2 {
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.22;
+  margin: 56px 0 18px;
+  color: var(--ink);
+  max-width: 22ch;
+}
+body.xp-blog .article-prose > h2 .grad {
+  color: var(--amber-deep);
+  background: linear-gradient(135deg, #008a72, #c47d00);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.xp-blog .article-prose > h3 {
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.3;
+  margin: 36px 0 12px;
+  color: var(--ink);
+}
+body.xp-blog .article-prose > p > code,
+body.xp-blog .article-prose code {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 0.88em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: rgba(8,11,24,0.06);
+  color: var(--amber-deep);
+}
+body.xp-blog .article-prose > ul,
+body.xp-blog .article-prose > ol {
+  padding-left: 22px;
+  margin-bottom: 26px;
+  max-width: 62ch;
+}
+body.xp-blog .article-prose > ul > li,
+body.xp-blog .article-prose > ol > li {
+  margin-bottom: 8px;
+}
+body.xp-blog .article-prose > a,
+body.xp-blog .article-prose a {
+  color: #007a63;
+  border-bottom: 1px solid rgba(0,201,167,0.42);
+  transition: border-bottom-color 0.2s var(--ease-out);
+}
+body.xp-blog .article-prose a:hover { border-bottom-color: var(--teal); }
+
+/* Pull-quote — strong but not garish */
+body.xp-blog .article-pullquote {
+  font-size: clamp(22px, 2.2vw, 30px);
+  font-weight: 500;
+  line-height: 1.35;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin: 48px 0;
+  padding: 12px 0 12px 28px;
+  border-left: 3px solid var(--amber);
+  max-width: 28ch;
+  font-family: var(--font-serif, 'Instrument Serif'), serif;
+  font-style: italic;
+}
+
+/* Inline callout block */
+body.xp-blog .article-callout {
+  margin: 40px 0;
+  padding: 24px 26px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(0,201,167,0.08), rgba(245,158,11,0.06));
+  border: 1px solid rgba(0,201,167,0.18);
+}
+body.xp-blog .article-callout strong {
+  display: block;
+  font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+  font-weight: 700;
+  color: #007a63;
+  margin-bottom: 8px;
+}
+body.xp-blog .article-callout p {
+  margin-bottom: 0;
+  font-size: 15.5px;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+/* Numbered list block (for case studies) */
+body.xp-blog .article-prose ol.numbered-list {
+  list-style: none;
+  counter-reset: nl;
+  padding-left: 0;
+}
+body.xp-blog .article-prose ol.numbered-list > li {
+  counter-increment: nl;
+  position: relative;
+  padding-left: 56px;
+  margin-bottom: 24px;
+}
+body.xp-blog .article-prose ol.numbered-list > li::before {
+  content: counter(nl, decimal-leading-zero);
+  position: absolute;
+  left: 0; top: 2px;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--teal);
+  padding: 4px 9px;
+  border: 1px solid rgba(0,201,167,0.32);
+  border-radius: 6px;
+  background: rgba(0,201,167,0.06);
+}
+
+/* ───── 6. Footer & nav adjustments on blog pages ──────────────── */
+body.xp-blog .xp-footer {
+  background: var(--obsidian); /* footer stays dark for anchor; restful */
+  color: var(--white);
+}
+
+/* ───── 7. Reduced motion respect ──────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  .article-hero-art svg [data-anim],
+  .article-hero-art svg animateTransform,
+  .article-hero-art svg animate {
+    animation: none !important;
+  }
+}
+
+/* ───── 8b. Thought-leadership / manifesto layout (light theme) ─── */
+body.xp-blog .manifesto-shell {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+body.xp-blog .manifesto-opener {
+  font-size: clamp(24px, 2.6vw, 34px);
+  font-weight: 500;
+  line-height: 1.42;
+  letter-spacing: -0.018em;
+  color: var(--ink);
+  margin-bottom: 48px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(8,11,24,0.12);
+  max-width: 32ch;
+}
+body.xp-blog .manifesto-opener strong {
+  font-weight: 700;
+  color: var(--amber-deep);
+  background: linear-gradient(135deg, #c47d00, #008a72);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.xp-blog .claim-block {
+  padding: 40px 0;
+  border-bottom: 1px solid rgba(8,11,24,0.08);
+}
+body.xp-blog .claim-block:last-of-type { border-bottom: 0; }
+body.xp-blog .claim-num {
+  display: inline-block;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  color: var(--amber-deep);
+  padding: 4px 9px;
+  border: 1px solid rgba(245,158,11,0.32);
+  border-radius: 6px;
+  background: rgba(245,158,11,0.06);
+  margin-bottom: 20px;
+}
+body.xp-blog .claim-headline {
+  font-size: clamp(24px, 3vw, 36px);
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  line-height: 1.18;
+  margin-bottom: 20px;
+  color: var(--ink);
+  max-width: 22ch;
+}
+body.xp-blog .claim-headline .grad {
+  color: var(--amber-deep);
+  background: linear-gradient(135deg, #c47d00, #008a72);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+body.xp-blog .claim-body {
+  font-size: 17px;
+  line-height: 1.7;
+  color: var(--body-dark);
+}
+body.xp-blog .claim-body p { margin-bottom: 16px; max-width: 60ch; }
+body.xp-blog .claim-body p:last-child { margin-bottom: 0; }
+body.xp-blog .claim-body strong { color: var(--ink); font-weight: 600; }
+body.xp-blog .claim-body a {
+  color: var(--amber-deep);
+  border-bottom: 1px solid rgba(245,158,11,0.42);
+}
+body.xp-blog .claim-body a:hover { border-bottom-color: var(--amber); }
+
+body.xp-blog .counter-block {
+  margin-top: 56px;
+  padding: 32px 32px 28px;
+  background: linear-gradient(180deg, rgba(245,158,11,0.06), rgba(245,158,11,0.02));
+  border: 1px solid rgba(245,158,11,0.22);
+  border-radius: 16px;
+}
+body.xp-blog .counter-label {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--amber-deep);
+  background: rgba(245,158,11,0.10);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+body.xp-blog .counter-block h3 {
+  font-size: clamp(20px, 2.2vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.22;
+  margin-bottom: 14px;
+  color: var(--ink);
+}
+body.xp-blog .counter-block p {
+  font-size: 15.5px;
+  line-height: 1.65;
+  color: var(--body-dark);
+  margin-bottom: 0;
+}
+body.xp-blog .counter-block p + p { margin-top: 12px; }
+
+body.xp-blog .manifesto-close {
+  margin-top: 56px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(8,11,24,0.12);
+}
+body.xp-blog .manifesto-close p {
+  font-size: clamp(18px, 1.7vw, 22px);
+  line-height: 1.55;
+  color: var(--ink);
+  font-weight: 500;
+  letter-spacing: -0.005em;
+  margin-bottom: 16px;
+  max-width: 38ch;
+}
+body.xp-blog .manifesto-close p:last-child { margin-bottom: 0; }
+body.xp-blog .manifesto-close .grad {
+  color: var(--amber-deep);
+  background: linear-gradient(135deg, #c47d00, #008a72);
+  -webkit-background-clip: text; background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ───── 8c. Case study supporting components (light theme) ──────── */
+body.xp-blog .case-block {
+  background: #ffffff;
+  border: 1px solid rgba(8,11,24,0.08);
+  border-radius: 16px;
+  padding: 24px 28px;
+  margin: 28px 0;
+  box-shadow: 0 6px 22px -16px rgba(8,11,24,0.18);
+}
+body.xp-blog .case-block-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #007a63;
+  margin-bottom: 10px;
+}
+body.xp-blog .case-block h4 {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin-bottom: 10px;
+  color: var(--ink);
+}
+body.xp-blog .case-block p {
+  font-size: 15px;
+  color: var(--body-dark);
+  line-height: 1.6;
+  margin-bottom: 0;
+}
+
+body.xp-blog .article-toc {
+  position: sticky; top: 100px;
+  padding: 22px 22px;
+  background: #ffffff;
+  border: 1px solid rgba(8,11,24,0.08);
+  border-radius: 14px;
+  box-shadow: 0 6px 22px -16px rgba(8,11,24,0.10);
+}
+body.xp-blog .article-toc h5 {
+  font-size: 10.5px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(8,11,24,0.52);
+  margin-bottom: 14px;
+  font-weight: 700;
+}
+body.xp-blog .article-toc ol {
+  display: flex; flex-direction: column; gap: 10px;
+  counter-reset: toc;
+  list-style: none;
+  padding-left: 0;
+}
+body.xp-blog .article-toc li { counter-increment: toc; padding-left: 0; }
+body.xp-blog .article-toc li::before { display: none; }
+body.xp-blog .article-toc a {
+  display: flex; gap: 12px;
+  font-size: 13.5px;
+  color: var(--body-dark);
+  line-height: 1.4;
+  transition: color 0.2s var(--ease-out);
+}
+body.xp-blog .article-toc a::before {
+  content: counter(toc, decimal-leading-zero);
+  color: #007a63;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-weight: 600;
+  font-size: 11px;
+  flex-shrink: 0;
+  padding-top: 2px;
+}
+body.xp-blog .article-toc a:hover { color: var(--ink); }
+
+body.xp-blog .article-grid {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 48px;
+  align-items: start;
+  max-width: 1020px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+@media (max-width: 980px) {
+  body.xp-blog .article-grid { grid-template-columns: 1fr; }
+  body.xp-blog .article-toc { position: static; }
+}
+
+/* Article pullquote (case study) on light theme — overrides dark default */
+body.xp-blog .article-pullquote {
+  padding: 24px 28px;
+  margin: 40px 0;
+  border-left: 3px solid var(--amber);
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  line-height: 1.4;
+  color: var(--ink);
+  background: rgba(255,255,255,0.6);
+  border-radius: 0 12px 12px 0;
+}
+body.xp-blog .article-pullquote::before {
+  content: '\201C';
+  display: block;
+  font-size: 48px;
+  line-height: 0.6;
+  color: var(--amber);
+  margin-bottom: 12px;
+  font-weight: 900;
+}
+body.xp-blog .article-pullquote cite {
+  display: block;
+  margin-top: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: rgba(8,11,24,0.58);
+  letter-spacing: 0.02em;
+  font-style: normal;
+}
+
+/* Article list items on light theme */
+body.xp-blog .article-prose ul li::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 12px;
+  width: 10px; height: 2px;
+  background: var(--teal);
+  border-radius: 2px;
+}
+body.xp-blog .article-prose ul,
+body.xp-blog .article-prose ol {
+  padding-left: 0;
+  margin: 0 0 26px 0;
+  list-style: none;
+}
+body.xp-blog .article-prose ul li,
+body.xp-blog .article-prose ol li {
+  position: relative;
+  padding-left: 26px;
+  margin-bottom: 12px;
+  line-height: 1.65;
+  max-width: 62ch;
+}
+body.xp-blog .article-prose ol { counter-reset: ol; }
+body.xp-blog .article-prose ol li { counter-increment: ol; }
+body.xp-blog .article-prose ol li::before {
+  content: counter(ol, decimal-leading-zero);
+  position: absolute;
+  left: 0; top: 0;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  font-weight: 600;
+  color: #007a63;
+  letter-spacing: 0.04em;
+}
+body.xp-blog .article-prose strong { color: var(--ink); font-weight: 600; }
+
+/* CTA finale on blog pages — match dark hero aesthetic, restful close */
+body.xp-blog .cta-finale {
+  background: var(--obsidian);
+  color: var(--white);
+}
+
+/* ───── 8. Insights index page (list view) ──────────────────────── */
+body.xp-blog .insights-list {
+  display: grid;
+  gap: 12px;
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+body.xp-blog .insight-row {
+  display: grid;
+  grid-template-columns: 112px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  padding: 18px 22px;
+  background: #ffffff;
+  border: 1px solid rgba(8,11,24,0.08);
+  border-radius: 14px;
+  transition: transform 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out), border-color 0.25s var(--ease-out);
+  color: var(--ink);
+}
+body.xp-blog .insight-row:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0,201,167,0.42);
+  box-shadow: 0 18px 40px -22px rgba(8,11,24,0.20);
+}
+body.xp-blog .insight-row-meta {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11.5px;
+  color: var(--body-dark);
+  letter-spacing: 0.04em;
+}
+body.xp-blog .insight-row h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  line-height: 1.32;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+body.xp-blog .insight-row-excerpt {
+  font-size: 14px;
+  color: var(--body-dark);
+  line-height: 1.5;
+}
+body.xp-blog .insight-row-arrow {
+  font-size: 18px; line-height: 1;
+  color: var(--amber-deep);
+  transition: transform 0.2s var(--ease-out);
+}
+body.xp-blog .insight-row:hover .insight-row-arrow { transform: translateX(4px); }
+@media (max-width: 640px) {
+  body.xp-blog .insight-row { grid-template-columns: 1fr auto; gap: 12px; }
+  body.xp-blog .insight-row-meta { grid-column: 1 / -1; }
+}

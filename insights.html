@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Insights: AI, Resource Augmentation &amp; Delivery | Xperion</title>
+<meta name="description" content="Playbooks, articles, and thought leadership from Xperion's five practices. Production AI, talent that compounds, and the operating model behind it.">
+<meta name="theme-color" content="#080B18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="xperion.css">
+<style>
+  :root { --page-accent: #00C9A7; --page-accent-2: #3DDC97; }
+
+  /* INSIGHTS PAGE, scoped styles ─────────────────────────── */
+  .insights-toolbar {
+    display: flex; flex-wrap: wrap; gap: 10px;
+    padding-bottom: 36px; border-bottom: 1px solid rgba(255,255,255,0.08);
+    margin-bottom: 48px;
+  }
+  .insight-chip {
+    font-size: 12.5px; font-weight: 600; letter-spacing: 0.02em;
+    padding: 10px 16px; border-radius: 999px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.1);
+    color: rgba(255,255,255,0.78);
+    cursor: pointer;
+    transition: transform var(--d-micro) var(--ease-spring-snap),
+                background var(--d-std) var(--ease-emphasis-out),
+                border-color var(--d-std) var(--ease-emphasis-out),
+                color var(--d-std) var(--ease-emphasis-out);
+  }
+  .insight-chip:hover { border-color: rgba(0,201,167,0.4); color: white; }
+  .insight-chip:active { transform: scale(0.96); }
+  .insight-chip.is-active {
+    background: var(--grad-green);
+    border-color: transparent; color: var(--obsidian);
+    font-weight: 700;
+  }
+  .insight-chip-group-label {
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45); font-weight: 700;
+    padding: 12px 8px 12px 0;
+    margin-right: 4px;
+  }
+  .insight-toolbar-row { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; width: 100%; }
+  .insight-toolbar-row + .insight-toolbar-row { margin-top: 6px; }
+
+  .insights-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px;
+    align-items: stretch;
+  }
+  @media (max-width: 1000px) { .insights-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 640px)  { .insights-grid { grid-template-columns: 1fr; } }
+
+  .insight-card {
+    position: relative; display: flex; flex-direction: column;
+    background: linear-gradient(180deg, rgba(255,255,255,0.035), rgba(255,255,255,0.008));
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    color: inherit;
+    will-change: transform;
+  }
+  .insight-card::before {
+    content: ''; position: absolute; inset: 0 0 auto 0; height: 2px;
+    background: var(--accent, var(--grad-green));
+    opacity: 0.5;
+    transition: opacity var(--d-std) var(--ease-emphasis-out), height var(--d-std) var(--ease-emphasis-out);
+  }
+  .insight-card:hover { transform: translateY(-6px); border-color: rgba(0,201,167,0.32); }
+  .insight-card:hover::before { opacity: 1; height: 3px; }
+  .insight-card.is-featured { grid-column: span 2; }
+  @media (max-width: 1000px) { .insight-card.is-featured { grid-column: span 2; } }
+  @media (max-width: 640px)  { .insight-card.is-featured { grid-column: span 1; } }
+
+  .insight-card-art {
+    aspect-ratio: 16 / 9;
+    background:
+      radial-gradient(ellipse 70% 80% at var(--ax, 70%) var(--ay, 30%), var(--art-a, rgba(0,201,167,0.55)), transparent 60%),
+      radial-gradient(ellipse 55% 65% at calc(100% - var(--ax, 70%)) calc(100% - var(--ay, 30%)), var(--art-b, rgba(245,158,11,0.45)), transparent 60%),
+      var(--obsidian-2);
+    position: relative; overflow: hidden;
+  }
+  .insight-card-art::after {
+    content: ''; position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+    mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 75%);
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at 50% 50%, black, transparent 75%);
+  }
+  .insight-card.is-featured .insight-card-art { aspect-ratio: 21 / 9; }
+
+  .insight-card-art-mark {
+    position: absolute; top: 18px; left: 18px;
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    font-weight: 800; color: var(--obsidian);
+    padding: 6px 12px; border-radius: 999px;
+    background: rgba(255,244,230,0.92);
+    backdrop-filter: blur(8px);
+  }
+  .insight-card-art-mark.case-study { color: #0a4a3a; background: #e6fff7; }
+  .insight-card-art-mark.article    { color: #5a2a00; background: #fff4e6; }
+  .insight-card-art-mark.tl         { color: #3a1d6e; background: #f2ecff; }
+  .insight-card-art-mark.case-study::before { content: '\25C8'; }
+  .insight-card-art-mark.article::before    { content: '\25CE'; }
+  .insight-card-art-mark.tl::before         { content: '\25B2'; }
+
+  .insight-card-body { padding: 26px 26px 28px; display: flex; flex-direction: column; gap: 14px; flex: 1; }
+  .insight-card-meta {
+    display: flex; flex-wrap: wrap; gap: 16px; align-items: center;
+    font-size: 12px; color: rgba(255,255,255,0.55);
+    letter-spacing: 0.02em;
+  }
+  .insight-card-meta .dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .insight-card-tag {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 4px 10px; border-radius: 999px;
+    background: rgba(0,201,167,0.1);
+    color: var(--teal);
+    border: 1px solid rgba(0,201,167,0.25);
+  }
+  .insight-card-tag.industry-financial-services { background: rgba(124,58,237,0.1); color: var(--violet-2); border-color: rgba(124,58,237,0.25); }
+  .insight-card-tag.industry-manufacturing      { background: rgba(245,158,11,0.1); color: var(--amber-2); border-color: rgba(245,158,11,0.25); }
+  .insight-card-tag.industry-retail             { background: rgba(61,220,151,0.1); color: var(--teal-2); border-color: rgba(61,220,151,0.25); }
+  .insight-card-tag.industry-enterprise-saas    { background: rgba(245,158,11,0.1); color: var(--amber-2); border-color: rgba(245,158,11,0.25); }
+  .insight-card-title {
+    font-size: 22px; font-weight: 800; letter-spacing: -0.022em; line-height: 1.22;
+    color: white;
+  }
+  .insight-card.is-featured .insight-card-title { font-size: 30px; letter-spacing: -0.028em; line-height: 1.16; }
+  .insight-card-excerpt { font-size: 14.5px; color: rgba(255,255,255,0.66); line-height: 1.6; }
+  .insight-card-foot {
+    margin-top: auto;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 12px; padding-top: 18px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .insight-card-byline { display: flex; align-items: center; gap: 10px; }
+  .insight-card-avatar {
+    width: 28px; height: 28px; border-radius: 50%;
+    background: var(--grad-green); color: var(--obsidian);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 800; letter-spacing: -0.01em;
+  }
+  .insight-card-byline-text { font-size: 12.5px; color: rgba(255,255,255,0.7); line-height: 1.3; }
+  .insight-card-byline-text strong { display: block; color: white; font-weight: 600; }
+  .insight-card-cta {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 13px; font-weight: 700; color: var(--teal);
+    transition: gap var(--d-std) var(--ease-spring-snap), color var(--d-std) var(--ease-emphasis-out);
+  }
+  .insight-card:hover .insight-card-cta { gap: 12px; color: var(--teal-2); }
+  .insight-card-cta.is-soon { color: rgba(255,255,255,0.4); cursor: not-allowed; }
+  .insight-card-cta.is-soon::after { content: '\2022 Coming soon'; margin-left: 8px; font-weight: 500; }
+
+  .insight-card.is-hidden {
+    display: none;
+  }
+
+  /* Newsletter strip */
+  .insights-subscribe {
+    margin-top: 96px; padding: 56px;
+    background: linear-gradient(135deg, rgba(0,201,167,0.10), rgba(245,158,11,0.08));
+    border: 1px solid rgba(0,201,167,0.22);
+    border-radius: var(--r-lg);
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center;
+  }
+  @media (max-width: 880px) { .insights-subscribe { grid-template-columns: 1fr; padding: 36px; } }
+  .insights-subscribe h3 { font-size: clamp(24px, 2.6vw, 36px); font-weight: 900; letter-spacing: -0.025em; line-height: 1.15; margin-bottom: 14px; }
+  .insights-subscribe p { font-size: 15px; color: rgba(255,255,255,0.72); line-height: 1.6; }
+  .insights-subscribe-form { display: flex; gap: 10px; flex-wrap: wrap; }
+  .insights-subscribe-form input {
+    flex: 1; min-width: 240px;
+    padding: 14px 18px;
+    background: rgba(8,11,24,0.55);
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 999px;
+    color: white; font: inherit; font-size: 14.5px;
+    outline: none;
+    transition: border-color var(--d-std) var(--ease-emphasis-out), background var(--d-std) var(--ease-emphasis-out);
+  }
+  .insights-subscribe-form input:focus {
+    border-color: var(--teal);
+    background: rgba(8,11,24,0.7);
+  }
+  .insights-subscribe-form button {
+    padding: 14px 26px;
+    background: var(--grad-green); color: var(--obsidian);
+    font: inherit; font-weight: 700; font-size: 14.5px;
+    border-radius: 999px; cursor: pointer;
+    transition: transform var(--d-std) var(--ease-spring-snap), box-shadow var(--d-std) var(--ease-emphasis-out);
+    box-shadow: 0 10px 28px -8px rgba(0,201,167,0.5);
+  }
+  .insights-subscribe-form button:hover { transform: translateY(-2px); box-shadow: 0 16px 36px -8px rgba(0,201,167,0.65); }
+  .insights-subscribe-form button:active { transform: translateY(0) scale(0.985); }
+
+  /* Empty state */
+  .insights-empty {
+    grid-column: 1 / -1; padding: 64px 32px;
+    text-align: center; border: 1px dashed rgba(255,255,255,0.14);
+    border-radius: var(--r-lg);
+    color: rgba(255,255,255,0.6);
+    display: none;
+  }
+  .insights-empty.is-visible { display: block; }
+  .insights-empty h4 { font-size: 22px; font-weight: 800; color: white; margin-bottom: 8px; letter-spacing: -0.02em; }
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="xperion-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="xperion-favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="xperion-favicon-192.png">
+<meta name="application-name" content="Xperion">
+<meta name="apple-mobile-web-app-title" content="Xperion">
+<link rel="manifest" href="manifest.json">
+<link rel="canonical" href="https://xperion.ai/insights">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xperion">
+<meta property="og:title" content="Insights: AI, Resource Augmentation &amp; Delivery | Xperion">
+<meta property="og:description" content="Playbooks, articles, and thought leadership from Xperion's five practices. Production AI, talent that compounds, and the operating model behind it.">
+<meta property="og:url" content="https://xperion.ai/insights">
+<meta property="og:image" content="https://xperion.ai/xperion-og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Xperion, Human + AI intelligence for enterprise transformation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Insights: AI, Resource Augmentation &amp; Delivery | Xperion">
+<meta name="twitter:description" content="Playbooks, articles, and thought leadership from Xperion's five practices. Production AI, talent that compounds, and the operating model behind it.">
+<meta name="twitter:image" content="https://xperion.ai/xperion-og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Xperion","url":"https://xperion.ai","logo":"https://xperion.ai/xperion-favicon-512.png","sameAs":["https://www.linkedin.com/company/xperion"],"description":"Human + AI intelligence for enterprise transformation. Senior-led teams across the United States and Pakistan partnering with enterprises on resource augmentation, managed services, production AI, consulting, marketing, and design under one MSA.","contactPoint":{"@type":"ContactPoint","email":"info@xperion.ai","contactType":"sales"}}
+</script>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="xp-progress"><div class="xp-progress-fill" id="xpProgress"></div></div>
+<header class="xp-nav" id="xpNav">
+ <div class="xp-nav-inner">
+ <a href="./" class="xp-logo" aria-label="Xperion home">
+ <img src="xperion-mark.svg" alt="" class="xp-logo-img" width="40" height="40" aria-hidden="true"><span class="xp-logo-wordmark">xperion</span>
+ </a>
+ <nav class="xp-nav-menu" aria-label="Primary">
+ <div class="xp-nav-wrap">
+ <button class="xp-nav-item" aria-haspopup="true">Practices <span class="chev">&#9662;</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row amber" href="practice-resource-augmentation"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Resource Augmentation &amp; Managed Services</strong><span>Senior engineers, designers, and marketers, placed in 1&ndash;2 weeks.</span></div></a>
+ <a class="xp-dd-row violet" href="practice-ai-solutions"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Intelligent AI Solutions</strong><span>Production-grade AI from pilot to scale.</span></div></a>
+ <a class="xp-dd-row teal" href="practice-consulting"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Technology Consulting</strong><span>Strategy that connects directly to delivery.</span></div></a>
+ <a class="xp-dd-row green" href="practice-marketing"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Marketing</strong><span>GTM and brand craft, instrumented for revenue.</span></div></a>
+ <a class="xp-dd-row warm" href="practice-design-ux"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Design &amp; UX</strong><span>Product, brand, and systems design that ships.</span></div></a>
+ </div>
+ </div>
+ <div class="xp-nav-wrap">
+ <button class="xp-nav-item" aria-haspopup="true">Industries <span class="chev">&#9662;</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row teal" href="industry-healthcare"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Healthcare &amp; Life Sciences</strong><span>HIPAA-aligned, evidence-based AI.</span></div></a>
+ <a class="xp-dd-row violet" href="industry-financial-services"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Financial Services &amp; Fintech</strong><span>Risk, fraud, and growth, built for compliance.</span></div></a>
+ <a class="xp-dd-row amber" href="industry-manufacturing"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Manufacturing &amp; Logistics</strong><span>Industrial AI, OT/IT, supply-chain decisioning.</span></div></a>
+ <a class="xp-dd-row green" href="industry-retail"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Retail &amp; E-Commerce</strong><span>Conversion-economics fluent. Headless-ready.</span></div></a>
+ <a class="xp-dd-row warm" href="industry-enterprise-saas"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Enterprise SaaS</strong><span>Platform engineering for vertical and horizontal SaaS.</span></div></a>
+ </div>
+ </div>
+ <a class="xp-nav-item" href="how-we-work">How We Work</a>
+ <a class="xp-nav-item" href="insights">Insights</a>
+ <a class="xp-nav-item" href="about">About</a>
+ <a class="xp-nav-item" href="careers">Careers</a>
+ </nav>
+ <a class="xp-cta" href="book-a-call">
+ Book a Call
+ <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </a>
+ <button class="xp-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+ </div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+ <div class="page-hero-bg" aria-hidden="true"></div>
+ <div class="page-hero-grid" aria-hidden="true"></div>
+ <div class="container">
+ <div class="page-eyebrow">Insights</div>
+ <h1>Field notes from the work, <span class="grad serif">not the marketing.</span></h1>
+ <p class="page-hero-sub">Playbooks, articles, and thought leadership from inside Xperion practices. How we build, where builds go wrong, and why the deck is the residue of the work, never the deliverable.</p>
+ <div class="page-hero-actions">
+ <a class="btn-primary" href="#feed" data-magnetic>
+ Browse the feed
+ <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </a>
+ <a class="btn-ghost" href="book-a-call">Book a strategy call</a>
+ </div>
+ <div class="page-hero-stats">
+ <div><div class="page-hero-stat-num">6</div><div class="page-hero-stat-label">Pieces published</div></div>
+ <div><div class="page-hero-stat-num">5</div><div class="page-hero-stat-label">Industries covered</div></div>
+ <div><div class="page-hero-stat-num">100%</div><div class="page-hero-stat-label">Written by operators</div></div>
+ <div><div class="page-hero-stat-num">0</div><div class="page-hero-stat-label">Ghost-written posts</div></div>
+ </div>
+ </div>
+</section>
+
+<section class="section" id="feed">
+ <div class="section-mesh" data-palette="teal-violet" aria-hidden="true"></div>
+ <div class="container scroll-3d">
+ <div class="reveal">
+ <div class="section-kicker">Latest</div>
+ <h2>Filter the feed. <span class="grad">Find what's useful.</span></h2>
+ <p class="section-lead">Every piece is written by the senior practitioner closest to the work. Pick a format or an industry and the grid filters in place.</p>
+ </div>
+
+ <div class="insights-toolbar reveal" role="toolbar" aria-label="Filter insights">
+ <div class="insight-toolbar-row">
+ <span class="insight-chip-group-label">Format</span>
+ <button type="button" class="insight-chip is-active" data-filter="type" data-value="all">All</button>
+ <button type="button" class="insight-chip" data-filter="type" data-value="case-study">Playbooks</button>
+ <button type="button" class="insight-chip" data-filter="type" data-value="article">Articles</button>
+ <button type="button" class="insight-chip" data-filter="type" data-value="tl">Thought leadership</button>
+ </div>
+ <div class="insight-toolbar-row">
+ <span class="insight-chip-group-label">Industry</span>
+ <button type="button" class="insight-chip is-active" data-filter="industry" data-value="all">All</button>
+ <button type="button" class="insight-chip" data-filter="industry" data-value="healthcare">Healthcare</button>
+ <button type="button" class="insight-chip" data-filter="industry" data-value="enterprise-saas">Enterprise SaaS</button>
+ <!-- Industry chips with no published pieces removed in v3.9; restore as content ships. -->
+ </div>
+ </div>
+
+ <div class="insights-grid reveal-stagger" id="insightsGrid">
+
+ <!-- 01. CASE STUDY, Healthcare, Featured -->
+ <a class="insight-card is-featured" href="insights-case-study" data-type="case-study" data-industry="healthcare">
+ <div class="insight-card-art" style="--ax:75%; --ay:28%; --art-a:rgba(0,201,167,0.6); --art-b:rgba(124,58,237,0.45);" aria-hidden="true">
+ <span class="insight-card-art-mark case-study">Playbook</span>
+ </div>
+ <div class="insight-card-body">
+ <div class="insight-card-meta">
+ <span class="insight-card-tag industry-healthcare">Healthcare</span>
+ <span>14 May 2026</span><span class="dot"></span><span>9 min read</span>
+ </div>
+ <h3 class="insight-card-title">Shipping ambient clinical documentation, HIPAA-aligned, in one quarter.</h3>
+ <p class="insight-card-excerpt">Why hospital AI deployments stall at the seam between model and workflow, and the engagement structure we use to get clinicians dictating into production: eval harness first, one specialty fully live before any horizontal work, compliance as a workstream.</p>
+ <div class="insight-card-foot">
+ <div class="insight-card-byline">
+ <span class="insight-card-avatar">OQ</span>
+ <div class="insight-card-byline-text"><strong>Owais Qarni</strong>Head of Engineering</div>
+ </div>
+ <span class="insight-card-cta">Read the playbook <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+ </div>
+ </div>
+ </a>
+
+ <!-- 02. ARTICLE, AI Solutions / Enterprise SaaS -->
+ <a class="insight-card" href="insights-article" data-type="article" data-industry="enterprise-saas">
+ <div class="insight-card-art" style="--ax:30%; --ay:65%; --art-a:rgba(124,58,237,0.55); --art-b:rgba(245,158,11,0.4);" aria-hidden="true">
+ <span class="insight-card-art-mark article">Article</span>
+ </div>
+ <div class="insight-card-body">
+ <div class="insight-card-meta">
+ <span class="insight-card-tag industry-enterprise-saas">Enterprise SaaS</span>
+ <span>02 May 2026</span><span class="dot"></span><span>11 min</span>
+ </div>
+ <h3 class="insight-card-title">Your AI pilot won't survive the second 90%, here's the part nobody scopes.</h3>
+ <p class="insight-card-excerpt">The demo works. The board loves it. Then production happens, evals drift, the model behaves like a different person on Tuesdays, and the operating cost doubles. The cost isn't the model. It's everything that holds the model accountable.</p>
+ <div class="insight-card-foot">
+ <div class="insight-card-byline">
+ <span class="insight-card-avatar">OQ</span>
+ <div class="insight-card-byline-text"><strong>Owais Qarni</strong>Head of Engineering</div>
+ </div>
+ <span class="insight-card-cta">Read the article <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+ </div>
+ </div>
+ </a>
+
+ <!-- 03. THOUGHT LEADERSHIP, Operating model -->
+ <a class="insight-card" href="insights-thought-leadership" data-type="tl" data-industry="enterprise-saas">
+ <div class="insight-card-art" style="--ax:50%; --ay:50%; --art-a:rgba(245,158,11,0.55); --art-b:rgba(0,201,167,0.45);" aria-hidden="true">
+ <span class="insight-card-art-mark tl">Thought leadership</span>
+ </div>
+ <div class="insight-card-body">
+ <div class="insight-card-meta">
+ <span class="insight-card-tag">Operating model</span>
+ <span>24 Apr 2026</span><span class="dot"></span><span>7 min</span>
+ </div>
+ <h3 class="insight-card-title">The agency model is broken. Here's what we hire for instead.</h3>
+ <p class="insight-card-excerpt">Senior people sell. Junior people deliver. The math works for the firm and never for the client. We rebuilt the operating model around the opposite assumption, and we'll defend the trade-offs in public.</p>
+ <div class="insight-card-foot">
+ <div class="insight-card-byline">
+ <span class="insight-card-avatar">SH</span>
+ <div class="insight-card-byline-text"><strong>Syed Hussain Mustafa</strong>Chief Executive Officer</div>
+ </div>
+ <span class="insight-card-cta">Read the manifesto <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+ </div>
+ </div>
+ </a>
+
+ <!-- Coming-soon stub cards removed in v3.9 authenticity pass: they carried
+      invented engagement claims. Re-add cards here only for published pieces. -->
+
+ <div class="insights-empty" id="insightsEmpty" role="status" aria-live="polite">
+ <h4>Nothing matches both filters yet.</h4>
+ <p>Try widening the format or picking a different industry.</p>
+ </div>
+
+ </div>
+
+ </div>
+</section>
+
+<!-- Sand-bg editorial break between the dark feed and the dark CTA finale -->
+<section class="section bg-sand" id="subscribe" style="background: var(--sand); color: var(--ink);">
+ <div class="container scroll-3d">
+ <div class="reveal">
+ <div class="section-kicker" style="color: var(--amber-deep);">Subscribe</div>
+ <h2 style="color: var(--ink);">One email a month. <span class="serif" style="background: linear-gradient(135deg in oklch, #0a4a3a 0%, #1a9e66 40%, #c47d00 100%); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;">No marketing.</span></h2>
+ <p class="section-lead" style="color: var(--body-dark);">The pieces above, plus a short editor's note from the partner who shipped that month's work. We don't sell it, we don't share it, and we don't pad it.</p>
+ </div>
+ <!-- Subscribe handler: mailto fallback (no backend / no list provider yet).
+      Honest by design — composes a real email instead of pretending to store
+      the address. Swap to a list provider by replacing the onsubmit. -->
+ <form class="insights-subscribe-form lp-subscribe-form reveal" onsubmit="event.preventDefault(); var em=this.querySelector('#subscribe-email').value; window.location.href='mailto:info@xperion.ai?subject='+encodeURIComponent('Subscribe to Insights')+'&amp;body='+encodeURIComponent('Please add '+em+' to the Insights list.'); var b=this.querySelector('button'); b.textContent='Opening your email app…'; setTimeout(()=>{b.textContent='Subscribe';this.reset();}, 4000);">
+ <label for="subscribe-email" class="skip-link" style="position:absolute; left:-9999px;">Work email</label>
+ <input id="subscribe-email" type="email" placeholder="you@work-domain.com" required style="background: var(--white); border: 1px solid rgba(8,11,24,0.14); color: var(--ink);">
+ <button type="submit">Subscribe</button>
+ </form>
+ <p class="reveal" style="margin-top: 20px; font-size: 13px; color: var(--body-dark);">Unsubscribe with one click. No sequences, no SDR follow-ups, no "just checking in" emails.</p>
+ </div>
+</section>
+
+<section class="cta-finale">
+ <div class="cta-finale-bg" aria-hidden="true"></div>
+ <div class="section-mesh" data-palette="amber-violet" aria-hidden="true"></div>
+ <div class="container scroll-3d">
+ <div class="reveal">
+ <h2>Have a problem worth <span class="grad">writing about?</span></h2>
+ <p class="cta-finale-sub">Most pieces here started as a single scoping call. If you're solving something interesting, we'd rather build it than blog about it.</p>
+ <div class="cta-finale-actions">
+ <a class="btn-primary" href="book-a-call" data-magnetic>
+ Book a Strategy Call
+ <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </a>
+ <a class="btn-ghost" href="how-we-work">How we work</a>
+ </div>
+ </div>
+ </div>
+</section>
+<div class="colour-band" aria-hidden="true"></div>
+</main>
+
+<footer class="xp-footer">
+ <div class="container">
+ <div class="xp-footer-top">
+ <div>
+ <div class="xp-footer-brand-name"><img src="xperion-mark.svg" alt="" class="xp-footer-brand-img" width="48" height="48" aria-hidden="true"><span class="xp-footer-brand-wordmark">xperion</span></div>
+ <p class="xp-footer-tagline">Human + AI intelligence for enterprise transformation. Senior-led teams across the United&nbsp;States and Pakistan. Talent &middot; AI Solutions &middot; Consulting &middot; Marketing &middot; Design.</p>
+ <div style="margin-bottom: 18px;">
+ <a href="https://xperion.ai" style="color: var(--amber-2); font-size: 13.5px; font-weight: 600;">xperion.ai</a><br>
+ <a href="mailto:info@xperion.ai" style="color: rgba(255,255,255,0.7); font-size: 13.5px;">info@xperion.ai</a>
+ </div>
+ <div class="xp-footer-social">
+ <a href="https://www.linkedin.com/company/xperion" aria-label="Xperion on LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.32V9h3.42v1.56h.04c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.43c-1.14 0-2.07-.93-2.07-2.07s.93-2.07 2.07-2.07 2.06.93 2.06 2.07-.92 2.07-2.06 2.07zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg></a>
+ </div>
+ </div>
+ <div class="xp-footer-col"><h4>Practices</h4><ul>
+ <li><a href="practice-resource-augmentation">Resource Augmentation &amp; Managed Services</a></li>
+ <li><a href="practice-ai-solutions">AI Solutions</a></li>
+ <li><a href="practice-consulting">Consulting</a></li>
+ <li><a href="practice-marketing">Marketing</a></li>
+ <li><a href="practice-design-ux">Design &amp; UX</a></li>
+ </ul></div>
+ <div class="xp-footer-col"><h4>Industries</h4><ul>
+ <li><a href="industry-healthcare">Healthcare</a></li>
+ <li><a href="industry-financial-services">Financial Services</a></li>
+ <li><a href="industry-manufacturing">Manufacturing</a></li>
+ <li><a href="industry-retail">Retail</a></li>
+ <li><a href="industry-enterprise-saas">Enterprise SaaS</a></li>
+ </ul></div>
+ <div class="xp-footer-col"><h4>Company</h4><ul>
+ <li><a href="about">About</a></li>
+ <li><a href="leadership">Leadership</a></li>
+ <li><a href="how-we-work">How We Work</a></li>
+ <li><a href="careers">Careers</a></li>
+ <li><a href="book-a-call">Book a Call</a></li>
+ </ul></div>
+ <div class="xp-footer-col"><h4>Resources</h4><ul>
+ <li><a href="insights">Insights</a></li>
+ <li><a href="accessibility">Accessibility</a></li>
+ <li><a href="services">All Services</a></li>
+ <li><a href="privacy">Privacy</a></li>
+ <li><a href="terms">Terms</a></li>
+ </ul></div>
+ </div>
+ <div class="xp-footer-bottom">
+ <span>&copy; 2026 Xperion. All rights reserved.</span>
+ <div class="xp-footer-meta"><a href="insights">Insights</a><a href="cookies">Cookies</a><a href="privacy">Privacy</a><a href="terms">Terms</a><a href="security">Security</a></div>
+ </div>
+ </div>
+</footer>
+<script src="xperion.js" defer></script>
+<script src="xperion-insight-art.js" defer></script>
+<script>
+/* Insights filter logic, vanilla. Two filter axes (type + industry), AND between axes. */
+(function(){
+  var grid = document.getElementById('insightsGrid');
+  if (!grid) return;
+  var empty = document.getElementById('insightsEmpty');
+  var state = { type: 'all', industry: 'all' };
+  var chips = document.querySelectorAll('.insight-chip');
+  function apply() {
+    var cards = grid.querySelectorAll('.insight-card');
+    var visible = 0;
+    cards.forEach(function(c){
+      var t = c.getAttribute('data-type');
+      var i = c.getAttribute('data-industry');
+      var match = (state.type === 'all' || state.type === t) && (state.industry === 'all' || state.industry === i);
+      c.classList.toggle('is-hidden', !match);
+      if (match) visible++;
+    });
+    empty.classList.toggle('is-visible', visible === 0);
+  }
+  chips.forEach(function(chip){
+    chip.addEventListener('click', function(){
+      var filter = chip.getAttribute('data-filter');
+      var value  = chip.getAttribute('data-value');
+      state[filter] = value;
+      // Toggle active class within the same filter group only.
+      document.querySelectorAll('.insight-chip[data-filter="' + filter + '"]').forEach(function(c){
+        c.classList.toggle('is-active', c === chip);
+      });
+      apply();
+    });
+  });
+})();
+</script>
+</body>
+</html>

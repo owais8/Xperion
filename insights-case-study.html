@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Ambient Clinical Documentation Playbook | Xperion</title>
+<meta name="description" content="How Xperion structures HIPAA-aligned ambient clinical documentation builds: eval harness first, one specialty at a time, production inside a quarter.">
+<meta name="theme-color" content="#080B18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="xperion.css">
+<link rel="stylesheet" href="xperion-blog.css">
+<style>
+  :root { --page-accent: #00C9A7; --page-accent-2: #3DDC97; }
+
+  .article-shell { max-width: 880px; margin: 0 auto; }
+  .article-meta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 24px; }
+  .article-meta-row .dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .article-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(0,201,167,0.1); color: var(--teal); border: 1px solid rgba(0,201,167,0.25); }
+  .article-type { font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--obsidian); background: #e6fff7; padding: 5px 12px; border-radius: 999px; }
+
+  .article-byline { display: flex; align-items: center; gap: 14px; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); margin: 36px 0 56px; }
+  .article-byline-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--grad-green); color: var(--obsidian); display:inline-flex; align-items:center; justify-content:center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
+  .article-byline-text { font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+  .article-byline-text strong { display: block; color: white; font-weight: 600; font-size: 14.5px; margin-bottom: 2px; }
+
+  .article-prose { font-size: 17px; line-height: 1.75; color: rgba(255,255,255,0.82); }
+  .article-prose > p { margin-bottom: 22px; }
+  .article-prose > h2 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 900; letter-spacing: -0.025em; line-height: 1.18; margin: 64px 0 24px; color: white; }
+  .article-prose > h2 .grad { background: var(--grad-green); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .article-prose > h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.015em; margin: 36px 0 16px; color: white; }
+  .article-prose strong { color: white; font-weight: 600; }
+  .article-prose ul, .article-prose ol { padding-left: 0; margin: 0 0 28px 0; }
+  .article-prose ul li, .article-prose ol li { position: relative; padding-left: 26px; margin-bottom: 12px; line-height: 1.65; }
+  .article-prose ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 10px; height: 2px; background: var(--teal); border-radius: 2px; }
+  .article-prose ol { counter-reset: ol; }
+  .article-prose ol li { counter-increment: ol; }
+  .article-prose ol li::before { content: counter(ol, decimal-leading-zero); position: absolute; left: 0; top: 0; font-size: 12px; font-weight: 800; color: var(--teal); letter-spacing: 0.04em; }
+  .article-prose a { color: var(--teal-2); border-bottom: 1px solid rgba(61,220,151,0.4); transition: border-color var(--d-std) var(--ease-emphasis-out); }
+  .article-prose a:hover { border-bottom-color: var(--teal); }
+
+  .article-pullquote { padding: 36px 32px; margin: 56px 0; border-left: 3px solid; border-image: var(--grad-green) 1; font-size: clamp(22px, 2.4vw, 30px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.35; color: white; }
+  .article-pullquote::before { content: '\201C'; display: block; font-size: 64px; line-height: 0.6; color: var(--teal); margin-bottom: 16px; font-weight: 900; }
+  .article-pullquote cite { display: block; margin-top: 18px; font-size: 13.5px; font-weight: 600; color: rgba(255,255,255,0.6); letter-spacing: 0.02em; }
+
+  .case-block { background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.008)); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r-lg); padding: 28px 32px; margin: 32px 0; }
+  .case-block-label { font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+  .case-block h4 { font-size: 18px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 12px; color: white; }
+  .case-block p { font-size: 15.5px; color: rgba(255,255,255,0.72); line-height: 1.65; }
+
+  .article-toc { position: sticky; top: 100px; padding: 24px 22px; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r-md); }
+  .article-toc h5 { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 14px; font-weight: 700; }
+  .article-toc ol { display: flex; flex-direction: column; gap: 10px; counter-reset: toc; }
+  .article-toc li { counter-increment: toc; }
+  .article-toc a { display: flex; gap: 12px; font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.4; transition: color var(--d-std) var(--ease-emphasis-out); }
+  .article-toc a::before { content: counter(toc, decimal-leading-zero); color: var(--teal); font-weight: 800; font-size: 11px; letter-spacing: 0.04em; flex-shrink: 0; padding-top: 2px; }
+  .article-toc a:hover { color: white; }
+
+  .article-grid { display: grid; grid-template-columns: 260px 1fr; gap: 56px; align-items: start; }
+  @media (max-width: 980px) { .article-grid { grid-template-columns: 1fr; } .article-toc { position: static; } }
+
+  /* Sticky reader progress in nav */
+  .reader-progress { position: fixed; left: 0; right: 0; top: 0; height: 2px; z-index: 200; pointer-events: none; }
+  .reader-progress::after { content: ''; display: block; height: 100%; background: var(--grad-green); width: var(--p, 0%); transition: width 0.1s linear; }
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="xperion-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="xperion-favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="xperion-favicon-192.png">
+<meta name="application-name" content="Xperion">
+<meta name="apple-mobile-web-app-title" content="Xperion">
+<link rel="manifest" href="manifest.json">
+<link rel="canonical" href="https://xperion.ai/insights-case-study">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xperion">
+<meta property="og:title" content="Ambient Clinical Documentation Playbook | Xperion">
+<meta property="og:description" content="How Xperion structures HIPAA-aligned ambient clinical documentation builds: eval harness first, one specialty at a time, production inside a quarter.">
+<meta property="og:url" content="https://xperion.ai/insights-case-study">
+<meta property="og:image" content="https://xperion.ai/xperion-og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Xperion, Human + AI intelligence for enterprise transformation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ambient Clinical Documentation Playbook | Xperion">
+<meta name="twitter:description" content="How Xperion structures HIPAA-aligned ambient clinical documentation builds: eval harness first, one specialty at a time, production inside a quarter.">
+<meta name="twitter:image" content="https://xperion.ai/xperion-og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Xperion","url":"https://xperion.ai","logo":"https://xperion.ai/xperion-favicon-512.png","sameAs":["https://www.linkedin.com/company/xperion"],"description":"Human + AI intelligence for enterprise transformation. Senior-led teams across the United States and Pakistan partnering with enterprises on resource augmentation, managed services, production AI, consulting, marketing, and design under one MSA.","contactPoint":{"@type":"ContactPoint","email":"info@xperion.ai","contactType":"sales"}}
+</script>
+</head>
+<body class="xp-blog">
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="xp-progress"><div class="xp-progress-fill" id="xpProgress"></div></div>
+<header class="xp-nav" id="xpNav">
+ <div class="xp-nav-inner">
+ <a href="./" class="xp-logo" aria-label="Xperion home"><img src="xperion-mark.svg" alt="" class="xp-logo-img" width="40" height="40" aria-hidden="true"><span class="xp-logo-wordmark">xperion</span></a>
+ <nav class="xp-nav-menu" aria-label="Primary">
+ <div class="xp-nav-wrap"><button class="xp-nav-item" aria-haspopup="true">Practices <span class="chev">&#9662;</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row amber" href="practice-resource-augmentation"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Resource Augmentation &amp; Managed Services</strong><span>Senior engineers, designers, and marketers, placed in 1&ndash;2 weeks.</span></div></a>
+ <a class="xp-dd-row violet" href="practice-ai-solutions"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Intelligent AI Solutions</strong><span>Production-grade AI from pilot to scale.</span></div></a>
+ <a class="xp-dd-row teal" href="practice-consulting"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Technology Consulting</strong><span>Strategy that connects directly to delivery.</span></div></a>
+ <a class="xp-dd-row green" href="practice-marketing"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Marketing</strong><span>GTM and brand craft, instrumented for revenue.</span></div></a>
+ <a class="xp-dd-row warm" href="practice-design-ux"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Design &amp; UX</strong><span>Product, brand, and systems design that ships.</span></div></a>
+ </div></div>
+ <div class="xp-nav-wrap"><button class="xp-nav-item" aria-haspopup="true">Industries <span class="chev">&#9662;</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row teal" href="industry-healthcare"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Healthcare &amp; Life Sciences</strong><span>HIPAA-aligned, evidence-based AI.</span></div></a>
+ <a class="xp-dd-row violet" href="industry-financial-services"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Financial Services &amp; Fintech</strong><span>Risk, fraud, and growth, built for compliance.</span></div></a>
+ <a class="xp-dd-row amber" href="industry-manufacturing"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Manufacturing &amp; Logistics</strong><span>Industrial AI, OT/IT, supply-chain decisioning.</span></div></a>
+ <a class="xp-dd-row green" href="industry-retail"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Retail &amp; E-Commerce</strong><span>Conversion-economics fluent. Headless-ready.</span></div></a>
+ <a class="xp-dd-row warm" href="industry-enterprise-saas"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Enterprise SaaS</strong><span>Platform engineering for vertical and horizontal SaaS.</span></div></a>
+ </div></div>
+ <a class="xp-nav-item" href="how-we-work">How We Work</a>
+ <a class="xp-nav-item active" href="insights">Insights</a>
+ <a class="xp-nav-item" href="about">About</a>
+ <a class="xp-nav-item" href="careers">Careers</a>
+ </nav>
+ <a class="xp-cta" href="book-a-call">Book a Call <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+ <button class="xp-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+ </div>
+ <div class="reader-progress" id="readerProgress" aria-hidden="true"></div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+ <div class="page-hero-bg" aria-hidden="true"></div>
+ <div class="page-hero-grid" aria-hidden="true"></div>
+ <div class="section-mesh" data-palette="teal-amber" aria-hidden="true"></div>
+ <div class="container scroll-3d">
+ <div class="page-eyebrow"><a href="insights" style="color:inherit; border-bottom: 1px solid currentColor;">Insights</a> / Playbook · Healthcare AI</div>
+ <h1>Shipping ambient clinical documentation, <span class="grad serif">HIPAA-aligned, in one quarter.</span></h1>
+ <p class="page-hero-sub">The typical brief arrives after a health system has burned months on stalled deployments. This playbook sets out how we structure the engagement instead: eval harness before model selection, one specialty fully live before any horizontal work, and compliance as a workstream rather than a phase.</p>
+ <div class="page-hero-stats">
+ <div><div class="page-hero-stat-num">14 wks</div><div class="page-hero-stat-label">Kickoff-to-production plan</div></div>
+ <div><div class="page-hero-stat-num">Wk 6</div><div class="page-hero-stat-label">First specialty cutover</div></div>
+ <div><div class="page-hero-stat-num">4</div><div class="page-hero-stat-label">Parallel workstreams</div></div>
+ <div><div class="page-hero-stat-num">Day 1</div><div class="page-hero-stat-label">BAA before any code</div></div>
+ </div>
+ </div>
+</section>
+
+<!-- Animated illustration: parallel workstreams (Eval / Build / Compliance / Rollout)
+     converging into a single shipping date marker. Tells the engagement story visually. -->
+<div class="article-hero-art" aria-hidden="true">
+  <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration: four parallel workstreams converging into a single production ship date in week 14">
+    <defs>
+      <pattern id="cs-grid" width="36" height="36" patternUnits="userSpaceOnUse">
+        <path d="M36 0H0V36" stroke="#0E1225" stroke-opacity="0.06" stroke-width="1" fill="none"/>
+      </pattern>
+      <linearGradient id="cs-teal" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#00C9A7"/>
+        <stop offset="100%" stop-color="#3DDC97"/>
+      </linearGradient>
+      <linearGradient id="cs-violet" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#7C3AED"/>
+        <stop offset="100%" stop-color="#A78BFA"/>
+      </linearGradient>
+      <linearGradient id="cs-amber" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#FCD34D"/>
+      </linearGradient>
+      <linearGradient id="cs-green" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#3DDC97"/>
+        <stop offset="100%" stop-color="#00C9A7"/>
+      </linearGradient>
+    </defs>
+    <rect width="720" height="280" fill="url(#cs-grid)"/>
+
+    <!-- Week markers -->
+    <text x="64" y="36" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#0E1225" fill-opacity="0.42">WEEK 01</text>
+    <text x="540" y="36" font-family="Inter, sans-serif" font-size="10" font-weight="700" letter-spacing="2" fill="#0E1225" fill-opacity="0.42">WEEK 14</text>
+
+    <!-- Stream labels -->
+    <text x="22" y="82" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0E1225" fill-opacity="0.58">Eval</text>
+    <text x="22" y="132" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0E1225" fill-opacity="0.58">Build</text>
+    <text x="22" y="182" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0E1225" fill-opacity="0.58">Compliance</text>
+    <text x="22" y="232" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0E1225" fill-opacity="0.58">Rollout</text>
+
+    <!-- Four parallel streams converging to ship date at x=600 -->
+    <path d="M 64 80 L 540 80 Q 580 80 600 140" fill="none" stroke="url(#cs-teal)" stroke-width="3" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700">
+      <animate attributeName="stroke-dashoffset" from="700" to="0" dur="2.0s" begin="0.4s" fill="freeze"/>
+    </path>
+    <path d="M 64 130 L 540 130 Q 580 130 600 140" fill="none" stroke="url(#cs-violet)" stroke-width="3" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700">
+      <animate attributeName="stroke-dashoffset" from="700" to="0" dur="2.0s" begin="0.7s" fill="freeze"/>
+    </path>
+    <path d="M 64 180 L 540 180 Q 580 180 600 140" fill="none" stroke="url(#cs-amber)" stroke-width="3" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700">
+      <animate attributeName="stroke-dashoffset" from="700" to="0" dur="2.0s" begin="1.0s" fill="freeze"/>
+    </path>
+    <path d="M 64 230 L 540 230 Q 580 230 600 140" fill="none" stroke="url(#cs-green)" stroke-width="3" stroke-linecap="round" stroke-dasharray="700" stroke-dashoffset="700">
+      <animate attributeName="stroke-dashoffset" from="700" to="0" dur="2.0s" begin="1.3s" fill="freeze"/>
+    </path>
+
+    <!-- Ship-date marker (appears after streams converge) -->
+    <g opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.5s" begin="3.2s" fill="freeze"/>
+      <circle cx="600" cy="140" r="14" fill="#080B18" stroke="#00C9A7" stroke-width="2"/>
+      <path d="M 593 140 L 598 145 L 608 134" stroke="#00C9A7" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <text x="616" y="146" font-family="Inter, sans-serif" font-size="13" font-weight="700" fill="#0E1225">Live</text>
+    </g>
+
+    <!-- Perpetual data photons: each workstream keeps flowing into production (loops). -->
+    <g class="cs-flow">
+      <circle r="3.6" fill="#00C9A7"><animateMotion path="M 64 80 L 540 80 Q 580 80 600 140" dur="3.4s" begin="3.6s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1" dur="3.4s" begin="3.6s" repeatCount="indefinite"/></circle>
+      <circle r="3.6" fill="#7C3AED"><animateMotion path="M 64 130 L 540 130 Q 580 130 600 140" dur="3.4s" begin="4.05s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1" dur="3.4s" begin="4.05s" repeatCount="indefinite"/></circle>
+      <circle r="3.6" fill="#F59E0B"><animateMotion path="M 64 180 L 540 180 Q 580 180 600 140" dur="3.4s" begin="4.5s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1" dur="3.4s" begin="4.5s" repeatCount="indefinite"/></circle>
+      <circle r="3.6" fill="#3DDC97"><animateMotion path="M 64 230 L 540 230 Q 580 230 600 140" dur="3.4s" begin="4.95s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1" dur="3.4s" begin="4.95s" repeatCount="indefinite"/></circle>
+    </g>
+    <!-- Live-marker pulse -->
+    <circle cx="600" cy="140" r="14" fill="none" stroke="#00C9A7" stroke-width="2">
+      <animate attributeName="r" values="14;28" dur="2.6s" begin="3.6s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.7 0.3 1"/>
+      <animate attributeName="opacity" values="0.55;0" dur="2.6s" begin="3.6s" repeatCount="indefinite"/>
+    </circle>
+  </svg>
+</div>
+
+<section class="section">
+ <div class="container">
+ <div class="article-grid">
+ <aside class="article-toc reveal" aria-label="Table of contents">
+ <h5>In this playbook</h5>
+ <ol>
+ <li><a href="#brief">The brief, and what we decline</a></li>
+ <li><a href="#approach">The approach</a></li>
+ <li><a href="#numbers">What we hold ourselves to</a></li>
+ <li><a href="#differently">Three failure modes we plan around</a></li>
+ <li><a href="#engagement">The engagement shape</a></li>
+ </ol>
+ </aside>
+
+ <div class="article-shell reveal" style="max-width:none;">
+ <div class="article-meta-row">
+ <span class="article-type">Playbook</span>
+ <span class="article-tag">Healthcare &amp; Life Sciences</span>
+ <span>14 May 2026</span><span class="dot"></span><span>9 min read</span>
+ </div>
+
+ <div class="article-byline">
+ <span class="article-byline-avatar">OQ</span>
+ <div class="article-byline-text">
+ <strong>Owais Qarni · Head of Engineering</strong>
+ With contributions from the Xperion AI Solutions and Resource Augmentation &amp; Managed Services practices.
+ </div>
+ </div>
+
+ <div class="article-prose">
+
+ <p>Most "AI in healthcare" stories die at the seam between the model and the workflow. The transcription works, the inference is fine, and then the note never makes it into the EHR, the specialist refuses to use it, or the compliance team kills it in pre-production review. This playbook sets out how we structure an ambient-documentation engagement so it survives that seam: the brief we push back on, the build order we follow, and the failure modes we plan around. The scenario is a composite of the briefs we see; the numbers are targets we put in writing at kickoff, not results we are claiming here.</p>
+
+ <h2 id="brief">The brief, and what we <span class="grad">decline.</span></h2>
+ <p>The brief usually asks for "an ambient documentation platform" with a six-month timeline and a multi-vendor RFP. We push back, hard, on two assumptions baked into it. First, that the unit of delivery is a platform. It isn't, the unit of delivery is a clinician completing a usable note in under 90 seconds, in their specialty, with their charting conventions. Second, that the right shape is a single horizontal model serving every specialty identically. It isn't, and pretending otherwise is the most common reason these deployments stall.</p>
+ <p>We come back with a different brief inside 48 hours: a 14-week production engagement, one specialty live in week six, the next wave in week ten, and the remainder in a staged rollout through weeks eleven to fourteen. Fixed scope. Fixed price for the first specialty, T&amp;M for the rest with a capped budget.</p>
+
+ <div class="article-pullquote">
+ The unit of delivery wasn't a platform. It was a clinician completing a usable note in under 90 seconds, in their specialty, with their charting conventions.
+ <cite>Owais Qarni, Head of Engineering</cite>
+ </div>
+
+ <h2 id="approach">The <span class="grad">approach.</span></h2>
+ <p>Integration engineers from Resource Augmentation &amp; Managed Services go onto the integration layer in week one. The AI Solutions practice takes the model and eval work. Clinical informaticists are embedded from the client side, full-time, with veto power over every release decision. That veto is not a courtesy; it is the mechanism that keeps the build honest.</p>
+
+ <h3>Eval-first, model-second</h3>
+ <p>We refuse to discuss model selection until the eval harness is built. The harness is the deliverable. Once it exists, the model question collapses: run the candidates against the same harness, pick the one that wins on the metrics that matter (specialty-specific clinical accuracy, latency, hallucination rate on deliberately out-of-distribution prompt sets), and move on. The model becomes a swappable component.</p>
+
+ <h3>One specialty fully shipped, before any horizontal work</h3>
+ <p>The first specialty to go live should be the one led by the most skeptical clinician in the system, not the easiest workflow. If the build cannot earn that endorsement, the rollout dies at the political level regardless of the technical work. Earn it by week six and every specialty after it gets dramatically easier.</p>
+
+ <h3>HIPAA is a column in the build plan, not a phase</h3>
+ <p>BAAs in place before line one of code. PHI never leaves the client's environment. The audit trail is scoped before the eval harness and built alongside it. The compliance officer reviews the architecture at week three and signs off by week five, so the final pre-production review confirms decisions instead of discovering them.</p>
+
+ <div class="case-block">
+ <div class="case-block-label">What gets built</div>
+ <h4>The integration layer is the hard part, not the model.</h4>
+ <p>EHR write-back, HL7 v2 + FHIR R4 dual-path, identity broker, audit pipeline, eval gate, and the operator console. The ambient transcription is a single component inside it, and the project plan treats it accordingly.</p>
+ </div>
+
+ <h2 id="numbers">What we hold <span class="grad">ourselves to.</span></h2>
+ <ul>
+ <li><strong>A measurable documentation-time baseline</strong>, captured before rollout. If the improvement cannot be measured against it, we do not claim it.</li>
+ <li><strong>Zero tolerance on PHI exposure.</strong> The audit pipeline and access model are designed and reviewed before any clinical data flows.</li>
+ <li><strong>Clinician satisfaction instrumented in-app</strong> from the first cutover, with mandatory free text on dissatisfaction, because a silent clinician is not a satisfied one.</li>
+ <li><strong>Model spend capped at the week-one projection.</strong> The eval gate exists partly to kill the variant that would quietly double it.</li>
+ </ul>
+
+ <h2 id="differently">Three failure modes we <span class="grad">plan around.</span></h2>
+ <p>The playbooks we trust are the ones that tell you where this kind of build goes wrong. Here are the three we design against.</p>
+ <ol>
+ <li><strong>The undersized operator console.</strong> Clinical informaticists need a different surface than engineers do. Built late, it becomes the bottleneck on every remaining specialty, so we scope it in parallel with the first cutover, not after it.</li>
+ <li><strong>The over-engineered eval harness.</strong> The temptation is to build for specialty variations you do not yet know you need. Speculative branches turn into dead code. We build the harness for the first specialty and extend it cutover by cutover.</li>
+ <li><strong>Informal training.</strong> The first weeks of adoption carry avoidable friction when "training" stays ad hoc. A short, structured cohort per specialty, run from day one, removes most go-live questions before they reach the support queue.</li>
+ </ol>
+
+ <h2 id="engagement">The engagement <span class="grad">shape.</span></h2>
+ <p>An engagement like this combines three Xperion practices under one MSA: Resource Augmentation &amp; Managed Services for the integration engineering bench, Intelligent AI Solutions for the build, and Technology Consulting for the model-risk-governance work that closes the procurement review. No vendor handoffs, no separate contracts, and one named senior partner accountable from kickoff through post-launch hyper-care.</p>
+ <p>This is the part a fragmented vendor stack cannot deliver. Not because any single vendor's model is wrong, but because their operating model cannot compress the integration, governance, and clinical-workflow work into one team. Ours is built to. <a href="how-we-work">How we work</a> explains why, in detail.</p>
+
+ </div>
+
+ <!-- End of body -->
+ <div class="article-byline" style="margin-top:64px; margin-bottom:0;">
+ <span class="article-byline-avatar">OQ</span>
+ <div class="article-byline-text">
+ <strong>Owais Qarni · Head of Engineering</strong>
+ Leads Xperion's engineering practice and AI build capabilities. Reach him at <a href="mailto:owais@xperion.ai" style="color:var(--teal-2)">owais@xperion.ai</a>.
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </div>
+</section>
+
+<section class="section bg-sand">
+ <div class="container scroll-3d">
+ <div class="reveal">
+ <div class="section-kicker" style="color: var(--amber-deep);">Related insights</div>
+ <h2>More from <span class="grad">the field.</span></h2>
+ </div>
+ <div class="related-grid reveal-stagger">
+ <a class="related-card" href="insights-article"><div class="related-eyebrow">Article</div><h4>Your AI pilot won't survive the second 90%</h4><p>The cost isn't the model. It's everything that holds the model accountable.</p><span class="related-arrow">Read &rarr;</span></a>
+ <a class="related-card" href="insights-thought-leadership"><div class="related-eyebrow">Thought leadership</div><h4>The agency model is broken</h4><p>Senior people sell. Junior people deliver. The math works for the firm, never for the client.</p><span class="related-arrow">Read &rarr;</span></a>
+ <a class="related-card" href="industry-healthcare"><div class="related-eyebrow">Industry</div><h4>Healthcare &amp; Life Sciences</h4><p>The full capability map for healthcare AI, software, and talent engagements.</p><span class="related-arrow">Explore &rarr;</span></a>
+ <a class="related-card" href="insights"><div class="related-eyebrow">All Insights</div><h4>Back to the feed</h4><p>Filter by format or industry to find what's useful.</p><span class="related-arrow">Browse &rarr;</span></a>
+ </div>
+ </div>
+</section>
+
+<section class="cta-finale">
+ <div class="cta-finale-bg" aria-hidden="true"></div>
+ <div class="section-mesh" data-palette="amber-warm" aria-hidden="true"></div>
+ <div class="container scroll-3d">
+ <div class="reveal">
+ <h2>Have a healthcare AI build <span class="grad">stuck somewhere?</span></h2>
+ <p class="cta-finale-sub">If you recognise the shape of the problem above, the first call usually unblocks the next decision. 48-hour proposal turnaround if it's a fit.</p>
+ <div class="cta-finale-actions">
+ <a class="btn-primary" href="book-a-call" data-magnetic>Book a Strategy Call <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+ <a class="btn-ghost" href="industry-healthcare">Healthcare practice</a>
+ </div>
+ </div>
+ </div>
+</section>
+<div class="colour-band" aria-hidden="true"></div>
+</main>
+
+<footer class="xp-footer">
+ <div class="container">
+ <div class="xp-footer-top">
+ <div>
+ <div class="xp-footer-brand-name"><img src="xperion-mark.svg" alt="" class="xp-footer-brand-img" width="48" height="48" aria-hidden="true"><span class="xp-footer-brand-wordmark">xperion</span></div>
+ <p class="xp-footer-tagline">Human + AI intelligence for enterprise transformation. Senior-led teams across the United&nbsp;States and Pakistan. Talent &middot; AI Solutions &middot; Consulting &middot; Marketing &middot; Design.</p>
+ <div style="margin-bottom: 18px;"><a href="https://xperion.ai" style="color: var(--amber-2); font-size: 13.5px; font-weight: 600;">xperion.ai</a><br><a href="mailto:info@xperion.ai" style="color: rgba(255,255,255,0.7); font-size: 13.5px;">info@xperion.ai</a></div>
+ <div class="xp-footer-social"><a href="https://www.linkedin.com/company/xperion" aria-label="Xperion on LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.32V9h3.42v1.56h.04c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.43c-1.14 0-2.07-.93-2.07-2.07s.93-2.07 2.07-2.07 2.06.93 2.06 2.07-.92 2.07-2.06 2.07zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div>
+ </div>
+ <div class="xp-footer-col"><h4>Practices</h4><ul><li><a href="practice-resource-augmentation">Resource Augmentation &amp; Managed Services</a></li><li><a href="practice-ai-solutions">AI Solutions</a></li><li><a href="practice-consulting">Consulting</a></li><li><a href="practice-marketing">Marketing</a></li><li><a href="practice-design-ux">Design &amp; UX</a></li></ul></div>
+ <div class="xp-footer-col"><h4>Industries</h4><ul><li><a href="industry-healthcare">Healthcare</a></li><li><a href="industry-financial-services">Financial Services</a></li><li><a href="industry-manufacturing">Manufacturing</a></li><li><a href="industry-retail">Retail</a></li><li><a href="industry-enterprise-saas">Enterprise SaaS</a></li></ul></div>
+ <div class="xp-footer-col"><h4>Company</h4><ul><li><a href="about">About</a></li><li><a href="leadership">Leadership</a></li><li><a href="how-we-work">How We Work</a></li><li><a href="careers">Careers</a></li><li><a href="book-a-call">Book a Call</a></li></ul></div>
+ <div class="xp-footer-col"><h4>Resources</h4><ul><li><a href="insights">Insights</a></li><li><a href="accessibility">Accessibility</a></li><li><a href="services">All Services</a></li><li><a href="privacy">Privacy</a></li><li><a href="terms">Terms</a></li></ul></div>
+ </div>
+ <div class="xp-footer-bottom"><span>&copy; 2026 Xperion. All rights reserved.</span><div class="xp-footer-meta"><a href="insights">Insights</a><a href="cookies">Cookies</a><a href="privacy">Privacy</a><a href="terms">Terms</a><a href="security">Security</a></div></div>
+ </div>
+</footer>
+<script src="xperion.js" defer></script>
+<script>
+/* Reader progress bar, document-scroll driven. Sub-100ms updates. */
+(function(){
+  var bar = document.getElementById('readerProgress');
+  if (!bar) return;
+  function update() {
+    var h = document.documentElement;
+    var max = h.scrollHeight - h.clientHeight;
+    var p = max > 0 ? (h.scrollTop / max) * 100 : 0;
+    bar.style.setProperty('--p', p + '%');
+  }
+  document.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>

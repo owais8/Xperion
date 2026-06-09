@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Page not found · Xperion</title>
+<meta name="description" content="The page you're looking for doesn't exist on xperion.ai. Head back to the home page or browse our practices, industries, and insights.">
+<meta name="theme-color" content="#080B18">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:wght@400&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="xperion.css">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="xperion-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="xperion-favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="xperion-favicon-192.png">
+<style>
+  body { background: var(--obsidian); color: var(--white); min-height: 100dvh; display: flex; flex-direction: column; }
+  .nf-wrap {
+    flex: 1; display: grid; place-items: center;
+    padding: 80px 28px;
+    position: relative; overflow: hidden;
+  }
+  .nf-wrap::before {
+    content: ''; position: absolute; inset: -8%;
+    background:
+      radial-gradient(50% 50% at 80% 20%, rgba(245,158,11,0.14), transparent 60%),
+      radial-gradient(40% 40% at 20% 80%, rgba(0,201,167,0.14), transparent 60%);
+    pointer-events: none; z-index: 0;
+  }
+  .nf-inner {
+    position: relative; z-index: 1;
+    max-width: 640px; text-align: center;
+  }
+  .nf-code {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
+    font-size: clamp(96px, 16vw, 200px);
+    font-weight: 500;
+    line-height: 0.92;
+    letter-spacing: -0.04em;
+    background: var(--grad-hero, linear-gradient(135deg, #00C9A7, #3DDC97 45%, #F59E0B));
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: var(--teal);
+    margin-bottom: 24px;
+  }
+  .nf-h {
+    font-size: clamp(28px, 3.6vw, 44px);
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    line-height: 1.12;
+    margin-bottom: 16px;
+    color: var(--white);
+    text-wrap: balance;
+  }
+  .nf-h em { font-style: normal; color: rgba(255,255,255,0.62); font-weight: 600; }
+  .nf-sub {
+    font-size: 16.5px;
+    color: rgba(255,255,255,0.66);
+    max-width: 48ch;
+    margin: 0 auto 36px;
+    line-height: 1.6;
+  }
+  .nf-actions {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    justify-content: center;
+    margin-bottom: 64px;
+  }
+  .nf-links {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px; max-width: 720px; margin: 0 auto;
+    text-align: left;
+  }
+  @media (max-width: 720px) {
+    .nf-links { grid-template-columns: 1fr; }
+  }
+  .nf-link-card {
+    padding: 18px 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                border-color 0.25s cubic-bezier(0.22, 1, 0.36, 1),
+                background 0.25s cubic-bezier(0.22, 1, 0.36, 1);
+    color: var(--white);
+  }
+  .nf-link-card:hover {
+    transform: translateY(-3px);
+    border-color: rgba(0,201,167,0.32);
+    background: rgba(255,255,255,0.05);
+  }
+  .nf-link-tag {
+    font-size: 10.5px; font-weight: 700;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--teal);
+    margin-bottom: 8px;
+  }
+  .nf-link-title { font-size: 15px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 4px; }
+  .nf-link-sub { font-size: 13px; color: rgba(255,255,255,0.55); line-height: 1.45; }
+  @media (prefers-reduced-motion: reduce) {
+    .nf-link-card { transition: none; }
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="xp-nav" id="xpNav">
+ <div class="xp-nav-inner">
+ <a href="/" class="xp-logo" aria-label="Xperion home"><img src="xperion-mark.svg" alt="" class="xp-logo-img" width="40" height="40" aria-hidden="true"><span class="xp-logo-wordmark">xperion</span></a>
+ <nav class="xp-nav-menu" aria-label="Primary">
+   <a class="xp-nav-item" href="/">Home</a>
+   <a class="xp-nav-item" href="services">Services</a>
+   <a class="xp-nav-item" href="insights">Insights</a>
+   <a class="xp-nav-item" href="about">About</a>
+ </nav>
+ <a class="xp-cta" href="book-a-call">Book a Call <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+ </div>
+</header>
+
+<main id="main" class="nf-wrap">
+  <div class="nf-inner">
+    <div class="nf-code">404</div>
+    <h1 class="nf-h">That page isn&rsquo;t here. <span class="serif-italic-h">Most things are one click away.</span></h1>
+    <p class="nf-sub">The URL you followed doesn&rsquo;t resolve to anything on xperion.ai. It may have been moved, renamed, or never existed. Below are the pages most visitors are looking for.</p>
+    <div class="nf-actions">
+      <a class="btn-primary" href="/">Take me home
+        <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a class="btn-ghost" href="book-a-call">Book a call</a>
+    </div>
+    <div class="nf-links">
+      <a class="nf-link-card" href="services">
+        <div class="nf-link-tag">Services</div>
+        <div class="nf-link-title">Five practices</div>
+        <div class="nf-link-sub">Resource augmentation, AI solutions, consulting, marketing, design.</div>
+      </a>
+      <a class="nf-link-card" href="insights">
+        <div class="nf-link-tag">Insights</div>
+        <div class="nf-link-title">Field notes</div>
+        <div class="nf-link-sub">Case studies, articles, and thought leadership from the work.</div>
+      </a>
+      <a class="nf-link-card" href="about">
+        <div class="nf-link-tag">About</div>
+        <div class="nf-link-title">Who we are</div>
+        <div class="nf-link-sub">Senior-led teams across the United&nbsp;States and Pakistan.</div>
+      </a>
+    </div>
+  </div>
+</main>
+
+<footer class="xp-footer">
+ <div class="container">
+ <div class="xp-footer-bottom" style="border-top:0;">
+   <span>&copy; 2026 Xperion. All rights reserved.</span>
+   <div class="xp-footer-meta">
+     <a href="/">Home</a>
+     <a href="insights">Insights</a>
+     <a href="cookies" rel="nofollow">Cookies</a>
+     <a href="privacy">Privacy</a>
+     <a href="terms">Terms</a>
+   </div>
+ </div>
+ </div>
+</footer>
+
+<script src="xperion.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+{
+  "name": "Xperion",
+  "short_name": "Xperion",
+  "description": "Senior-led resource augmentation, managed services, and production AI under one MSA. United States and Pakistan.",
+  "start_url": "/./",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#080B18",
+  "theme_color": "#080B18",
+  "icons": [
+    { "src": "xperion-favicon-32.png",  "sizes": "32x32",   "type": "image/png" },
+    { "src": "xperion-favicon-48.png",  "sizes": "48x48",   "type": "image/png" },
+    { "src": "xperion-favicon-64.png",  "sizes": "64x64",   "type": "image/png" },
+    { "src": "xperion-favicon-128.png", "sizes": "128x128", "type": "image/png" },
+    { "src": "xperion-favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "xperion-favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<!--
+  Xperion · Security & Compliance
+  Compliance page · Last updated 25 May 2026
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Security &amp; Compliance · Xperion</title>
+<meta name="description" content="Xperion's security posture: control frameworks, encryption, access controls, incident response, and vendor governance. Documentation available under NDA.">
+<meta name="theme-color" content="#080B18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="xperion.css">
+<style>
+.legal-hero { padding-top: clamp(80px, 10vw, 132px); padding-bottom: clamp(40px, 5vw, 64px); background: var(--obsidian); }
+.legal-hero h1 { font-size: clamp(40px, 5vw, 72px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.04; max-width: 22ch; margin-bottom: 24px; }
+.legal-meta { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 16px; }
+.legal-meta a { color: var(--amber-2); text-decoration: underline; text-underline-offset: 4px; }
+.legal-body { background: var(--obsidian); padding-bottom: clamp(96px, 12vw, 140px); }
+.legal-prose { max-width: 760px; margin: 0 auto; font-size: 16.5px; line-height: 1.75; color: rgba(255,255,255,0.78); }
+.legal-prose h2 { font-size: clamp(24px, 2.6vw, 32px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-top: 56px; margin-bottom: 16px; color: white; }
+.legal-prose h2:first-child { margin-top: 0; }
+.legal-prose h3 { font-size: 19px; font-weight: 700; margin-top: 32px; margin-bottom: 10px; color: white; }
+.legal-prose p { margin-bottom: 16px; }
+.legal-prose ul, .legal-prose ol { margin: 0 0 20px 24px; padding: 0; }
+.legal-prose li { margin-bottom: 8px; }
+.legal-prose a { color: var(--amber-2); text-underline-offset: 4px; }
+.legal-prose a:hover { color: var(--amber); }
+.legal-prose strong { color: white; font-weight: 700; }
+.legal-prose code { background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 14px; color: var(--teal-2); }
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="xperion-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="xperion-favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="xperion-favicon-192.png">
+<meta name="application-name" content="Xperion">
+<meta name="apple-mobile-web-app-title" content="Xperion">
+<link rel="manifest" href="manifest.json">
+<link rel="canonical" href="https://xperion.ai/security">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xperion">
+<meta property="og:title" content="Security &amp; Compliance · Xperion">
+<meta property="og:description" content="Xperion's security posture, compliance alignment, encryption, access controls, incident response, and vendor governance.">
+<meta property="og:url" content="https://xperion.ai/security">
+<meta property="og:image" content="https://xperion.ai/xperion-og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Security &amp; Compliance · Xperion">
+<meta name="twitter:description" content="Xperion's security posture, compliance alignment, encryption, access controls, incident response, and vendor governance.">
+<meta name="twitter:image" content="https://xperion.ai/xperion-og-image.png">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- SCROLL PROGRESS -->
+<div class="xp-progress"><div class="xp-progress-fill" id="xpProgress"></div></div>
+
+<!-- NAV -->
+<header class="xp-nav" id="xpNav">
+ <div class="xp-nav-inner">
+ <a href="./" class="xp-logo" aria-label="Xperion home">
+ <img src="xperion-mark.svg" alt="" class="xp-logo-img" width="40" height="40" aria-hidden="true"><span class="xp-logo-wordmark">xperion</span>
+ </a>
+
+ <nav class="xp-nav-menu" aria-label="Primary">
+ <div class="xp-nav-wrap">
+ <button class="xp-nav-item" aria-haspopup="true">Practices <span class="chev">▾</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row amber" href="practice-resource-augmentation">
+ <span class="xp-dd-num">01</span>
+ <div class="xp-dd-content"><strong>Resource Augmentation &amp; Managed Services</strong><span>Senior engineers, designers, and marketers, placed in 1–2 weeks.</span></div>
+ </a>
+ <a class="xp-dd-row violet" href="practice-ai-solutions">
+ <span class="xp-dd-num">02</span>
+ <div class="xp-dd-content"><strong>Intelligent AI Solutions</strong><span>Production-grade AI from pilot to scale.</span></div>
+ </a>
+ <a class="xp-dd-row teal" href="practice-consulting">
+ <span class="xp-dd-num">03</span>
+ <div class="xp-dd-content"><strong>Technology Consulting</strong><span>Strategy that connects directly to delivery.</span></div>
+ </a>
+ <a class="xp-dd-row green" href="practice-marketing">
+ <span class="xp-dd-num">04</span>
+ <div class="xp-dd-content"><strong>Marketing</strong><span>GTM and brand craft, instrumented for revenue.</span></div>
+ </a>
+ <a class="xp-dd-row warm" href="practice-design-ux">
+ <span class="xp-dd-num">05</span>
+ <div class="xp-dd-content"><strong>Design &amp; UX</strong><span>Product, brand, and systems design that ships.</span></div>
+ </a>
+ </div>
+ </div>
+ <div class="xp-nav-wrap">
+ <button class="xp-nav-item" aria-haspopup="true">Industries <span class="chev">▾</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row teal" href="industry-healthcare"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Healthcare &amp; Life Sciences</strong><span>HIPAA-aligned, evidence-based AI.</span></div></a>
+ <a class="xp-dd-row violet" href="industry-financial-services"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Financial Services &amp; Fintech</strong><span>Risk, fraud, and growth, built for compliance.</span></div></a>
+ <a class="xp-dd-row amber" href="industry-manufacturing"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Manufacturing &amp; Logistics</strong><span>Industrial AI, OT/IT, supply-chain decisioning.</span></div></a>
+ <a class="xp-dd-row green" href="industry-retail"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Retail &amp; E-Commerce</strong><span>Conversion-economics fluent. Headless-ready.</span></div></a>
+ <a class="xp-dd-row warm" href="industry-enterprise-saas"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Enterprise SaaS</strong><span>Platform engineering for vertical and horizontal SaaS.</span></div></a>
+ </div>
+ </div>
+ <a class="xp-nav-item" href="how-we-work">How We Work</a>
+ <a class="xp-nav-item" href="insights">Insights</a>
+ <a class="xp-nav-item" href="about">About</a>
+ <a class="xp-nav-item" href="careers">Careers</a>
+ </nav>
+
+ <a class="xp-cta" href="book-a-call">
+ Book a Call
+ <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </a>
+ <button class="xp-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<main id="main">
+  <section class="section legal-hero">
+    <div class="section-mesh" data-palette="violet-teal" aria-hidden="true"></div>
+    <div class="container scroll-3d">
+      <div class="section-kicker">Compliance</div>
+      <h1>Security &amp; Compliance</h1>
+      <p class="section-lead">How we protect client data, what we are certified against, and what to expect during a vendor review.</p>
+      <p class="legal-meta">Last updated: 25 May 2026 · <a href="mailto:security@xperion.ai">security@xperion.ai</a></p>
+    </div>
+  </section>
+
+  <section class="section legal-body">
+    <div class="container scroll-3d legal-prose">
+
+      <h2>Our security posture</h2>
+      <p>Security is owned at the principal level, not delegated to a checkbox role. We run a defense-in-depth program built on zero-trust principles: every request authenticated, every privilege minimal, every action logged. We assume breach, design for blast-radius containment, and run regular tabletop exercises to test what would happen if we were wrong about something. This page describes the controls in production today. A full security review pack, including our controls documentation, network diagrams, and policy excerpts under NDA, is available from <a href="mailto:security@xperion.ai">security@xperion.ai</a>.</p>
+
+      <h2>Compliance posture</h2>
+      <p style="margin-bottom: 16px;">We are a small senior firm and we are honest about where we are: we build to recognised control frameworks and are working toward formal certification, rather than claiming badges we don't yet hold.</p>
+      <ul>
+        <li><strong>SOC 2 Type II</strong>: we operate to the Security, Availability, and Confidentiality trust-service criteria; formal Type II certification is on our roadmap. Our controls documentation is available under NDA today.</li>
+        <li><strong>HIPAA aligned</strong>: administrative, physical, and technical safeguards implemented to support clients operating under HIPAA. We will execute a Business Associate Agreement (BAA) where the engagement involves Protected Health Information.</li>
+        <li><strong>ISO 27001 mapped</strong>: our information security management system is mapped to ISO 27001:2022 controls, with certification planned for a future audit cycle.</li>
+        <li><strong>PCI DSS aware</strong>: we do not store, process, or transmit cardholder data ourselves. Payment processing is delegated to a PCI DSS Level 1 provider. Where a client engagement touches PCI scope, we work within the client's CDE boundaries and follow their requirements.</li>
+        <li><strong>GDPR and UK GDPR</strong>: we operate as a data processor under written client instructions, with a data processing addendum, Standard Contractual Clauses for international transfers, and a published <a href="privacy">Privacy Policy</a>.</li>
+        <li><strong>CCPA / CPRA</strong>: we honour California consumer rights and do not sell or share personal data.</li>
+      </ul>
+
+      <h2>Data protection</h2>
+      <h3>Encryption in transit</h3>
+      <p>All inbound and outbound traffic to <code>xperion.ai</code> and our internal systems uses TLS 1.2 or higher, with TLS 1.3 preferred. HSTS is enabled. Internal service-to-service traffic uses mutual TLS where supported.</p>
+
+      <h3>Encryption at rest</h3>
+      <p>Customer data and our own production data are encrypted at rest with AES-256, using cloud-provider managed keys backed by hardware security modules. Database backups and object storage inherit the same encryption.</p>
+
+      <h3>Key management</h3>
+      <p>Keys are rotated on a documented schedule. Access to key material is restricted to a small number of named operators, requires multi-factor authentication, and is logged. We do not store key material on developer laptops or in source code.</p>
+
+      <h3>Data classification and handling</h3>
+      <p>Data is classified as Public, Internal, Confidential, or Restricted. Restricted data (for example, customer secrets, source code, PII) is handled in approved systems only, never on personal devices or unsanctioned tools. AI tools used by our team are restricted to enterprise plans with logging and zero-retention training settings where available.</p>
+
+      <h2>Access controls</h2>
+      <ul>
+        <li><strong>Single sign-on (SSO)</strong> with SAML/OIDC for every business system that supports it.</li>
+        <li><strong>Multi-factor authentication (MFA)</strong> required for all employee accounts, with phishing-resistant factors (hardware keys, platform passkeys) preferred over TOTP.</li>
+        <li><strong>Role-based access control (RBAC)</strong> with documented role definitions, mapped to the principle of least privilege.</li>
+        <li><strong>Just-in-time elevation</strong> for production access, with approval workflows and time-boxed grants.</li>
+        <li><strong>Quarterly access reviews</strong> on systems holding Confidential or Restricted data, with sign-off by data owners.</li>
+        <li><strong>Joiner-mover-leaver</strong> automation: provisioning and deprovisioning are triggered from the HR system of record, with same-day revocation on termination.</li>
+      </ul>
+
+      <h2>Network and infrastructure</h2>
+      <p>Our infrastructure runs on hyperscale cloud providers with mature security baselines. Production environments are isolated from development and staging by separate accounts and network boundaries. Public endpoints sit behind a Web Application Firewall and a DDoS-protected edge. Internal services are not reachable from the public internet. Configuration drift is detected through infrastructure-as-code reviews and runtime posture management.</p>
+
+      <h2>Application security</h2>
+      <ul>
+        <li><strong>Secure development lifecycle</strong>: threat modelling on new services, peer code review for every change, automated linting and security scanning in CI.</li>
+        <li><strong>Static and dependency scanning</strong>: SAST and SCA tools run on every pull request; high-severity findings block merge.</li>
+        <li><strong>Secrets management</strong>: no secrets in source control; secrets injected at runtime from a managed secret store.</li>
+        <li><strong>Branch protection</strong>: production branches require review, signed commits, and passing checks.</li>
+      </ul>
+
+      <h2>Vulnerability management</h2>
+      <ul>
+        <li><strong>Patching</strong>: critical vulnerabilities patched within 7 days, high within 14, medium within 30, measured from disclosure or vendor advisory.</li>
+        <li><strong>Penetration testing</strong>: independent third-party tests at least annually against external attack surface and client-facing applications, plus on significant architectural changes.</li>
+        <li><strong>Coordinated disclosure</strong>: a responsible disclosure channel at <a href="mailto:security@xperion.ai">security@xperion.ai</a>, with a 90-day disclosure window and safe harbour for good-faith research.</li>
+        <li><strong>Bug bounty</strong>: a private bug bounty programme is in operation; scope and rewards are shared with invited researchers.</li>
+      </ul>
+
+      <h2>Incident response</h2>
+      <p>We maintain a written incident response plan with defined severities, escalation paths, and roles (incident commander, scribe, communications lead, customer liaison). Detection is fed by centralised logging, endpoint detection and response (EDR) on every managed device, and cloud-native threat detection.</p>
+      <ul>
+        <li><strong>Notification</strong>: clients affected by a confirmed security incident involving their data are notified within <strong>24 hours</strong> of confirmation, with a preliminary impact assessment.</li>
+        <li><strong>Containment and eradication</strong>: priorities are to stop ongoing harm, preserve evidence, and remove the cause.</li>
+        <li><strong>Post-incident review</strong>: a written root-cause analysis with corrective actions and timelines is produced for every Sev 1 and Sev 2 incident and shared with affected clients on request.</li>
+        <li><strong>Drills</strong>: tabletop exercises run at least twice a year against realistic scenarios.</li>
+      </ul>
+
+      <h2>Business continuity and disaster recovery</h2>
+      <ul>
+        <li><strong>Backups</strong>: production data backed up daily, encrypted, with backups stored in a separate region from the primary.</li>
+        <li><strong>Restoration testing</strong>: backup restores are tested quarterly to confirm recoverability.</li>
+        <li><strong>RTO and RPO targets</strong>: Recovery Time Objective of 4 hours and Recovery Point Objective of 1 hour for tier-1 services.</li>
+        <li><strong>Continuity plan</strong>: a documented business continuity plan covers personnel, suppliers, and infrastructure failures, reviewed annually.</li>
+      </ul>
+
+      <h2>Subprocessor governance</h2>
+      <p>We use a small, deliberately chosen set of subprocessors to operate our business and deliver client work. Each is reviewed before onboarding for security posture, contractual protections, data residency, and incident notification commitments. The current subprocessor list, plus 30 days' notice of material changes, is available on request via <a href="mailto:security@xperion.ai">security@xperion.ai</a> for clients with an active engagement.</p>
+
+      <h2>Employee security</h2>
+      <ul>
+        <li><strong>Background checks</strong> on hire, where permitted by local law.</li>
+        <li><strong>Confidentiality agreements</strong> signed before access to client systems.</li>
+        <li><strong>Security awareness training</strong> at hire and at least annually, with phishing simulations on a regular cadence.</li>
+        <li><strong>Managed endpoints</strong>: every device used for client work is enrolled in mobile device management, with full-disk encryption, EDR, and automatic patching enforced.</li>
+        <li><strong>Acceptable use policy</strong>: enforced policy governing the use of personal devices, public networks, and generative AI tools.</li>
+      </ul>
+
+      <h2>Physical security</h2>
+      <p>We are a distributed company with no public-access offices holding client data. All client data resides in audited cloud facilities. Where private workspaces are used by our team, they require badge or key access and clean-desk practices for printed materials.</p>
+
+      <h2>Logging and monitoring</h2>
+      <p>Application, infrastructure, and identity logs are centralised in a tamper-evident log store with retention appropriate to each log class. Alerting rules are tuned to reduce noise without missing the signal. On-call engineers respond to security alerts on a 24x7 rota.</p>
+
+      <h2>Client responsibilities</h2>
+      <p>Security is shared. To get the benefit of the controls described here, we ask clients to:</p>
+      <ul>
+        <li>Designate an owner on their side for security decisions on the engagement.</li>
+        <li>Provide credentials and access only through approved channels, never plain-text email or chat.</li>
+        <li>Promptly notify us of personnel changes that affect access on the engagement.</li>
+        <li>Notify us within 24 hours of any suspected incident involving shared systems or our personnel.</li>
+        <li>Maintain their own backups and disaster recovery for systems we are not operating in full.</li>
+      </ul>
+
+      <h2>Reporting a security concern</h2>
+      <p>If you believe you have found a vulnerability in our site or services, or if you have a security concern about an engagement, email <a href="mailto:security@xperion.ai">security@xperion.ai</a>. Encrypt sensitive material with our PGP key, available on request. We aim to acknowledge within 1 business day and to provide a substantive update within 5 business days.</p>
+
+      <h2>Request the security review pack</h2>
+      <p>For prospective or current clients running a vendor assessment, we will share the full security review pack, including our controls documentation, penetration test summary, network architecture, and policy documents, under a mutual NDA. Email <a href="mailto:security@xperion.ai">security@xperion.ai</a> with the name of your organisation and a short description of the engagement scope.</p>
+
+    </div>
+  </section>
+</main>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════════════ -->
+<footer class="xp-footer">
+ <div class="container">
+ <div class="xp-footer-top">
+ <div>
+ <div class="xp-footer-brand-name"><img src="xperion-mark.svg" alt="" class="xp-footer-brand-img" width="48" height="48" aria-hidden="true"><span class="xp-footer-brand-wordmark">xperion</span></div>
+ <p class="xp-footer-tagline">Human + AI intelligence for enterprise transformation. Senior-led teams across the United&nbsp;States and Pakistan. Talent &middot; AI Solutions &middot; Consulting &middot; Marketing &middot; Design.</p>
+ <div style="margin-bottom: 18px;">
+ <a href="https://xperion.ai" style="color: var(--amber-2); font-size: 13.5px; font-weight: 600;">xperion.ai</a><br>
+ <a href="mailto:info@xperion.ai" style="color: rgba(255,255,255,0.7); font-size: 13.5px;">info@xperion.ai</a>
+ </div>
+ <div class="xp-footer-social">
+ <a href="https://www.linkedin.com/company/xperion" aria-label="Xperion on LinkedIn" target="_blank" rel="noopener">
+   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.32V9h3.42v1.56h.04c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.43c-1.14 0-2.07-.93-2.07-2.07s.93-2.07 2.07-2.07 2.06.93 2.06 2.07-.92 2.07-2.06 2.07zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+ </a>
+ </div>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Practices</h4>
+ <ul>
+ <li><a href="practice-resource-augmentation">Resource Augmentation &amp; Managed Services</a></li>
+ <li><a href="practice-ai-solutions">AI Solutions</a></li>
+ <li><a href="practice-consulting">Consulting</a></li>
+ <li><a href="practice-marketing">Marketing</a></li>
+ <li><a href="practice-design-ux">Design &amp; UX</a></li>
+ </ul>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Industries</h4>
+ <ul>
+ <li><a href="industry-healthcare">Healthcare</a></li>
+ <li><a href="industry-financial-services">Financial Services</a></li>
+ <li><a href="industry-manufacturing">Manufacturing</a></li>
+ <li><a href="industry-retail">Retail</a></li>
+ <li><a href="industry-enterprise-saas">Enterprise SaaS</a></li>
+ </ul>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Company</h4>
+ <ul>
+ <li><a href="about">About</a></li>
+ <li><a href="leadership">Leadership</a></li>
+ <li><a href="how-we-work">How We Work</a></li>
+ <li><a href="careers">Careers</a></li>
+ <li><a href="book-a-call">Book a Call</a></li>
+ </ul>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Resources</h4>
+ <ul>
+ <li><a href="insights">Insights</a></li>
+ <li><a href="accessibility">Accessibility</a></li>
+ <li><a href="services">All Services</a></li>
+ <li><a href="privacy">Privacy</a></li>
+ <li><a href="terms">Terms</a></li>
+ <li><a href="security">Security</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="xp-footer-bottom">
+ <span>&copy; 2026 Xperion. All rights reserved.</span>
+ <div class="xp-footer-meta">
+ <a href="insights">Insights</a>
+ <a href="cookies">Cookies</a>
+ <a href="privacy">Privacy</a>
+ <a href="terms">Terms</a>
+ <a href="security">Security</a>
+ </div>
+ </div>
+ </div>
+</footer>
+
+<script src="xperion.js" defer></script>
+
+</body>
+</html>

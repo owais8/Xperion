@@ -1,0 +1,41 @@
+# Xperion · robots.txt
+# Last updated: 2026-05-22
+
+User-agent: *
+Allow: /
+
+# Defense-in-depth: internal-only HTML must not be indexed even if
+# accidentally deployed. The build pipeline should also exclude these.
+Disallow: /brandbook
+Disallow: /design_audit
+Disallow: /prelaunch_audit
+
+# Internal source files / project metadata that should never reach the public host.
+Disallow: /xperion-logo-source.ai
+Disallow: /xperion-brand.plugin
+Disallow: /CLAUDE.md
+Disallow: /*.bak$
+Disallow: /*.md$
+Disallow: /_archive/
+
+# Block well-known AI training crawlers from scraping the editorial content
+# (insights pages). Adjust to taste — these directives are advisory but widely
+# honoured by responsible bots. Remove the next two blocks if you WANT your
+# thought leadership ingested by AI training corpora.
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+# Sitemap for primary discovery
+Sitemap: https://xperion.ai/sitemap.xml

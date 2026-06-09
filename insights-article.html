@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Why AI Pilots Fail in Production: The Second 90% | Xperion</title>
+<meta name="description" content="The demo works. Then production happens. The cost of an AI system isn't the model; it's everything that holds it accountable. The part nobody scopes.">
+<meta name="theme-color" content="#080B18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="xperion.css">
+<link rel="stylesheet" href="xperion-blog.css">
+<style>
+  :root { --page-accent: #7C3AED; --page-accent-2: #A78BFA; }
+
+  .article-shell { max-width: 760px; margin: 0 auto; }
+  .article-meta-row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; font-size: 13px; color: rgba(255,255,255,0.65); margin-bottom: 24px; }
+  .article-meta-row .dot { width: 3px; height: 3px; border-radius: 50%; background: rgba(255,255,255,0.3); }
+  .article-tag { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; padding: 4px 10px; border-radius: 999px; background: rgba(124,58,237,0.1); color: var(--violet-2); border: 1px solid rgba(124,58,237,0.3); }
+  .article-type { font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: #5a2a00; background: #fff4e6; padding: 5px 12px; border-radius: 999px; }
+
+  .article-byline { display: flex; align-items: center; gap: 14px; padding: 22px 0; border-top: 1px solid rgba(255,255,255,0.08); border-bottom: 1px solid rgba(255,255,255,0.08); margin: 36px 0 56px; }
+  .article-byline-avatar { width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #7C3AED, #00C9A7); color: var(--obsidian); display:inline-flex; align-items:center; justify-content:center; font-weight: 800; font-size: 15px; flex-shrink: 0; }
+  .article-byline-text { font-size: 13.5px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+  .article-byline-text strong { display: block; color: white; font-weight: 600; font-size: 14.5px; margin-bottom: 2px; }
+
+  .article-lead { font-size: clamp(20px, 1.8vw, 24px); font-weight: 500; line-height: 1.55; color: rgba(255,255,255,0.92); letter-spacing: -0.01em; margin-bottom: 40px; }
+  .article-lead .grad { background: linear-gradient(135deg, #A78BFA, #00C9A7); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+
+  .article-prose { font-size: 17px; line-height: 1.78; color: rgba(255,255,255,0.82); }
+  .article-prose > p { margin-bottom: 22px; }
+  .article-prose > h2 { font-size: clamp(28px, 3.4vw, 40px); font-weight: 900; letter-spacing: -0.025em; line-height: 1.18; margin: 64px 0 24px; color: white; }
+  .article-prose > h2 .grad { background: linear-gradient(135deg, #A78BFA, #00C9A7); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
+  .article-prose > h3 { font-size: 20px; font-weight: 800; letter-spacing: -0.015em; margin: 36px 0 16px; color: white; }
+  .article-prose strong { color: white; font-weight: 600; }
+  .article-prose ul, .article-prose ol { padding-left: 0; margin: 0 0 28px 0; }
+  .article-prose ul li, .article-prose ol li { position: relative; padding-left: 26px; margin-bottom: 12px; line-height: 1.65; }
+  .article-prose ul li::before { content: ''; position: absolute; left: 0; top: 12px; width: 10px; height: 2px; background: var(--violet-2); border-radius: 2px; }
+  .article-prose ol { counter-reset: ol; }
+  .article-prose ol li { counter-increment: ol; }
+  .article-prose ol li::before { content: counter(ol, decimal-leading-zero); position: absolute; left: 0; top: 0; font-size: 12px; font-weight: 800; color: var(--violet-2); letter-spacing: 0.04em; }
+  .article-prose a { color: var(--violet-2); border-bottom: 1px solid rgba(167,139,250,0.4); transition: border-color var(--d-std) var(--ease-emphasis-out); }
+  .article-prose a:hover { border-bottom-color: var(--violet-2); }
+  .article-prose code { font-family: 'Inter', monospace; font-size: 0.92em; padding: 2px 8px; background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.22); border-radius: 6px; color: var(--violet-2); }
+
+  .article-pullquote { padding: 36px 32px; margin: 56px 0; border-left: 3px solid var(--violet-2); font-size: clamp(22px, 2.4vw, 30px); font-weight: 500; letter-spacing: -0.02em; line-height: 1.35; color: white; background: rgba(124,58,237,0.04); border-radius: 0 var(--r-md) var(--r-md) 0; }
+  .article-pullquote::before { content: '\201C'; display: block; font-size: 64px; line-height: 0.6; color: var(--violet-2); margin-bottom: 16px; font-weight: 900; }
+
+  .article-callout { padding: 28px 32px; margin: 36px 0; background: linear-gradient(180deg, rgba(124,58,237,0.06), rgba(124,58,237,0.02)); border: 1px solid rgba(124,58,237,0.22); border-radius: var(--r-md); }
+  .article-callout-label { font-size: 11px; font-weight: 800; letter-spacing: 0.18em; text-transform: uppercase; color: var(--violet-2); margin-bottom: 10px; }
+  .article-callout p { font-size: 15px; color: rgba(255,255,255,0.78); line-height: 1.65; margin-bottom: 0; }
+
+  .article-checklist { padding: 28px 32px; margin: 36px 0; background: rgba(255,255,255,0.025); border: 1px solid rgba(255,255,255,0.08); border-radius: var(--r-md); }
+  .article-checklist h4 { font-size: 17px; font-weight: 800; letter-spacing: -0.015em; margin-bottom: 16px; }
+  .article-checklist ul { padding: 0; margin: 0; }
+  .article-checklist li { position: relative; padding-left: 30px; margin-bottom: 10px; font-size: 14.5px; line-height: 1.55; }
+  .article-checklist li::before { content: ''; position: absolute; left: 0; top: 6px; width: 18px; height: 18px; border-radius: 5px; background: rgba(124,58,237,0.12); border: 1px solid rgba(124,58,237,0.32); }
+  .article-checklist li::after { content: '\2713'; position: absolute; left: 4px; top: 3px; font-size: 12px; color: var(--violet-2); font-weight: 900; }
+
+  .reader-progress { position: fixed; left: 0; right: 0; top: 0; height: 2px; z-index: 200; pointer-events: none; }
+  .reader-progress::after { content: ''; display: block; height: 100%; background: linear-gradient(90deg, #7C3AED, #00C9A7); width: var(--p, 0%); transition: width 0.1s linear; }
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="xperion-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="xperion-favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="xperion-favicon-192.png">
+<meta name="application-name" content="Xperion">
+<meta name="apple-mobile-web-app-title" content="Xperion">
+<link rel="manifest" href="manifest.json">
+<link rel="canonical" href="https://xperion.ai/insights-article">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xperion">
+<meta property="og:title" content="Why AI Pilots Fail in Production: The Second 90% | Xperion">
+<meta property="og:description" content="The demo works. The board loves it. Then production happens. The cost of an AI system isn't the model, it's everything that holds the model accountable. A field guide to the part nobody scopes.">
+<meta property="og:url" content="https://xperion.ai/insights-article">
+<meta property="og:image" content="https://xperion.ai/xperion-og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Xperion, Human + AI intelligence for enterprise transformation">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Why AI Pilots Fail in Production: The Second 90% | Xperion">
+<meta name="twitter:description" content="The demo works. The board loves it. Then production happens. The cost of an AI system isn't the model, it's everything that holds the model accountable. A field guide to the part nobody scopes.">
+<meta name="twitter:image" content="https://xperion.ai/xperion-og-image.png">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"Xperion","url":"https://xperion.ai","logo":"https://xperion.ai/xperion-favicon-512.png","sameAs":["https://www.linkedin.com/company/xperion"],"description":"Human + AI intelligence for enterprise transformation. Senior-led teams across the United States and Pakistan partnering with enterprises on resource augmentation, managed services, production AI, consulting, marketing, and design under one MSA.","contactPoint":{"@type":"ContactPoint","email":"info@xperion.ai","contactType":"sales"}}
+</script>
+</head>
+<body class="xp-blog">
+<a href="#main" class="skip-link">Skip to content</a>
+<div class="xp-progress"><div class="xp-progress-fill" id="xpProgress"></div></div>
+<header class="xp-nav" id="xpNav">
+ <div class="xp-nav-inner">
+ <a href="./" class="xp-logo" aria-label="Xperion home"><img src="xperion-mark.svg" alt="" class="xp-logo-img" width="40" height="40" aria-hidden="true"><span class="xp-logo-wordmark">xperion</span></a>
+ <nav class="xp-nav-menu" aria-label="Primary">
+ <div class="xp-nav-wrap"><button class="xp-nav-item" aria-haspopup="true">Practices <span class="chev">&#9662;</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row amber" href="practice-resource-augmentation"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Resource Augmentation &amp; Managed Services</strong><span>Senior engineers, designers, and marketers, placed in 1&ndash;2 weeks.</span></div></a>
+ <a class="xp-dd-row violet" href="practice-ai-solutions"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Intelligent AI Solutions</strong><span>Production-grade AI from pilot to scale.</span></div></a>
+ <a class="xp-dd-row teal" href="practice-consulting"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Technology Consulting</strong><span>Strategy that connects directly to delivery.</span></div></a>
+ <a class="xp-dd-row green" href="practice-marketing"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Marketing</strong><span>GTM and brand craft, instrumented for revenue.</span></div></a>
+ <a class="xp-dd-row warm" href="practice-design-ux"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Design &amp; UX</strong><span>Product, brand, and systems design that ships.</span></div></a>
+ </div></div>
+ <div class="xp-nav-wrap"><button class="xp-nav-item" aria-haspopup="true">Industries <span class="chev">&#9662;</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row teal" href="industry-healthcare"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Healthcare &amp; Life Sciences</strong><span>HIPAA-aligned, evidence-based AI.</span></div></a>
+ <a class="xp-dd-row violet" href="industry-financial-services"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Financial Services &amp; Fintech</strong><span>Risk, fraud, and growth, built for compliance.</span></div></a>
+ <a class="xp-dd-row amber" href="industry-manufacturing"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Manufacturing &amp; Logistics</strong><span>Industrial AI, OT/IT, supply-chain decisioning.</span></div></a>
+ <a class="xp-dd-row green" href="industry-retail"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Retail &amp; E-Commerce</strong><span>Conversion-economics fluent. Headless-ready.</span></div></a>
+ <a class="xp-dd-row warm" href="industry-enterprise-saas"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Enterprise SaaS</strong><span>Platform engineering for vertical and horizontal SaaS.</span></div></a>
+ </div></div>
+ <a class="xp-nav-item" href="how-we-work">How We Work</a>
+ <a class="xp-nav-item active" href="insights">Insights</a>
+ <a class="xp-nav-item" href="about">About</a>
+ <a class="xp-nav-item" href="careers">Careers</a>
+ </nav>
+ <a class="xp-cta" href="book-a-call">Book a Call <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+ <button class="xp-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+ </div>
+ <div class="reader-progress" id="readerProgress" aria-hidden="true"></div>
+</header>
+<main id="main">
+
+<section class="page-hero">
+ <div class="page-hero-bg" aria-hidden="true"></div>
+ <div class="page-hero-grid" aria-hidden="true"></div>
+ <div class="section-mesh" data-palette="violet-teal" aria-hidden="true"></div>
+ <div class="container scroll-3d">
+ <div class="page-eyebrow"><a href="insights" style="color:inherit; border-bottom: 1px solid currentColor;">Insights</a> / Article</div>
+ <h1>Your AI pilot won't survive the <span class="grad serif">second 90%.</span></h1>
+ <p class="page-hero-sub">The demo works. The board loves it. Then production happens, evals drift, the model behaves like a different person on Tuesdays, and the operating cost doubles. A field guide to the part nobody scopes.</p>
+ </div>
+</section>
+
+<!-- Animated hero illustration: pilot curve diverges after the production boundary.
+     The "Pilot" curve is steady (90% accuracy); the "Production" line decays.
+     Respects prefers-reduced-motion via CSS in xperion-blog.css. -->
+<div class="article-hero-art" aria-hidden="true">
+  <svg viewBox="0 0 720 280" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustration: the accuracy gap between a pilot demo and production reality">
+    <defs>
+      <linearGradient id="ai-grad-pilot" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#00C9A7"/>
+        <stop offset="100%" stop-color="#3DDC97"/>
+      </linearGradient>
+      <linearGradient id="ai-grad-prod" x1="0" x2="1" y1="0" y2="0">
+        <stop offset="0%" stop-color="#F59E0B"/>
+        <stop offset="100%" stop-color="#7C3AED"/>
+      </linearGradient>
+      <pattern id="ai-grid" width="36" height="36" patternUnits="userSpaceOnUse">
+        <path d="M36 0H0V36" stroke="#0E1225" stroke-opacity="0.06" stroke-width="1" fill="none"/>
+      </pattern>
+    </defs>
+    <rect width="720" height="280" fill="url(#ai-grid)"/>
+
+    <!-- Production boundary divider -->
+    <line x1="360" y1="22" x2="360" y2="258" stroke="#0E1225" stroke-opacity="0.18" stroke-width="1" stroke-dasharray="4 6"/>
+    <text x="220" y="42" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#0E1225" fill-opacity="0.5">PILOT</text>
+    <text x="380" y="42" font-family="Inter, sans-serif" font-size="11" font-weight="700" letter-spacing="2" fill="#0E1225" fill-opacity="0.5">PRODUCTION</text>
+
+    <!-- y-axis ticks -->
+    <text x="22" y="86" font-family="Inter, sans-serif" font-size="10" fill="#0E1225" fill-opacity="0.42">94%</text>
+    <text x="22" y="166" font-family="Inter, sans-serif" font-size="10" fill="#0E1225" fill-opacity="0.42">82%</text>
+    <text x="22" y="246" font-family="Inter, sans-serif" font-size="10" fill="#0E1225" fill-opacity="0.42">70%</text>
+
+    <!-- Pilot curve: steady, confident -->
+    <path d="M 64 100 C 140 96, 220 92, 360 90" fill="none" stroke="url(#ai-grad-pilot)" stroke-width="3" stroke-linecap="round" stroke-dasharray="640" stroke-dashoffset="640">
+      <animate attributeName="stroke-dashoffset" from="640" to="0" dur="2.4s" begin="0.3s" fill="freeze"/>
+    </path>
+
+    <!-- Production curve: decays, jitters around the truth -->
+    <path d="M 360 92 C 420 110, 460 138, 500 160 S 580 200, 660 222" fill="none" stroke="url(#ai-grad-prod)" stroke-width="3" stroke-linecap="round" stroke-dasharray="640" stroke-dashoffset="640">
+      <animate attributeName="stroke-dashoffset" from="640" to="0" dur="3.2s" begin="2.4s" fill="freeze"/>
+    </path>
+
+    <!-- Reality data points (small dots that fade in along production curve) -->
+    <g>
+      <circle cx="420" cy="116" r="3" fill="#F59E0B" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="3.0s" fill="freeze"/>
+      </circle>
+      <circle cx="460" cy="142" r="3" fill="#F59E0B" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="3.4s" fill="freeze"/>
+      </circle>
+      <circle cx="500" cy="166" r="3" fill="#F59E0B" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="3.8s" fill="freeze"/>
+      </circle>
+      <circle cx="540" cy="184" r="3" fill="#F59E0B" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="4.2s" fill="freeze"/>
+      </circle>
+      <circle cx="580" cy="200" r="3" fill="#F59E0B" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="4.6s" fill="freeze"/>
+      </circle>
+      <circle cx="620" cy="212" r="3" fill="#F59E0B" opacity="0">
+        <animate attributeName="opacity" from="0" to="1" dur="0.3s" begin="5.0s" fill="freeze"/>
+      </circle>
+    </g>
+
+    <!-- Annotation: "the gap" -->
+    <g opacity="0">
+      <animate attributeName="opacity" from="0" to="1" dur="0.6s" begin="5.6s" fill="freeze"/>
+      <line x1="660" y1="92" x2="660" y2="222" stroke="#0E1225" stroke-opacity="0.32" stroke-width="1.2" stroke-dasharray="2 3"/>
+      <text x="676" y="158" font-family="Inter, sans-serif" font-size="11" font-weight="600" fill="#0E1225" fill-opacity="0.62">the gap</text>
+    </g>
+
+    <!-- Perpetual motion: demo promise vs production reality keep flowing (loops). -->
+    <g class="ai-flow">
+      <circle r="3.2" fill="#00C9A7"><animateMotion path="M 64 100 C 140 96, 220 92, 360 90" dur="3.4s" begin="6.2s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="opacity" values="0;0.9;0.9;0" keyTimes="0;0.12;0.82;1" dur="3.4s" begin="6.2s" repeatCount="indefinite"/></circle>
+      <circle r="3.6" fill="#F59E0B"><animateMotion path="M 360 92 C 420 110, 460 138, 500 160 S 580 200, 660 222" dur="3.4s" begin="6.6s" repeatCount="indefinite" calcMode="linear"/><animate attributeName="opacity" values="0;1;1;0" keyTimes="0;0.12;0.82;1" dur="3.4s" begin="6.6s" repeatCount="indefinite"/></circle>
+    </g>
+    <!-- Divergence pulse where the pilot meets reality -->
+    <circle cx="360" cy="91" r="4" fill="none" stroke="#F59E0B" stroke-width="2">
+      <animate attributeName="r" values="4;20" dur="2.6s" begin="6.2s" repeatCount="indefinite" calcMode="spline" keyTimes="0;1" keySplines="0.2 0.7 0.3 1"/>
+      <animate attributeName="opacity" values="0.6;0" dur="2.6s" begin="6.2s" repeatCount="indefinite"/>
+    </circle>
+  </svg>
+</div>
+
+<section class="section">
+ <div class="container">
+ <div class="article-shell reveal">
+
+ <div class="article-meta-row">
+ <span class="article-type">Article</span>
+ <span class="article-tag">AI Solutions · Enterprise SaaS</span>
+ <span>02 May 2026</span><span class="dot"></span><span>11 min read</span>
+ </div>
+
+ <div class="article-byline">
+ <span class="article-byline-avatar">OQ</span>
+ <div class="article-byline-text">
+ <strong>Owais Qarni · Head of Engineering</strong>
+ Accountable for production AI builds across Xperion's regulated and non-regulated engagements.
+ </div>
+ </div>
+
+ <p class="article-lead">There's a name for the part of an AI programme that ships: <span class="grad">the first 90%.</span> There's no good name for the second 90%, the eval drift, the retrieval bugs, the cost spike on Tuesday afternoons, the analyst who quietly turns the agent off because it's writing fiction. That's the part this article is about.</p>
+
+ <div class="article-prose">
+
+ <h2>Why the pilot wins, <span class="grad">and lies.</span></h2>
+ <p>Pilots are designed to win. The data is curated, the prompts are golden, the user is an enthusiast, and the failure modes haven't had time to compound. The first measurement of the pilot is almost never the one that matters. The third measurement, taken eight weeks into production with a different cohort, is.</p>
+ <p>We've now run enough production AI engagements to predict the shape of the gap. It is not subtle. The pilot's accuracy number is between 6 and 22 percentage points higher than the steady-state production number, depending on the domain. Anyone who tells you otherwise is selling something.</p>
+
+ <div class="article-pullquote">
+ The pilot's accuracy is between 6 and 22 percentage points higher than the steady-state production number. Anyone who tells you otherwise is selling something.
+ </div>
+
+ <h2>What actually breaks <span class="grad">in production.</span></h2>
+
+ <h3>Eval drift</h3>
+ <p>Your eval set was perfect on day one. Six weeks in, it has been silently overfit. The model now scores 94% on your evals and 71% on the work the model is actually doing. The reason is that your eval set wasn't drawn from production traffic, it was drawn from the data you had when you wrote the eval set.</p>
+ <p>The fix is a continuous eval pipeline that samples production traffic, hand-grades a fraction of it weekly, and treats the eval set as a living artefact. <code>eval_v37</code> is normal. <code>eval_v1.0</code> in production is a red flag.</p>
+
+ <h3>The retrieval problem</h3>
+ <p>RAG looked solved at the demo. In production, three things go wrong: the corpus grows, the chunking strategy that worked at 4,000 documents fails at 80,000, and the retrieval relevance is the single biggest predictor of model behaviour, more than the model itself. We've shipped projects where swapping the embedding model and the chunking strategy mattered five times more than swapping the LLM.</p>
+
+ <h3>Cost surprise</h3>
+ <p>The cost projection from the pilot is wrong, almost always. The pilot's average token usage is not the production average, because the pilot's prompts are short, controlled, and ideal. Production prompts are long, messy, and recursive. The cost will be 1.4x to 3.2x your projection. Plan for it explicitly or get caught.</p>
+
+ <h3>The human-in-the-loop is not a person</h3>
+ <p>"Human-in-the-loop" sounds reassuring. In practice, the human is a $34/hour analyst who has been handed 600 model outputs to review per day, with a target of three minutes per case. They will not review. They will rubber-stamp. Your governance regime exists on paper and not in the workflow. Design accordingly.</p>
+
+ <div class="article-callout">
+ <div class="article-callout-label">What this actually changes</div>
+ <p>Your build proposal needs a line item for production hardening that is roughly equal in size to the pilot itself. If a vendor's proposal has a $400K pilot and a $90K "productionisation phase", you are looking at the wrong vendor.</p>
+ </div>
+
+ <h2>The part to <span class="grad">scope.</span></h2>
+ <p>Here is the part of an AI build that almost nobody puts in the SOW, and that determines whether the system survives. Use this list as a procurement checklist, or as a punch list for an engagement that has already started.</p>
+
+ <div class="article-checklist">
+ <h4>The production-hardening checklist</h4>
+ <ul>
+ <li>A continuous eval pipeline that samples and grades production traffic. Not the pilot's eval set, frozen.</li>
+ <li>An observability layer that records prompts, retrievals, model versions, and token costs per request, with a 90-day retention window minimum.</li>
+ <li>A regression test suite that runs before every model, prompt, or retrieval change, with a defined failure threshold that blocks deploys.</li>
+ <li>A rollback plan, tested at least once, with a 30-minute target rollback time.</li>
+ <li>A cost budget per request and a daily/weekly cost alert. Not a monthly bill review.</li>
+ <li>A human-review workflow that is sized to actual review capacity, not to a number written on a slide. If you don't have the headcount, the loop isn't real.</li>
+ <li>A failure-mode taxonomy and a triage process. When the model misbehaves, the on-call should know what category it falls into.</li>
+ <li>A post-launch hyper-care period of at least 30 days where the build team stays embedded and watches the metrics with you.</li>
+ </ul>
+ </div>
+
+ <h2>The second 90% as <span class="grad">a phase.</span></h2>
+ <p>The way we structure engagements at Xperion is to call this phase what it is, and budget for it. Phase one is the pilot. Phase two is the productionisation. They are not the same engagement, and they are not the same cost. We tell clients up front: the pilot is roughly half the spend. The other half is what makes it survive.</p>
+ <p>Most firms don't price it that way because the pilot is what wins the deal and the productionisation is what survives the audit. Pricing the second half honestly is the discipline. <a href="how-we-work">Our operating model</a> exists, in large part, to make that conversation possible at the procurement stage rather than at the production-incident stage.</p>
+
+ <h2>One last <span class="grad">thing.</span></h2>
+ <p>The pilots that survive are the ones where the people who built the pilot stay to run it. That is not always the same firm. When it isn't, you are paying for a context reset, an onboarding cycle, and a knowledge transfer that is almost guaranteed to lose 30-40% of what mattered. The structural fix is to insist on a single partner across both phases. The cultural fix is to stop treating "production" as a separate engagement from "build".</p>
+ <p>If you've recognised any part of this article in your own programme, the highest-value next step is a 30-minute conversation about which item on the checklist above is missing. Not a sales call. A diagnostic.</p>
+
+ </div>
+
+ <div class="article-byline" style="margin-top:64px; margin-bottom:0;">
+ <span class="article-byline-avatar">OQ</span>
+ <div class="article-byline-text">
+ <strong>Owais Qarni · Head of Engineering</strong>
+ Reach him at <a href="mailto:owais@xperion.ai" style="color:var(--violet-2)">owais@xperion.ai</a>.
+ </div>
+ </div>
+
+ </div>
+ </div>
+</section>
+
+<section class="section bg-sand">
+ <div class="container scroll-3d">
+ <div class="reveal">
+ <div class="section-kicker" style="color: var(--amber-deep);">Related insights</div>
+ <h2>Keep <span class="grad">reading.</span></h2>
+ </div>
+ <div class="related-grid reveal-stagger">
+ <a class="related-card" href="insights-case-study"><div class="related-eyebrow">Playbook</div><h4>The ambient documentation playbook</h4><p>The eval-first, governance-alongside engagement shape this article describes, in practice.</p><span class="related-arrow">Read &rarr;</span></a>
+ <a class="related-card" href="insights-thought-leadership"><div class="related-eyebrow">Thought leadership</div><h4>The agency model is broken</h4><p>Why the build and the run are the same engagement, and why most firms can't run it that way.</p><span class="related-arrow">Read &rarr;</span></a>
+ <a class="related-card" href="practice-ai-solutions"><div class="related-eyebrow">Practice</div><h4>Intelligent AI Solutions</h4><p>The capability map, engagement models, and outcomes the practice ships.</p><span class="related-arrow">Explore &rarr;</span></a>
+ <a class="related-card" href="insights"><div class="related-eyebrow">All Insights</div><h4>Back to the feed</h4><p>Filter by format or industry.</p><span class="related-arrow">Browse &rarr;</span></a>
+ </div>
+ </div>
+</section>
+
+<section class="cta-finale">
+ <div class="cta-finale-bg" aria-hidden="true"></div>
+ <div class="section-mesh" data-palette="amber-violet" aria-hidden="true"></div>
+ <div class="container scroll-3d">
+ <div class="reveal">
+ <h2>Got a pilot stuck somewhere <span class="grad">past the demo?</span></h2>
+ <p class="cta-finale-sub">One scoping call, we'll tell you which item on the checklist is the bottleneck. Free, no obligation, no sales pyramid.</p>
+ <div class="cta-finale-actions">
+ <a class="btn-primary" href="book-a-call" data-magnetic>Book a Strategy Call <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+ <a class="btn-ghost" href="practice-ai-solutions">AI Solutions practice</a>
+ </div>
+ </div>
+ </div>
+</section>
+<div class="colour-band" aria-hidden="true"></div>
+</main>
+
+<footer class="xp-footer">
+ <div class="container">
+ <div class="xp-footer-top">
+ <div>
+ <div class="xp-footer-brand-name"><img src="xperion-mark.svg" alt="" class="xp-footer-brand-img" width="48" height="48" aria-hidden="true"><span class="xp-footer-brand-wordmark">xperion</span></div>
+ <p class="xp-footer-tagline">Human + AI intelligence for enterprise transformation. Senior-led teams across the United&nbsp;States and Pakistan. Talent &middot; AI Solutions &middot; Consulting &middot; Marketing &middot; Design.</p>
+ <div style="margin-bottom: 18px;"><a href="https://xperion.ai" style="color: var(--amber-2); font-size: 13.5px; font-weight: 600;">xperion.ai</a><br><a href="mailto:info@xperion.ai" style="color: rgba(255,255,255,0.7); font-size: 13.5px;">info@xperion.ai</a></div>
+ <div class="xp-footer-social"><a href="https://www.linkedin.com/company/xperion" aria-label="Xperion on LinkedIn" target="_blank" rel="noopener"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.32V9h3.42v1.56h.04c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.43c-1.14 0-2.07-.93-2.07-2.07s.93-2.07 2.07-2.07 2.06.93 2.06 2.07-.92 2.07-2.06 2.07zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg></a></div>
+ </div>
+ <div class="xp-footer-col"><h4>Practices</h4><ul><li><a href="practice-resource-augmentation">Resource Augmentation &amp; Managed Services</a></li><li><a href="practice-ai-solutions">AI Solutions</a></li><li><a href="practice-consulting">Consulting</a></li><li><a href="practice-marketing">Marketing</a></li><li><a href="practice-design-ux">Design &amp; UX</a></li></ul></div>
+ <div class="xp-footer-col"><h4>Industries</h4><ul><li><a href="industry-healthcare">Healthcare</a></li><li><a href="industry-financial-services">Financial Services</a></li><li><a href="industry-manufacturing">Manufacturing</a></li><li><a href="industry-retail">Retail</a></li><li><a href="industry-enterprise-saas">Enterprise SaaS</a></li></ul></div>
+ <div class="xp-footer-col"><h4>Company</h4><ul><li><a href="about">About</a></li><li><a href="leadership">Leadership</a></li><li><a href="how-we-work">How We Work</a></li><li><a href="careers">Careers</a></li><li><a href="book-a-call">Book a Call</a></li></ul></div>
+ <div class="xp-footer-col"><h4>Resources</h4><ul><li><a href="insights">Insights</a></li><li><a href="accessibility">Accessibility</a></li><li><a href="services">All Services</a></li><li><a href="privacy">Privacy</a></li><li><a href="terms">Terms</a></li></ul></div>
+ </div>
+ <div class="xp-footer-bottom"><span>&copy; 2026 Xperion. All rights reserved.</span><div class="xp-footer-meta"><a href="insights">Insights</a><a href="cookies">Cookies</a><a href="privacy">Privacy</a><a href="terms">Terms</a><a href="security">Security</a></div></div>
+ </div>
+</footer>
+<script src="xperion.js" defer></script>
+<script>
+(function(){
+  var bar = document.getElementById('readerProgress');
+  if (!bar) return;
+  function update() { var h = document.documentElement; var max = h.scrollHeight - h.clientHeight; bar.style.setProperty('--p', (max>0 ? (h.scrollTop/max)*100 : 0) + '%'); }
+  document.addEventListener('scroll', update, { passive: true });
+  update();
+})();
+</script>
+</body>
+</html>

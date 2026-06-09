@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--
+  Xperion · Accessibility Statement
+  Legal page · Last updated 25 May 2026
+-->
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Accessibility Statement · Xperion</title>
+<meta name="description" content="How xperion.ai conforms to WCAG 2.1 AA, what assistive technologies are supported, and how to report an accessibility barrier.">
+<meta name="theme-color" content="#080B18">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Instrument+Serif:wght@400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="xperion.css">
+<style>
+.legal-hero { padding-top: clamp(80px, 10vw, 132px); padding-bottom: clamp(40px, 5vw, 64px); background: var(--obsidian); }
+.legal-hero h1 { font-size: clamp(40px, 5vw, 72px); font-weight: 900; letter-spacing: -0.035em; line-height: 1.04; max-width: 22ch; margin-bottom: 24px; }
+.legal-meta { font-size: 14px; color: rgba(255,255,255,0.55); margin-top: 16px; }
+.legal-meta a { color: var(--amber-2); text-decoration: underline; text-underline-offset: 4px; }
+.legal-body { background: var(--obsidian); padding-bottom: clamp(96px, 12vw, 140px); }
+.legal-prose { max-width: 760px; margin: 0 auto; font-size: 16.5px; line-height: 1.75; color: rgba(255,255,255,0.78); }
+.legal-prose h2 { font-size: clamp(24px, 2.6vw, 32px); font-weight: 800; letter-spacing: -0.02em; line-height: 1.2; margin-top: 56px; margin-bottom: 16px; color: white; }
+.legal-prose h2:first-child { margin-top: 0; }
+.legal-prose h3 { font-size: 19px; font-weight: 700; margin-top: 32px; margin-bottom: 10px; color: white; }
+.legal-prose p { margin-bottom: 16px; }
+.legal-prose ul, .legal-prose ol { margin: 0 0 20px 24px; padding: 0; }
+.legal-prose li { margin-bottom: 8px; }
+.legal-prose a { color: var(--amber-2); text-underline-offset: 4px; }
+.legal-prose a:hover { color: var(--amber); }
+.legal-prose strong { color: white; font-weight: 700; }
+.legal-prose code { background: rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 14px; color: var(--teal-2); }
+</style>
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="xperion-favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="xperion-favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="xperion-favicon-192.png">
+<meta name="application-name" content="Xperion">
+<meta name="apple-mobile-web-app-title" content="Xperion">
+<link rel="manifest" href="manifest.json">
+<link rel="canonical" href="https://xperion.ai/accessibility">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Xperion">
+<meta property="og:title" content="Accessibility Statement · Xperion">
+<meta property="og:description" content="How xperion.ai conforms to WCAG 2.1 AA, what assistive technologies are supported, and how to report an accessibility barrier.">
+<meta property="og:url" content="https://xperion.ai/accessibility">
+<meta property="og:image" content="https://xperion.ai/xperion-og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Accessibility Statement · Xperion">
+<meta name="twitter:description" content="How xperion.ai conforms to WCAG 2.1 AA, what assistive technologies are supported, and how to report an accessibility barrier.">
+<meta name="twitter:image" content="https://xperion.ai/xperion-og-image.png">
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- SCROLL PROGRESS -->
+<div class="xp-progress"><div class="xp-progress-fill" id="xpProgress"></div></div>
+
+<!-- NAV -->
+<header class="xp-nav" id="xpNav">
+ <div class="xp-nav-inner">
+ <a href="./" class="xp-logo" aria-label="Xperion home">
+ <img src="xperion-mark.svg" alt="" class="xp-logo-img" width="40" height="40" aria-hidden="true"><span class="xp-logo-wordmark">xperion</span>
+ </a>
+
+ <nav class="xp-nav-menu" aria-label="Primary">
+ <div class="xp-nav-wrap">
+ <button class="xp-nav-item" aria-haspopup="true">Practices <span class="chev">▾</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row amber" href="practice-resource-augmentation">
+ <span class="xp-dd-num">01</span>
+ <div class="xp-dd-content"><strong>Resource Augmentation &amp; Managed Services</strong><span>Senior engineers, designers, and marketers, placed in 1–2 weeks.</span></div>
+ </a>
+ <a class="xp-dd-row violet" href="practice-ai-solutions">
+ <span class="xp-dd-num">02</span>
+ <div class="xp-dd-content"><strong>Intelligent AI Solutions</strong><span>Production-grade AI from pilot to scale.</span></div>
+ </a>
+ <a class="xp-dd-row teal" href="practice-consulting">
+ <span class="xp-dd-num">03</span>
+ <div class="xp-dd-content"><strong>Technology Consulting</strong><span>Strategy that connects directly to delivery.</span></div>
+ </a>
+ <a class="xp-dd-row green" href="practice-marketing">
+ <span class="xp-dd-num">04</span>
+ <div class="xp-dd-content"><strong>Marketing</strong><span>GTM and brand craft, instrumented for revenue.</span></div>
+ </a>
+ <a class="xp-dd-row warm" href="practice-design-ux">
+ <span class="xp-dd-num">05</span>
+ <div class="xp-dd-content"><strong>Design &amp; UX</strong><span>Product, brand, and systems design that ships.</span></div>
+ </a>
+ </div>
+ </div>
+ <div class="xp-nav-wrap">
+ <button class="xp-nav-item" aria-haspopup="true">Industries <span class="chev">▾</span></button>
+ <div class="xp-nav-dd" role="menu">
+ <a class="xp-dd-row teal" href="industry-healthcare"><span class="xp-dd-num">01</span><div class="xp-dd-content"><strong>Healthcare &amp; Life Sciences</strong><span>HIPAA-aligned, evidence-based AI.</span></div></a>
+ <a class="xp-dd-row violet" href="industry-financial-services"><span class="xp-dd-num">02</span><div class="xp-dd-content"><strong>Financial Services &amp; Fintech</strong><span>Risk, fraud, and growth, built for compliance.</span></div></a>
+ <a class="xp-dd-row amber" href="industry-manufacturing"><span class="xp-dd-num">03</span><div class="xp-dd-content"><strong>Manufacturing &amp; Logistics</strong><span>Industrial AI, OT/IT, supply-chain decisioning.</span></div></a>
+ <a class="xp-dd-row green" href="industry-retail"><span class="xp-dd-num">04</span><div class="xp-dd-content"><strong>Retail &amp; E-Commerce</strong><span>Conversion-economics fluent. Headless-ready.</span></div></a>
+ <a class="xp-dd-row warm" href="industry-enterprise-saas"><span class="xp-dd-num">05</span><div class="xp-dd-content"><strong>Enterprise SaaS</strong><span>Platform engineering for vertical and horizontal SaaS.</span></div></a>
+ </div>
+ </div>
+ <a class="xp-nav-item" href="how-we-work">How We Work</a>
+ <a class="xp-nav-item" href="insights">Insights</a>
+ <a class="xp-nav-item" href="about">About</a>
+ <a class="xp-nav-item" href="careers">Careers</a>
+ </nav>
+
+ <a class="xp-cta" href="book-a-call">
+ Book a Call
+ <svg width="14" height="14" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+ </a>
+ <button class="xp-burger" aria-label="Open menu"><span></span><span></span><span></span></button>
+ </div>
+</header>
+
+<main id="main">
+  <section class="section legal-hero">
+    <div class="section-mesh" data-palette="violet-teal" aria-hidden="true"></div>
+    <div class="container scroll-3d">
+      <div class="section-kicker">Legal</div>
+      <h1>Accessibility Statement</h1>
+      <p class="section-lead">Our commitment to making xperion.ai usable by everyone, including people who rely on assistive technology.</p>
+      <p class="legal-meta">Last updated: 25 May 2026 · <a href="mailto:accessibility@xperion.ai">accessibility@xperion.ai</a></p>
+    </div>
+  </section>
+
+  <section class="section legal-body">
+    <div class="container scroll-3d legal-prose">
+
+      <h2>Our commitment</h2>
+      <p>We design and build for the whole audience, not the median user. Our target is conformance with the Web Content Accessibility Guidelines (WCAG) 2.1 at Level AA across <code>xperion.ai</code>. Accessibility is treated as a first-class requirement in design reviews, code reviews, and quality assurance, not as a post-launch fix.</p>
+
+      <h2>What we have implemented</h2>
+      <h3>Structure and navigation</h3>
+      <ul>
+        <li>Semantic HTML5 landmarks (<code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>) on every page.</li>
+        <li>A visible "Skip to content" link as the first focusable element on each page.</li>
+        <li>Heading levels used in logical order, never skipped purely for visual styling.</li>
+        <li>Descriptive page titles and unique link text.</li>
+      </ul>
+
+      <h3>Keyboard and focus</h3>
+      <ul>
+        <li>All interactive elements reachable and operable with the keyboard alone (Tab, Shift+Tab, Enter, Space, Arrow keys where appropriate).</li>
+        <li>Focus indicators visible on every interactive element, with sufficient contrast against background.</li>
+        <li>No keyboard traps. Dialogs and dropdowns can be dismissed with Escape.</li>
+        <li>Focus order matches the visual reading order.</li>
+      </ul>
+
+      <h3>Screen readers and ARIA</h3>
+      <ul>
+        <li>ARIA landmarks and roles applied where native semantics fall short.</li>
+        <li><code>aria-label</code>, <code>aria-labelledby</code>, and <code>aria-describedby</code> used for icon-only buttons, custom controls, and form fields.</li>
+        <li>Decorative imagery marked <code>aria-hidden="true"</code> so screen readers do not announce noise.</li>
+        <li>Dynamic content updates announced through ARIA live regions where appropriate.</li>
+      </ul>
+
+      <h3>Visual design</h3>
+      <ul>
+        <li>Body text contrast of at least 4.5:1 against background, and 3:1 for large text and UI components, per WCAG 2.1 AA.</li>
+        <li>Information never conveyed by colour alone; pairs with shape, label, or icon.</li>
+        <li>Text resizable up to 200% without loss of content or function.</li>
+        <li>Layouts reflow at 320 CSS pixels wide without horizontal scrolling, per WCAG 1.4.10.</li>
+        <li>Touch targets at least 24x24 CSS pixels, with 44x44 preferred for primary actions.</li>
+      </ul>
+
+      <h3>Images and media</h3>
+      <ul>
+        <li>Meaningful images carry descriptive <code>alt</code> text.</li>
+        <li>Decorative images use empty <code>alt=""</code> and <code>aria-hidden="true"</code>.</li>
+        <li>SVG icons have accessible names where they convey meaning.</li>
+        <li>Video content, where present, is provided with captions and a transcript.</li>
+      </ul>
+
+      <h3>Motion</h3>
+      <ul>
+        <li>Animations and parallax effects respect the <code>prefers-reduced-motion</code> media query and are disabled or reduced when set.</li>
+        <li>No auto-playing video, no flashing content above the WCAG 2.3.1 threshold.</li>
+        <li>Marquees and tickers pause on hover and focus.</li>
+      </ul>
+
+      <h3>Forms</h3>
+      <ul>
+        <li>Every input has a visible, programmatically associated label.</li>
+        <li>Required fields are indicated in text, not by colour alone.</li>
+        <li>Validation errors are announced to assistive technology and described in plain language.</li>
+      </ul>
+
+      <h2>Conformance status</h2>
+      <p>Based on our most recent internal audit (May 2026), <code>xperion.ai</code> is <strong>substantially conformant with WCAG 2.1 Level AA</strong>. "Substantially conformant" means most of the site fully meets the standard, with a small number of known issues being actively worked on. No fully WCAG-conformant site is ever truly "done"; we treat this as an ongoing commitment.</p>
+
+      <h2>Known limitations</h2>
+      <p>We disclose what we know:</p>
+      <ul>
+        <li>A small number of legacy decorative assets are still in audit and may lack ideal contrast in their surrounding mesh gradients. Text overlays on those areas meet 4.5:1 against the darkest backing layer.</li>
+        <li>One animated SVG signal trace on the home page does not yet expose a textual equivalent. The information it conveys is repeated in adjacent body copy.</li>
+        <li>Embedded third-party content (for example, calendar booking widgets on the Book a Call page) is governed by third-party accessibility. We have raised conformance with the providers and review alternatives quarterly.</li>
+      </ul>
+      <p>If you encounter another barrier, please tell us so we can fix it and credit the report.</p>
+
+      <h2>Assistive technology compatibility</h2>
+      <p>We test against current and previous major versions of the following combinations:</p>
+      <ul>
+        <li><strong>Desktop</strong>: NVDA with Firefox and Chrome (Windows), JAWS with Chrome and Edge (Windows), VoiceOver with Safari (macOS).</li>
+        <li><strong>Mobile</strong>: VoiceOver with Safari (iOS), TalkBack with Chrome (Android).</li>
+        <li><strong>Browsers</strong>: latest two major versions of Chrome, Edge, Firefox, and Safari.</li>
+        <li><strong>Zoom and reflow</strong>: up to 400% browser zoom, plus operating-system text scaling.</li>
+      </ul>
+      <p>Other assistive technologies may also work well. If something does not, we want to know.</p>
+
+      <h2>Ongoing audits</h2>
+      <ul>
+        <li><strong>Automated checks</strong> run on every pull request through axe-core, with no high or critical issues permitted to merge.</li>
+        <li><strong>Manual reviews</strong> on every major release, covering keyboard navigation, screen reader walkthroughs, and zoom and reflow.</li>
+        <li><strong>Quarterly external review</strong> covering a sample of pages and flows.</li>
+        <li><strong>Annual independent audit</strong> against the current WCAG version, with a remediation plan published internally.</li>
+      </ul>
+
+      <h2>How to report a barrier</h2>
+      <p>If you hit a problem using this site, please tell us. We take every report seriously and aim to acknowledge within 2 business days.</p>
+      <ul>
+        <li>Email <a href="mailto:accessibility@xperion.ai">accessibility@xperion.ai</a> with the page URL, what you were trying to do, what happened, and (if you can share) the assistive technology and browser you used.</li>
+        <li>For an urgent need, copy <a href="mailto:info@xperion.ai">info@xperion.ai</a> as well.</li>
+      </ul>
+      <p>We will respond with a plan and a target fix date. If a complete fix will take time, we will offer an interim path to get the information or function you need.</p>
+
+      <h2>Formal feedback and escalation</h2>
+      <p>If our response does not resolve your concern, you may escalate to your local accessibility regulator. In the United States, that is typically the Department of Justice under the ADA; in the European Union and the United Kingdom, national enforcement bodies for the relevant accessibility regulations.</p>
+
+      <h2>Standards we reference</h2>
+      <ul>
+        <li>WCAG 2.1 Level AA (target conformance level for this site).</li>
+        <li>WCAG 2.2 Level AA (we track new success criteria and adopt where applicable).</li>
+        <li>Section 508 of the US Rehabilitation Act, by reference to WCAG.</li>
+        <li>EN 301 549 for European public-sector procurement reference.</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p>Accessibility lead: <a href="mailto:accessibility@xperion.ai">accessibility@xperion.ai</a>. General enquiries: <a href="mailto:info@xperion.ai">info@xperion.ai</a>.</p>
+
+    </div>
+  </section>
+</main>
+
+<!-- ═══ FOOTER ══════════════════════════════════════════════════════ -->
+<footer class="xp-footer">
+ <div class="container">
+ <div class="xp-footer-top">
+ <div>
+ <div class="xp-footer-brand-name"><img src="xperion-mark.svg" alt="" class="xp-footer-brand-img" width="48" height="48" aria-hidden="true"><span class="xp-footer-brand-wordmark">xperion</span></div>
+ <p class="xp-footer-tagline">Human + AI intelligence for enterprise transformation. Senior-led teams across the United&nbsp;States and Pakistan. Talent &middot; AI Solutions &middot; Consulting &middot; Marketing &middot; Design.</p>
+ <div style="margin-bottom: 18px;">
+ <a href="https://xperion.ai" style="color: var(--amber-2); font-size: 13.5px; font-weight: 600;">xperion.ai</a><br>
+ <a href="mailto:info@xperion.ai" style="color: rgba(255,255,255,0.7); font-size: 13.5px;">info@xperion.ai</a>
+ </div>
+ <div class="xp-footer-social">
+ <a href="https://www.linkedin.com/company/xperion" aria-label="Xperion on LinkedIn" target="_blank" rel="noopener">
+   <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.86-3.04-1.86 0-2.15 1.45-2.15 2.95v5.66H9.32V9h3.42v1.56h.04c.48-.9 1.64-1.86 3.37-1.86 3.6 0 4.27 2.37 4.27 5.46v6.29zM5.34 7.43c-1.14 0-2.07-.93-2.07-2.07s.93-2.07 2.07-2.07 2.06.93 2.06 2.07-.92 2.07-2.06 2.07zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.72v20.55C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.72C24 .77 23.2 0 22.22 0z"/></svg>
+ </a>
+ </div>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Practices</h4>
+ <ul>
+ <li><a href="practice-resource-augmentation">Resource Augmentation &amp; Managed Services</a></li>
+ <li><a href="practice-ai-solutions">AI Solutions</a></li>
+ <li><a href="practice-consulting">Consulting</a></li>
+ <li><a href="practice-marketing">Marketing</a></li>
+ <li><a href="practice-design-ux">Design &amp; UX</a></li>
+ </ul>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Industries</h4>
+ <ul>
+ <li><a href="industry-healthcare">Healthcare</a></li>
+ <li><a href="industry-financial-services">Financial Services</a></li>
+ <li><a href="industry-manufacturing">Manufacturing</a></li>
+ <li><a href="industry-retail">Retail</a></li>
+ <li><a href="industry-enterprise-saas">Enterprise SaaS</a></li>
+ </ul>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Company</h4>
+ <ul>
+ <li><a href="about">About</a></li>
+ <li><a href="leadership">Leadership</a></li>
+ <li><a href="how-we-work">How We Work</a></li>
+ <li><a href="careers">Careers</a></li>
+ <li><a href="book-a-call">Book a Call</a></li>
+ </ul>
+ </div>
+ <div class="xp-footer-col">
+ <h4>Resources</h4>
+ <ul>
+ <li><a href="insights">Insights</a></li>
+ <li><a href="accessibility">Accessibility</a></li>
+ <li><a href="services">All Services</a></li>
+ <li><a href="privacy">Privacy</a></li>
+ <li><a href="terms">Terms</a></li>
+ <li><a href="security">Security</a></li>
+ </ul>
+ </div>
+ </div>
+ <div class="xp-footer-bottom">
+ <span>&copy; 2026 Xperion. All rights reserved.</span>
+ <div class="xp-footer-meta">
+ <a href="insights">Insights</a>
+ <a href="cookies">Cookies</a>
+ <a href="privacy">Privacy</a>
+ <a href="terms">Terms</a>
+ <a href="security">Security</a>
+ </div>
+ </div>
+ </div>
+</footer>
+
+<script src="xperion.js" defer></script>
+
+</body>
+</html>
