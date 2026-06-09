@@ -212,14 +212,14 @@ body::before {
 }
 .xp-logo:hover { opacity: 0.92; }
 .xp-logo-img {
-  height: 40px; width: 40px; display: block; flex-shrink: 0;
+  height: 40px; width: auto; max-width: 100%; display: block; flex-shrink: 0;
   filter: drop-shadow(0 0 18px rgba(0, 201, 167, 0.30));
   transition: filter var(--d-std) var(--ease-emphasis-out), transform var(--d-std) var(--ease-spring-soft);
 }
 .xp-logo:hover .xp-logo-img { filter: drop-shadow(0 0 24px rgba(0, 201, 167, 0.45)); transform: rotate(-4deg) scale(1.06); }
 .xp-logo-wordmark {
   font-family: 'Coliner', 'Inter', system-ui, sans-serif;
-  font-size: 26px; font-weight: 800; letter-spacing: -0.035em;
+  font-size: 32px; font-weight: 500; letter-spacing: 0.08em;
   line-height: 1;
   /* Brand gradient on the wordmark — teal anchor → green bridge → amber tail */
   background: var(--grad-hero);
@@ -236,8 +236,8 @@ body::before {
 /* Legacy survivors — keep hidden in case any old HTML still references them. */
 .xp-logo-mark, .xp-logo-word { display: none; }
 @media (max-width: 540px) {
-  .xp-logo-img { height: 32px; width: 32px; }
-  .xp-logo-wordmark { font-size: 22px; }
+  .xp-logo-img { height: 32px; width: auto; }
+  .xp-logo-wordmark { font-size: 26px; }
 }
 .xp-nav-menu { display: flex; align-items: center; gap: 4px; }
 .xp-nav-item {
@@ -1404,12 +1404,14 @@ body::before {
   text-decoration: none;
 }
 .xp-footer-brand-img {
-  height: 48px; width: 48px; display: block; flex-shrink: 0;
-  filter: drop-shadow(0 0 20px rgba(0, 201, 167, 0.22));
+  height: 44px; width: auto; max-width: 100%; display: block; flex-shrink: 0;
+}
+@media (max-width: 560px) {
+  .xp-footer-brand-img { height: 36px; }
 }
 .xp-footer-brand-wordmark {
   font-family: 'Coliner', 'Inter', system-ui, sans-serif;
-  font-size: 32px; font-weight: 800; letter-spacing: -0.035em;
+  font-size: 40px; font-weight: 500; letter-spacing: 0.08em;
   line-height: 1;
   background: var(--grad-hero);
   -webkit-background-clip: text; background-clip: text;
