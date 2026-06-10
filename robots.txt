@@ -19,7 +19,7 @@ Disallow: /*.md$
 Disallow: /_archive/
 
 # Block well-known AI training crawlers from scraping the editorial content
-# (insights pages). Adjust to taste — these directives are advisory but widely
+# (insights pages). Adjust to taste - these directives are advisory but widely
 # honoured by responsible bots. Remove the next two blocks if you WANT your
 # thought leadership ingested by AI training corpora.
 User-agent: GPTBot

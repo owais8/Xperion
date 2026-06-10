@@ -417,7 +417,7 @@
  <p class="section-lead" style="color: var(--body-dark);">The pieces above, plus a short editor's note from the partner who shipped that month's work. We don't sell it, we don't share it, and we don't pad it.</p>
  </div>
  <!-- Subscribe handler: mailto fallback (no backend / no list provider yet).
-      Honest by design — composes a real email instead of pretending to store
+      Honest by design - composes a real email instead of pretending to store
       the address. Swap to a list provider by replacing the onsubmit. -->
  <form class="insights-subscribe-form lp-subscribe-form reveal" onsubmit="event.preventDefault(); var em=this.querySelector('#subscribe-email').value; window.location.href='mailto:info@xperion.ai?subject='+encodeURIComponent('Subscribe to Insights')+'&amp;body='+encodeURIComponent('Please add '+em+' to the Insights list.'); var b=this.querySelector('button'); b.textContent='Opening your email app…'; setTimeout(()=>{b.textContent='Subscribe';this.reset();}, 4000);">
  <label for="subscribe-email" class="skip-link" style="position:absolute; left:-9999px;">Work email</label>

@@ -1,4 +1,4 @@
-# Client logos — drop the files here
+# Client logos - drop the files here
 
 You supplied these 10 logos. The landing page "Trusted by" marquee loads them
 from this `clients/` folder. Save each uploaded file here renamed **exactly** as

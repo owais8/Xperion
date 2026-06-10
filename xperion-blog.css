@@ -1,6 +1,6 @@
 /* ════════════════════════════════════════════════════════════════════
    XPERION · Blog stylesheet · 2026-05-22
-   Lighter theme for reading pages — sand/cream background, ink text,
+   Lighter theme for reading pages - sand/cream background, ink text,
    wider line-height, calmer chrome. Loaded AFTER xperion.css so these
    rules win for blog-only pages.
    Design north star: human-centred reading, not dashboard chrome.
@@ -14,9 +14,9 @@ body.xp-blog {
 }
 
 /* The page-hero on blog pages stays dark for visual anchoring but uses
-   a softer mesh — no aggressive violet glow. */
+   a softer mesh - no aggressive violet glow. */
 body.xp-blog .page-hero {
-  /* Slightly shorter than the marketing pages — readers want to get to text. */
+  /* Slightly shorter than the marketing pages - readers want to get to text. */
   padding: 84px 0 56px;
   min-height: auto;
   background: linear-gradient(180deg, var(--obsidian) 0%, #0A0E1F 100%);
@@ -65,7 +65,7 @@ body.xp-blog .page-hero-sub {
   box-shadow: 0 24px 60px -28px rgba(8,11,24,0.18);
 }
 
-/* ───── 4. Article shell — wider breathing, ink on sand ─────────── */
+/* ───── 4. Article shell - wider breathing, ink on sand ─────────── */
 body.xp-blog .section { padding: 56px 0 96px; }
 body.xp-blog .section.tight { padding: 36px 0 48px; }
 
@@ -142,7 +142,7 @@ body.xp-blog .article-byline-text strong {
   margin-bottom: 2px;
 }
 
-/* ───── 5. Lead paragraph & prose — readable, calm ──────────────── */
+/* ───── 5. Lead paragraph & prose - readable, calm ──────────────── */
 body.xp-blog .article-lead {
   font-size: clamp(20px, 1.7vw, 24px);
   line-height: 1.5;
@@ -221,7 +221,7 @@ body.xp-blog .article-prose a {
 }
 body.xp-blog .article-prose a:hover { border-bottom-color: var(--teal); }
 
-/* Pull-quote — strong but not garish */
+/* Pull-quote - strong but not garish */
 body.xp-blog .article-pullquote {
   font-size: clamp(22px, 2.2vw, 30px);
   font-weight: 500;
@@ -514,7 +514,7 @@ body.xp-blog .article-grid {
   body.xp-blog .article-toc { position: static; }
 }
 
-/* Article pullquote (case study) on light theme — overrides dark default */
+/* Article pullquote (case study) on light theme - overrides dark default */
 body.xp-blog .article-pullquote {
   padding: 24px 28px;
   margin: 40px 0;
@@ -583,7 +583,7 @@ body.xp-blog .article-prose ol li::before {
 }
 body.xp-blog .article-prose strong { color: var(--ink); font-weight: 600; }
 
-/* CTA finale on blog pages — match dark hero aesthetic, restful close */
+/* CTA finale on blog pages - match dark hero aesthetic, restful close */
 body.xp-blog .cta-finale {
   background: var(--obsidian);
   color: var(--white);

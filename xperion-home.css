@@ -1,5 +1,5 @@
 /* ════════════════════════════════════════════════════════════════════
-   XPERION — HOME (./) page styles
+   XPERION - HOME (./) page styles
    Extracted from inline <style> blocks · v3.8 structure pass · 2026-06-10
 
    Load order matters: this file is linked AFTER xperion.css so that
@@ -9,15 +9,15 @@
    01 · Design tokens + base reset (page-local :root, body, selection)
    02 · Page sections (hero v3, marquee, problem, flywheel, practices,
         industries, tech stack, how-we-work, numbers, beliefs, offer,
-        FAQ, CTA finale) — original main block, order preserved
-   03 · Hero v4 — WebGL field, aurora, type scale (overrides 01/02)
+        FAQ, CTA finale) - original main block, order preserved
+   03 · Hero v4 - WebGL field, aurora, type scale (overrides 01/02)
    04 · Clients / KXT ecosystem logo marquee
    05 · Landing-page Insights cards (sand-on-sand, asymmetric grid)
    06 · Utility + section-scoped helpers added in v3.8 (offer card,
-        sand-section accents) — replaces former inline style attributes
+        sand-section accents) - replaces former inline style attributes
    ════════════════════════════════════════════════════════════════════ */
 
-/* ── 01–02 · DESIGN TOKENS, BASE + PAGE SECTIONS ─────────────────── */
+/* ── 01-02 · DESIGN TOKENS, BASE + PAGE SECTIONS ─────────────────── */
 /* ════════════════════════════════════════════════════════════════════
    XPERION  ·  v3  Premium Maximalist Edition
    Amber → Teal dominant gradient · Editorial restraint at scale
@@ -333,7 +333,7 @@ body::before {
 
 /* Mobile only: the WebGL particle hero (.hero-gl) can be skipped or limited on
    phones, leaving just this static grid. So on mobile we animate the grid
-   itself — a slow drift plus two traveling photons — so the landing hero is
+   itself - a slow drift plus two traveling photons - so the landing hero is
    alive like the connected pages' field. Desktop is untouched (keeps WebGL). */
 @media (max-width: 768px) {
   /* Lift the grid above the hero background (it was behind it at z-index -1)
@@ -726,7 +726,7 @@ body::before {
   background: var(--grad-hero);
 }
 .section h2 {
-  /* Secondary to the hero h1 (max 56px) — consistent across every section,
+  /* Secondary to the hero h1 (max 56px) - consistent across every section,
      never larger than the hero. */
   font-size: clamp(30px, 3.8vw, 50px);
   font-weight: 900;
@@ -1674,7 +1674,7 @@ body::before {
   .cta-field { display: none; }
 }
 .cta-finale h2 {
-  /* Matches the hero h1 scale as a bookend — never exceeds it. */
+  /* Matches the hero h1 scale as a bookend - never exceeds it. */
   font-size: clamp(28px, 4.2vw, 56px);
   font-weight: 900;
   letter-spacing: -0.035em;
@@ -1914,8 +1914,8 @@ body::before {
 }
 .skip-link:focus { left: 0; }
 
-/* ── 03–04 · HERO v4 (WebGL) + CLIENTS MARQUEE ───────────────────── */
-/* ════════ HERO v4 — WebGL intelligence-field + asymmetric stage ════════
+/* ── 03-04 · HERO v4 (WebGL) + CLIENTS MARQUEE ───────────────────── */
+/* ════════ HERO v4 - WebGL intelligence-field + asymmetric stage ════════
    Loaded after the main inline block so these rules win on source order. */
 .hero { min-height: 100dvh; padding-top: clamp(86px, 11vh, 120px); padding-bottom: clamp(64px, 8vh, 104px); }
 @media (max-height: 780px) { .hero { min-height: 100dvh; padding-top: 84px; padding-bottom: 46px; } }
@@ -1948,7 +1948,7 @@ body::before {
 }
 @media (prefers-reduced-motion: reduce) { .hero-aurora { animation: none; } }
 
-/* WebGL canvas — full-bleed, fades in once the renderer reports live */
+/* WebGL canvas - full-bleed, fades in once the renderer reports live */
 .hero-gl {
   position: absolute; inset: 0; z-index: 0;
   width: 100%; height: 100%; pointer-events: none;
@@ -1973,10 +1973,10 @@ body::before {
 
 /* Copy stays LEFT-aligned on the normal content grid; the luminous loop owns
    the right via the canvas mask. Do NOT constrain .hero-inner to a narrow
-   column — .container already has margin:0 auto, so a max-width there re-
+   column - .container already has margin:0 auto, so a max-width there re-
    centres it (that was the "not left aligned" bug). */
 /* The hero is a flex container; without an explicit width the inner column
-   shrinks to its content and margin:auto then CENTERS it — which is why the
+   shrinks to its content and margin:auto then CENTERS it - which is why the
    hero text floated toward the middle while sections sat at the left gutter.
    width:100% makes it fill the 1320 container like every section, so the hero
    copy shares the exact same left edge as the section headings. */
@@ -1987,7 +1987,7 @@ body::before {
 }
 @media (min-width: 1320px) { .hero-mark-watermark { right: -40px; } }
 
-/* ─── CLIENTS / THE KXT ECOSYSTEM — edge-faded logo marquee ─────────
+/* ─── CLIENTS / THE KXT ECOSYSTEM - edge-faded logo marquee ─────────
    White logo cards on the dark band (uniform surface handles mixed-format
    logos), in an edge-faded infinite marquee that pauses on hover; logos
    sit muted and colourise on hover. Reduced-motion → static centred grid.
@@ -2031,7 +2031,7 @@ body::before {
   display: inline-flex; align-items: center; justify-content: center;
   height: 92px; min-width: 188px; padding: 0 32px;
   border-radius: var(--r-md);
-  /* Liquid glass: a translucent frosted panel — the section's animated liquid
+  /* Liquid glass: a translucent frosted panel - the section's animated liquid
      gradient blurs through it. Kept light-leaning so the dark and
      white-background client logos stay legible (a dark glass would hide them). */
   background: linear-gradient(135deg, rgba(255,255,255,0.84), rgba(255,255,255,0.58));

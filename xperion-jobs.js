@@ -2,7 +2,7 @@
    XPERION · Careers data + rendering system
    ────────────────────────────────────────────────────────────────────
    Single source of truth for open roles. To post a new job, add one
-   object to XPERION_JOBS below — the careers list, every job-detail
+   object to XPERION_JOBS below - the careers list, every job-detail
    page, the team counts, the filters, and the JobPosting structured
    data all render from this array. No backend required.
 
@@ -23,7 +23,7 @@
   };
 
   /* Shared closing line used in every JD "About Xperion" block. */
-  var ABOUT_XPERION = 'Xperion runs senior-led teams across the United States and Pakistan, partnering with enterprises on resource augmentation, managed services, production AI, consulting, marketing, and design under one MSA. No bench-and-bill, no hidden pyramids — a senior lead stays accountable for every engagement.';
+  var ABOUT_XPERION = 'Xperion runs senior-led teams across the United States and Pakistan, partnering with enterprises on resource augmentation, managed services, production AI, consulting, marketing, and design under one MSA. No bench-and-bill, no hidden pyramids - a senior lead stays accountable for every engagement.';
 
   var JOBS = [
     /* ─── ENGINEERING ─────────────────────────────────────────────── */
@@ -33,10 +33,10 @@
       team: 'Engineering',
       type: 'Full-time', employment: 'Permanent', level: 'Staff / Principal',
       location: 'Remote (NA / EMEA)', regions: ['NA', 'EMEA'],
-      comp: '$205,000 – $255,000 + equity',
+      comp: '$205,000 - $255,000 + equity',
       posted: '2026-05-12',
-      summary: 'Set the technical bar on the build practice — architect the backends behind our AI and platform engagements, and stay embedded long enough to see them run in production.',
-      about: 'You will be the most senior engineer in the room on multiple client engagements at once — owning architecture, reviewing the work, and making the calls that decide whether a system survives its second year. This is hands-on: you write the load-bearing code, not just the diagrams.',
+      summary: 'Set the technical bar on the build practice - architect the backends behind our AI and platform engagements, and stay embedded long enough to see them run in production.',
+      about: 'You will be the most senior engineer in the room on multiple client engagements at once - owning architecture, reviewing the work, and making the calls that decide whether a system survives its second year. This is hands-on: you write the load-bearing code, not just the diagrams.',
       responsibilities: [
         'Own the architecture of production backends across concurrent client engagements, from data model to deploy.',
         'Write the load-bearing code yourself, and set the review standard the rest of the team is held to.',
@@ -46,7 +46,7 @@
       ],
       requirements: [
         '10+ years building and operating backend systems at production scale.',
-        'Depth in at least one of Go, Rust, TypeScript/Node, Python, or the JVM — and fluency reading the rest.',
+        'Depth in at least one of Go, Rust, TypeScript/Node, Python, or the JVM - and fluency reading the rest.',
         'A track record of distributed-systems decisions that aged well, and the scars from ones that did not.',
         'Comfort owning a system end to end: schema, API, queue, cache, deploy, on-call.',
         'The judgement to push back on a brief when the requested design will hurt the outcome.'
@@ -62,13 +62,13 @@
       team: 'Engineering',
       type: 'Full-time', employment: 'Permanent', level: 'Senior',
       location: 'Remote · Multiple regions', regions: ['NA', 'EMEA', 'APAC'],
-      comp: '$165,000 – $205,000 + equity',
+      comp: '$165,000 - $205,000 + equity',
       posted: '2026-05-12',
-      summary: 'Ship product across the full stack — React/Next on the front, typed services behind it — embedded directly in client teams.',
+      summary: 'Ship product across the full stack - React/Next on the front, typed services behind it - embedded directly in client teams.',
       about: 'You are happiest owning a feature from the database to the pixel. You will join client engagements where the brief is real product work, not staff-augmentation seat-filling, and you will be expected to make product calls, not just take tickets.',
       responsibilities: [
         'Build and ship full-stack features in TypeScript across React/Next.js and typed backend services.',
-        'Own the contract between front and back ends — API shape, types, error states, loading states.',
+        'Own the contract between front and back ends - API shape, types, error states, loading states.',
         'Instrument what you ship so the team can see whether it actually worked.',
         'Collaborate directly with client product and design, not through a relay.',
         'Hold a high bar on accessibility and Core Web Vitals as a default, not a follow-up.'
@@ -93,9 +93,9 @@
       team: 'AI / ML',
       type: 'Full-time', employment: 'Permanent', level: 'Senior',
       location: 'Remote (NA / EMEA)', regions: ['NA', 'EMEA'],
-      comp: '$180,000 – $225,000 + equity',
+      comp: '$180,000 - $225,000 + equity',
       posted: '2026-05-08',
-      summary: 'Own the retrieval quality that makes or breaks enterprise AI — chunking, embeddings, ranking, and the evals that keep them honest.',
+      summary: 'Own the retrieval quality that makes or breaks enterprise AI - chunking, embeddings, ranking, and the evals that keep them honest.',
       about: 'You know that "just add RAG" is where the real work starts. You will own retrieval and context engineering across AI engagements, and you will measure your way to quality rather than guessing.',
       responsibilities: [
         'Design and tune retrieval pipelines: chunking, embeddings, hybrid search, re-ranking.',
@@ -109,7 +109,7 @@
         'Hands-on with vector stores (pgvector, Pinecone, Weaviate) and hybrid retrieval.',
         'Rigour with offline and online evaluation of retrieval and generation quality.',
         'Strong Python; comfort with the data plumbing behind an index.',
-        'A scientific temperament — you trust measurements over vibes.'
+        'A scientific temperament - you trust measurements over vibes.'
       ],
       niceToHave: [
         'Experience with fine-tuning or distillation where retrieval is not enough.',
@@ -122,13 +122,13 @@
       team: 'AI / ML',
       type: 'Full-time', employment: 'Permanent', level: 'Senior',
       location: 'Remote (EMEA)', regions: ['EMEA'],
-      comp: '$175,000 – $220,000 + equity',
+      comp: '$175,000 - $220,000 + equity',
       posted: '2026-05-08',
-      summary: 'Build the platform that lets AI engagements ship safely and repeatedly — pipelines, deployment, monitoring, and the guardrails around models in production.',
+      summary: 'Build the platform that lets AI engagements ship safely and repeatedly - pipelines, deployment, monitoring, and the guardrails around models in production.',
       about: 'You make the difference between an AI system that ships once and one that ships every week without drama. You will own the MLOps and AI platform layer across engagements, treating reliability and observability as the product.',
       responsibilities: [
         'Build CI/CD and deployment paths for models, prompts, and AI services.',
-        'Stand up monitoring for drift, cost, latency, and quality — with alerts that mean something.',
+        'Stand up monitoring for drift, cost, latency, and quality - with alerts that mean something.',
         'Own model and prompt versioning, rollback, and safe-deploy practices.',
         'Manage inference infrastructure cost and scaling across clouds.',
         'Pave the AI platform roads so forward-deployed engineers move faster.'
@@ -153,13 +153,13 @@
       team: 'Design & UX',
       type: 'Full-time', employment: 'Permanent', level: 'Senior',
       location: 'Remote (NA / EMEA)', regions: ['NA', 'EMEA'],
-      comp: '$155,000 – $195,000 + equity',
+      comp: '$155,000 - $195,000 + equity',
       posted: '2026-05-15',
-      summary: 'Design B2B and AI product surfaces that are clear under real data and real stakes — embedded with the teams who build them.',
-      about: 'You design for density, edge cases, and trust — the unglamorous reality of enterprise software and AI interfaces. You will own product design on client engagements end to end, from research signal to shipped, accessible UI.',
+      summary: 'Design B2B and AI product surfaces that are clear under real data and real stakes - embedded with the teams who build them.',
+      about: 'You design for density, edge cases, and trust - the unglamorous reality of enterprise software and AI interfaces. You will own product design on client engagements end to end, from research signal to shipped, accessible UI.',
       responsibilities: [
         'Own product design on engagements: flows, interaction, and high-fidelity UI.',
-        'Design AI surfaces that make model behaviour legible — confidence, sources, controls, failure.',
+        'Design AI surfaces that make model behaviour legible - confidence, sources, controls, failure.',
         'Work directly with engineers so what you design is what ships.',
         'Hold WCAG AA as the floor, and pressure-test designs against real, messy data.',
         'Contribute patterns back so design quality compounds across the bench.'
@@ -178,7 +178,7 @@
     },
   ];
   /* v3.9 roster trim: roles beyond the engineering core removed to match
-     real hiring intent. To post a new role, add one object above — see
+     real hiring intent. To post a new role, add one object above - see
      the header comment for the shape. */
 
   /* ── Helpers ───────────────────────────────────────────────────── */
@@ -193,7 +193,7 @@
   }
   function jobUrl(job) { return 'job?id=' + encodeURIComponent(job.id); }
   function applyMailto(job) {
-    var subject = 'Application — ' + job.title + ' (' + job.team + ')';
+    var subject = 'Application - ' + job.title + ' (' + job.team + ')';
     var body = 'Hi Xperion team,\n\nI’d like to apply for the ' + job.title + ' role.\n\n- A few sentences on what I do and why this fits:\n- Links (portfolio / GitHub / LinkedIn):\n- Where I’m based (region / time zone):\n\nThanks,\n';
     return 'mailto:' + ORG.email + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
   }
@@ -260,7 +260,7 @@
     var job = byId(params.get('id') || '');
 
     if (!job) {
-      document.title = 'Role not found — Xperion Careers';
+      document.title = 'Role not found - Xperion Careers';
       root.innerHTML =
         '<section class="page-hero"><div class="page-hero-bg" aria-hidden="true"></div>' +
         '<div class="page-hero-grid" aria-hidden="true"></div><div class="container">' +
@@ -273,7 +273,7 @@
       return;
     }
 
-    document.title = job.title + ' — Xperion Careers';
+    document.title = job.title + ' - Xperion Careers';
     var metaDesc = document.querySelector('meta[name="description"]');
     if (metaDesc) metaDesc.setAttribute('content', job.summary);
 

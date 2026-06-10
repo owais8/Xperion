@@ -29,7 +29,7 @@
   function aDim(values, dur, begin) { return reduced ? '' : '<animate attributeName="opacity" values="' + values + '" dur="' + dur + '" begin="' + (begin || '0s') + '" repeatCount="indefinite"/>'; }
 
   /* Soft, drifting colour base prepended to EVERY card so the sparse line/ring
-     styles read as boldly as the blob styles — no card looks empty. */
+     styles read as boldly as the blob styles - no card looks empty. */
   function glow(seed) {
     var sets = [[P.teal, P.amber], [P.violet, P.teal], [P.amber, P.green], [P.teal, P.violet], [P.green, P.amber], [P.amber, P.teal]];
     var c = sets[seed % sets.length];

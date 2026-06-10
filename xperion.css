@@ -21,16 +21,16 @@
   --sand:            #FFF4E6;
   --sand-2:          #F5E8D0;
 
-  /* BRAND — Teal anchor restored; Amber returns to accent role */
-  --teal:            #00C9A7;     /* Xperion Teal — primary brand anchor */
-  --teal-2:          #3DDC97;     /* Signal Green — gradient partner */
-  --violet:          #7C3AED;     /* Electric Violet — AI accent */
+  /* BRAND - Teal anchor restored; Amber returns to accent role */
+  --teal:            #00C9A7;     /* Xperion Teal - primary brand anchor */
+  --teal-2:          #3DDC97;     /* Signal Green - gradient partner */
+  --violet:          #7C3AED;     /* Electric Violet - AI accent */
   --violet-2:        #A78BFA;
 
-  --amber:           #F59E0B;     /* Amber Gold — Consulting & accent */
+  --amber:           #F59E0B;     /* Amber Gold - Consulting & accent */
   --amber-2:         #FCD34D;     /* Amber Light */
-  --amber-deep:      #c47d00;     /* Amber Deep — on-sand text */
-  --amber-soft:      #FBBF24;     /* Amber Soft — gradient bridge */
+  --amber-deep:      #c47d00;     /* Amber Deep - on-sand text */
+  --amber-soft:      #FBBF24;     /* Amber Soft - gradient bridge */
 
   /* Xperion Green family (kept defined for utility, less prominent in v3.1) */
   --green:           #3DDC97;     /* Signal Green */
@@ -38,7 +38,7 @@
   --green-deep:      #1a9e66;
   --green-soft:      rgba(61,220,151,0.18);
 
-  /* DOMINANT GRADIENT — v3.5, OKLCH-interpolated Teal → Amber.
+  /* DOMINANT GRADIENT - v3.5, OKLCH-interpolated Teal → Amber.
      Perceptually uniform: the bridge passes through clean limelight tones
      instead of muddy olive that RGB interpolation produces.
      RGB fallback for browsers without `in oklch` support (Safari <16.4, FF <113). */
@@ -81,7 +81,7 @@
   --font-sans:  'Inter', 'Helvetica Neue', Arial, sans-serif;
   --font-serif: 'Instrument Serif', 'Times New Roman', serif;
 
-  /* Page accent — overridable per page in inline <style> */
+  /* Page accent - overridable per page in inline <style> */
   --page-grad:   var(--grad-hero);
   --page-accent: var(--amber);
   --page-accent-2: var(--amber-2);
@@ -89,7 +89,7 @@
 
 /* Gradient RGB fallback for browsers without OKLCH interpolation.
    Without this block, Safari <16.4 / Firefox <113 would render the gradients as the
-   declaration's RGB-side default — which, for the OKLCH 3-stop, would skip the bridge.
+   declaration's RGB-side default - which, for the OKLCH 3-stop, would skip the bridge.
    Here we re-declare with explicit amber-soft (#FBBF24) bridge stops to fake the
    perceptual midpoint that OKLCH interpolates through natively. */
 @supports not (background: linear-gradient(in oklch, red, blue)) {
@@ -142,7 +142,7 @@ body::before {
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.85'/></svg>");
 }
 
-/* (Custom-cursor styles removed — the markup was retired site-wide and the
+/* (Custom-cursor styles removed - the markup was retired site-wide and the
    native cursor is now used everywhere.) */
 
 /* SCROLL PROGRESS */
@@ -200,7 +200,7 @@ body::before {
   display: flex; align-items: center; justify-content: space-between;
   padding: 18px 32px; gap: 24px;
 }
-/* Logo, v3.8 — mark + CSS-rendered gradient wordmark
+/* Logo, v3.8 - mark + CSS-rendered gradient wordmark
    The .ai lockup baked the wordmark in black, which disappeared on the dark nav.
    We now compose the lockup in HTML: SVG mark + a styled "xperion" text span.
    The text uses the brand teal→amber gradient via background-clip:text, so it
@@ -221,7 +221,7 @@ body::before {
   font-family: 'Coliner', 'Inter', system-ui, sans-serif;
   font-size: 32px; font-weight: 500; letter-spacing: 0.08em;
   line-height: 1;
-  /* Brand gradient on the wordmark — teal anchor → green bridge → amber tail */
+  /* Brand gradient on the wordmark - teal anchor → green bridge → amber tail */
   background: var(--grad-hero);
   -webkit-background-clip: text; background-clip: text;
   -webkit-text-fill-color: transparent; color: transparent;
@@ -233,7 +233,7 @@ body::before {
   background: linear-gradient(135deg in oklch, #008a72 0%, #1a9e66 45%, #c47d00 100%);
   -webkit-background-clip: text; background-clip: text;
 }
-/* Legacy survivors — keep hidden in case any old HTML still references them. */
+/* Legacy survivors - keep hidden in case any old HTML still references them. */
 .xp-logo-mark, .xp-logo-word { display: none; }
 @media (max-width: 540px) {
   .xp-logo-img { height: 32px; width: auto; }
@@ -382,7 +382,7 @@ body::before {
 /* Content grid matches the nav grid (.xp-nav-inner, 1320px) so the hero copy,
    every section heading, and the footer share one left edge with the nav logo.
    Previously 1240px, which left content indented ~40px from the nav on wide
-   screens — the visible "not left aligned" gap. */
+   screens - the visible "not left aligned" gap. */
 .container { max-width: 1320px; margin: 0 auto; padding: 0 32px; }
 @media (max-width: 700px) {
   .container { padding: 0 22px; }
@@ -397,7 +397,7 @@ body::before {
   padding: 100px 0 88px;
   isolation: isolate;
 }
-/* Sub-page hero brand mark — same watermark treatment as the homepage hero,
+/* Sub-page hero brand mark - same watermark treatment as the homepage hero,
    shared via CSS so every page benefits without HTML changes. */
 .page-hero::after {
   content: '';
@@ -548,7 +548,7 @@ body::before {
   transition: background 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
 }
 .btn-ghost:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.28); }
-/* Sand variant for ghost button — readable dark outline on light bg */
+/* Sand variant for ghost button - readable dark outline on light bg */
 .bg-sand .btn-ghost { background: var(--white); color: var(--ink); border-color: rgba(8,11,24,0.18); }
 .bg-sand .btn-ghost:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
 
@@ -659,7 +659,7 @@ body::before {
 }
 .section-eyebrow::before { content: ''; width: 56px; height: 3px; background: var(--page-grad, var(--grad-hero)); border-radius: 2px; }
 .section h2 {
-  /* Matches the landing section h2 (max 50px) — never larger than the hero. */
+  /* Matches the landing section h2 (max 50px) - never larger than the hero. */
   font-size: clamp(30px, 3.8vw, 50px);
   font-weight: 900; line-height: 1.08; letter-spacing: -0.032em;
   margin-bottom: 22px; max-width: 20ch;
@@ -860,7 +860,7 @@ body::before {
   content: '✓'; flex-shrink: 0; color: var(--amber-2);
   font-weight: 800; font-size: 12px; margin-top: 1px;
 }
-/* Sand variant — fixes white-on-Sand contrast on Engagement Models sections */
+/* Sand variant - fixes white-on-Sand contrast on Engagement Models sections */
 .bg-sand .model-card {
   background: var(--white);
   border-color: rgba(8,11,24,0.08);
@@ -1031,7 +1031,7 @@ body::before {
 .pm-eyebrow.warm   { background: var(--grad-warm); -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent; }
 .pm-card h4 { font-size: 15px; font-weight: 800; letter-spacing: -0.01em; margin-bottom: 8px; line-height: 1.25; }
 .pm-card p { font-size: 12.5px; color: rgba(255,255,255,0.6); line-height: 1.5; }
-/* Sand variant — practice-map cards on light sections */
+/* Sand variant - practice-map cards on light sections */
 .bg-sand .pm-card { background: var(--white); border-color: rgba(8,11,24,0.08); box-shadow: 0 4px 24px rgba(8,11,24,0.05); }
 .bg-sand .pm-card:hover { border-color: rgba(245,158,11,0.4); box-shadow: 0 18px 40px -20px rgba(8,11,24,0.18); }
 .bg-sand .pm-card h4 { color: var(--ink); }
@@ -1340,7 +1340,7 @@ body::before {
   text-align: center;
 }
 /* Brand-mark watermark anchored to the right of the CTA finale,
-   subtle but unmistakeable. CSS-only — applies to all 22 pages. */
+   subtle but unmistakeable. CSS-only - applies to all 22 pages. */
 .cta-finale::after {
   content: '';
   position: absolute; right: -120px; top: 50%;
@@ -1527,7 +1527,7 @@ body::before {
   transition: opacity var(--d-std) var(--ease-emphasis);
   display: flex; align-items: center; justify-content: center;
 }
-/* Brand mark inside the veil — spatial continuity during page transitions,
+/* Brand mark inside the veil - spatial continuity during page transitions,
    very Apple. Scales in slightly as the veil fades in. */
 .xp-page-veil::before {
   content: '';
@@ -1677,7 +1677,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
    Per Apple HIG: glass adapts to context, never imposes brand colour.
    Backdrop-filter + thin border + inset highlight + soft outer shadow.
    Optional specular sweep that travels across the surface on hover.
-   Only used on dark backgrounds — Sand sections use the existing white-card treatment.
+   Only used on dark backgrounds - Sand sections use the existing white-card treatment.
    ════════════════════════════════════════════════════════════════════ */
 .xp-glass {
   position: relative;
@@ -1699,7 +1699,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
     box-shadow var(--d-std) var(--ease-emphasis-out);
 }
 
-/* Specular sweep — a light highlight that travels across on hover.
+/* Specular sweep - a light highlight that travels across on hover.
    Disabled on touch-only devices where there's no hover. */
 .xp-glass::after {
   content: '';
@@ -1725,7 +1725,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
   .xp-glass:hover::after { left: 220%; }
 }
 
-/* Continuous gentle specular drift on the page-hero stat cells — feels iOS-alive */
+/* Continuous gentle specular drift on the page-hero stat cells - feels iOS-alive */
 .xp-glass.is-drift::after {
   animation: xp-glass-drift 9s linear infinite;
   width: 50%;
@@ -1736,7 +1736,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
   100% { left: 220%; }
 }
 
-/* Soft inner edge ring — Apple's signature 1px specular outline */
+/* Soft inner edge ring - Apple's signature 1px specular outline */
 .xp-glass.is-edge-lit {
   box-shadow:
     inset 0 0 0 1px rgba(255, 255, 255, 0.06),
@@ -1745,7 +1745,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
     0 18px 56px -20px rgba(0, 0, 0, 0.55);
 }
 
-/* Tinted variants — colour the frost very subtly with brand tones for context.
+/* Tinted variants - colour the frost very subtly with brand tones for context.
    Apple keeps these readings minimal so the content beneath still drives the look. */
 .xp-glass.tint-teal   { background: rgba(0,201,167,0.06);  border-color: rgba(0,201,167,0.22); }
 .xp-glass.tint-violet { background: rgba(124,58,237,0.06); border-color: rgba(124,58,237,0.22); }
@@ -1810,7 +1810,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
     color var(--d-std) var(--ease-emphasis-out);
   cursor: default; white-space: nowrap;
 }
-/* Every logo sits inside a 26×26 white chip — uniform neutral backdrop regardless
+/* Every logo sits inside a 26×26 white chip - uniform neutral backdrop regardless
    of the logo's native colour. This eliminates the "patchy" look when bright
    coloured logos and dark logos sit next to each other on the same line. */
 .tech-pill img {
@@ -1839,14 +1839,14 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
 }
 .tech-stack-meta strong { color: white; font-weight: 600; }
 
-/* Category tints — mapped to the practice palette */
+/* Category tints - mapped to the practice palette */
 .tech-stack-cat.cat-violet { --cat-color: var(--violet-2); --cat-bg: rgba(124,58,237,0.12); --cat-text-hover: white; }
 .tech-stack-cat.cat-teal   { --cat-color: var(--teal);     --cat-bg: rgba(0,201,167,0.12); --cat-text-hover: white; }
 .tech-stack-cat.cat-amber  { --cat-color: var(--amber-2);  --cat-bg: rgba(245,158,11,0.12); --cat-text-hover: var(--obsidian); }
 .tech-stack-cat.cat-green  { --cat-color: var(--teal-2);   --cat-bg: rgba(61,220,151,0.14); --cat-text-hover: var(--obsidian); }
 .tech-stack-cat.cat-rose   { --cat-color: var(--amber-2);  --cat-bg: rgba(245,158,11,0.10); --cat-text-hover: var(--obsidian); }
 
-/* Sand variant — pills become white-on-ink, category labels darken */
+/* Sand variant - pills become white-on-ink, category labels darken */
 .bg-sand .tech-pill {
   background: var(--white);
   border-color: rgba(8,11,24,0.10);
@@ -1988,7 +1988,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
   .page-hero > .hero-field { display: none; }
 }
 
-/* WebGL interlocking-loops field on sub-page heroes — same animation as the
+/* WebGL interlocking-loops field on sub-page heroes - same animation as the
    landing hero, carried over via xperion.js. Sits behind the copy and is
    masked to the right so the left-aligned headline stays legible. Falls back
    to the 2D .hero-field above when WebGL is unavailable. */
@@ -2043,7 +2043,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
 }
 
 /* ════════════════════════════════════════════════════════════════════
-   CAREERS — filter chips + data-driven jobs list (xperion-jobs.js)
+   CAREERS - filter chips + data-driven jobs list (xperion-jobs.js)
    ════════════════════════════════════════════════════════════════════ */
 .jobs-filter {
   display: flex; flex-wrap: wrap; gap: 10px;
@@ -2074,7 +2074,7 @@ a, button, summary, .xp-cta, .btn-primary, .btn-ghost, .insight-card { touch-act
 .jobs-team[hidden] { display: none; }
 
 /* ════════════════════════════════════════════════════════════════════
-   JOB DETAIL PAGE (job — rendered by xperion-jobs.js)
+   JOB DETAIL PAGE (job - rendered by xperion-jobs.js)
    ════════════════════════════════════════════════════════════════════ */
 .job-breadcrumb {
   display: flex; flex-wrap: wrap; align-items: center; gap: 9px;

@@ -20,7 +20,7 @@
     } catch (e) {}
   }
 
-  /* (Custom-cursor handler removed — the .xp-cursor markup was retired
+  /* (Custom-cursor handler removed - the .xp-cursor markup was retired
      site-wide, so this block was permanently inert. Native cursor is used.) */
 
   /* ── NAV SCROLLED + PROGRESS BAR ─────────────────────────────── */
@@ -616,7 +616,7 @@
      SUB-PAGE HERO FIELD (.page-hero)
      Carries the landing hero's WebGL interlocking-loops field to every
      connected page. Three.js is loaded on demand; if WebGL or the lib is
-     unavailable — or motion is reduced / small touch screen — it falls
+     unavailable - or motion is reduced / small touch screen - it falls
      back to the 2D grid field so a hero is never blank.
      ════════════════════════════════════════════════════════════════ */
   (function pageHeroFields() {

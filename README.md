@@ -23,7 +23,7 @@ This folder contains the full Xperion website source, ready for engineering hand
 | `about`, `book-a-call`, `careers`, `how-we-work`, `leadership`, `services` | Core company pages |
 | `xperion_practice_*.html` (×5) | Practice pages: Resource Augmentation, AI Solutions, Consulting, Marketing, Design & UX |
 | `xperion_industry_*.html` (×5) | Industry pages: Healthcare, Financial Services, Manufacturing, Retail, Enterprise SaaS |
-| `insights`, `insights-article`, `insights-case-study`, `insights-thought-leadership` | Insights index + three long-form pieces (case study reframed as a playbook in v3.8 — no client-result claims) |
+| `insights`, `insights-article`, `insights-case-study`, `insights-thought-leadership` | Insights index + three long-form pieces (case study reframed as a playbook in v3.8 - no client-result claims) |
 | `404.html` | Branded not-found page |
 | `xperion.css` | Shared design system (nav, footer, sand utility, tech stack) |
 | `xperion-home.css` | Landing-page styles, extracted from former inline blocks (v3.8). Mapped table of contents at the top of the file. Must load **after** `xperion.css` |
@@ -51,16 +51,16 @@ This folder contains the full Xperion website source, ready for engineering hand
 If you're emailing/zipping this folder for your engineering colleague:
 
 1. Run `bash cleanup.sh` first (removes .bak files; you choose what else to remove)
-2. Optionally exclude the **Internal** files listed above — they're not needed for deploy
+2. Optionally exclude the **Internal** files listed above - they're not needed for deploy
 3. Point them at `DEPLOY.md` as the entry document
 
 ## What's blocking public launch
 
 Per `prelaunch_audit`:
 
-- **B1** — Privacy, Terms, Security pages need to be written (currently mailto: stubs)
-- **B2** — Healthcare case study has specific operational claims that need client sign-off OR a composite disclaimer
-- **B3** — Leadership page publishes named individuals (Syed, Owais) with personal emails — consent required before public deploy
+- **B1** - Privacy, Terms, Security pages need to be written (currently mailto: stubs)
+- **B2** - Healthcare case study has specific operational claims that need client sign-off OR a composite disclaimer
+- **B3** - Leadership page publishes named individuals (Syed, Owais) with personal emails - consent required before public deploy
 
 Engineering can deploy everything else; these three items gate launch independently.
 

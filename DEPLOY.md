@@ -1,4 +1,4 @@
-# Xperion — Deployment Manifest
+# Xperion - Deployment Manifest
 
 **Cut date:** 2026-05-22
 **Audience:** engineering, for build pipeline + deploy config
@@ -12,17 +12,17 @@ A tiered cleanup script is included: `cleanup.sh`. It prompts before each tier s
 
 ```bash
 cd "/Users/themacshop/Documents/Claude/Projects/Xperion Brand Builder"
-bash cleanup.sh             # interactive — recommended
+bash cleanup.sh             # interactive - recommended
 bash cleanup.sh --dry-run   # preview only, no deletion
 ```
 
 What it cleans:
 
 - **Tier 1 (always safe):** 16 zero-byte `xperion_*.html.bak` placeholder files
-- **Tier 2 (recommended):** `design_audit` — superseded by `prelaunch_audit`
-- **Tier 3 (optional):** `CLAUDE.md` and `xperion-brand.plugin` — only delete these if no further Claude sessions will run on this folder
+- **Tier 2 (recommended):** `design_audit` - superseded by `prelaunch_audit`
+- **Tier 3 (optional):** `CLAUDE.md` and `xperion-brand.plugin` - only delete these if no further Claude sessions will run on this folder
 
-Verify with `ls xperion_*.html.bak` — should print "No such file or directory".
+Verify with `ls xperion_*.html.bak` - should print "No such file or directory".
 
 ---
 
@@ -54,7 +54,7 @@ Verify with `ls xperion_*.html.bak` — should print "No such file or directory"
 | `insights-case-study` | `/insights/ambient-clinical-14-weeks` | ⚠ Gate behind blocker B2 (claim review) |
 | `insights-thought-leadership` | `/insights/agency-model-is-broken` | |
 
-### Required legal pages (NOT YET WRITTEN — see blocker B1)
+### Required legal pages (NOT YET WRITTEN - see blocker B1)
 
 | File | Status |
 |---|---|
@@ -64,39 +64,39 @@ Verify with `ls xperion_*.html.bak` — should print "No such file or directory"
 
 ### Stylesheets / scripts (3)
 
-- `xperion.css` — shared design system, 1799 lines, ~82 KB
-- `xperion-blog.css` — light reading theme for blog pages, 642 lines, ~18 KB
-- `xperion.js` — shared JS for nav, magnetic buttons, scroll progress, reveal animations, FAQ accordion
+- `xperion.css` - shared design system, 1799 lines, ~82 KB
+- `xperion-blog.css` - light reading theme for blog pages, 642 lines, ~18 KB
+- `xperion.js` - shared JS for nav, magnetic buttons, scroll progress, reveal animations, FAQ accordion
 
 ### Static assets
 
-- `xperion-mark.svg` — primary logo mark (full gradient)
-- `xperion-mark-mono.svg` — monochrome mark variant
-- `xperion-lockup.svg` — full lockup
-- `xperion-og-image.png` — social share image (1200×630)
-- `mark-trans.png` — transparent PNG variant
-- `xperion-favicon-32.png` / `48.png` / `64.png` / `128.png` / `192.png` / `512.png` — favicon set
-- `favicon.ico` — fallback favicon
-- `manifest.json` — PWA manifest
+- `xperion-mark.svg` - primary logo mark (full gradient)
+- `xperion-mark-mono.svg` - monochrome mark variant
+- `xperion-lockup.svg` - full lockup
+- `xperion-og-image.png` - social share image (1200×630)
+- `mark-trans.png` - transparent PNG variant
+- `xperion-favicon-32.png` / `48.png` / `64.png` / `128.png` / `192.png` / `512.png` - favicon set
+- `favicon.ico` - fallback favicon
+- `manifest.json` - PWA manifest
 
 ### Infrastructure (newly added in this cycle)
 
-- `robots.txt` — crawler control with Disallow entries for internal HTMLs (defense in depth)
-- `sitemap.xml` — listing all 19 public pages
-- `404.html` — branded not-found page, must be wired as the server's 404 handler
+- `robots.txt` - crawler control with Disallow entries for internal HTMLs (defense in depth)
+- `sitemap.xml` - listing all 19 public pages
+- `404.html` - branded not-found page, must be wired as the server's 404 handler
 
 ---
 
 ## 3. Files to EXCLUDE from deploy (internal-only)
 
-These files exist in the project folder for internal use. **They must not be served on the public domain.** Add them to the build pipeline's exclusion list AND to `robots.txt` (already done — both layers of defense).
+These files exist in the project folder for internal use. **They must not be served on the public domain.** Add them to the build pipeline's exclusion list AND to `robots.txt` (already done - both layers of defense).
 
 | File | Purpose |
 |---|---|
 | `brandbook` | Internal brand guidelines (160 KB), labeled "Confidential" |
 | `design_audit` | Internal design audit report from this cycle |
 | `prelaunch_audit` | This handoff document |
-| `xperion-logo-source.ai` | Adobe Illustrator source — never deploy |
+| `xperion-logo-source.ai` | Adobe Illustrator source - never deploy |
 | `xperion-brand.plugin` | Internal Claude plugin file |
 | `CLAUDE.md` | Project-level Claude instructions |
 | `DEPLOY.md` | This document |
@@ -144,7 +144,7 @@ Content-Security-Policy:
   form-action mailto:;
 ```
 
-Note `'unsafe-inline'` for `style-src` and `script-src` is required because the pages use inline `<style>` blocks and inline event handlers in `xperion.js`. If you want to remove `'unsafe-inline'`, extract all inline CSS to external sheets and use nonces or hashes — that's a larger refactor.
+Note `'unsafe-inline'` for `style-src` and `script-src` is required because the pages use inline `<style>` blocks and inline event handlers in `xperion.js`. If you want to remove `'unsafe-inline'`, extract all inline CSS to external sheets and use nonces or hashes - that's a larger refactor.
 
 ### Other security headers (paste into nginx/Caddy/Cloudflare config)
 
@@ -178,7 +178,7 @@ Before pushing to production, verify:
 - [ ] axe-core or WAVE accessibility audit passes on every page
 - [ ] Tested on actual iOS Safari + Android Chrome + Firefox + Edge (not just desktop Chrome)
 - [ ] All internal links resolve (no 404s when clicking through site)
-- [ ] Operational commitments honored (48hr proposal, 1–2wk placement, 30-day guarantee)
+- [ ] Operational commitments honored (48hr proposal, 1-2wk placement, 30-day guarantee)
 - [ ] Google Search Console + sitemap submitted post-launch
 
 ---
@@ -187,8 +187,8 @@ Before pushing to production, verify:
 
 These don't block launch but should be tackled in the first sprint:
 
-- **Inline the simpleicons SVGs** as a single sprite served from `xperion.ai/icons.svg` — removes the cdn.simpleicons.org dependency (currently 60+ requests on practice pages with tech-stack sections)
-- **Migrate landing's inline CSS into `xperion.css`** — landing carries ~1300 lines of inline styles that duplicate the shared stylesheet (see audit finding #26 in `design_audit`)
+- **Inline the simpleicons SVGs** as a single sprite served from `xperion.ai/icons.svg` - removes the cdn.simpleicons.org dependency (currently 60+ requests on practice pages with tech-stack sections)
+- **Migrate landing's inline CSS into `xperion.css`** - landing carries ~1300 lines of inline styles that duplicate the shared stylesheet (see audit finding #26 in `design_audit`)
 - **Add analytics** (Plausible, Fathom, or GA4) with proper Privacy Policy disclosure
 - **Set up form-handler** for `book-a-call` if the page evolves beyond mailto
 - **Surface NYC + Islamabad geography in connected page heroes** (currently only on landing + brandbook hero copy; the footer tagline now mentions both on every page, but the connected page heros don't)
