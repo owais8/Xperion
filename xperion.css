@@ -1280,6 +1280,10 @@ body::before {
   background-repeat: no-repeat; background-position: right 14px center;
   padding-right: 36px;
 }
+.form-row select option {
+  background: #0E1225;
+  color: white;
+}
 .form-submit {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 15px 26px; margin-top: 8px;
