@@ -9,7 +9,7 @@
 
   <!-- Home -->
   <url>
-    <loc>https://xperion.ai/</loc>
+    <loc>https://www.xperion.ai/</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
@@ -17,31 +17,31 @@
 
   <!-- Practices -->
   <url>
-    <loc>https://xperion.ai/practice-resource-augmentation</loc>
+    <loc>https://www.xperion.ai/practice-resource-augmentation</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/practice-ai-solutions</loc>
+    <loc>https://www.xperion.ai/practice-ai-solutions</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/practice-consulting</loc>
+    <loc>https://www.xperion.ai/practice-consulting</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/practice-marketing</loc>
+    <loc>https://www.xperion.ai/practice-marketing</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/practice-design-ux</loc>
+    <loc>https://www.xperion.ai/practice-design-ux</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -49,31 +49,31 @@
 
   <!-- Industries -->
   <url>
-    <loc>https://xperion.ai/industry-healthcare</loc>
+    <loc>https://www.xperion.ai/industry-healthcare</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/industry-financial-services</loc>
+    <loc>https://www.xperion.ai/industry-financial-services</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/industry-manufacturing</loc>
+    <loc>https://www.xperion.ai/industry-manufacturing</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/industry-retail</loc>
+    <loc>https://www.xperion.ai/industry-retail</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/industry-enterprise-saas</loc>
+    <loc>https://www.xperion.ai/industry-enterprise-saas</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
@@ -81,31 +81,31 @@
 
   <!-- Company -->
   <url>
-    <loc>https://xperion.ai/about</loc>
+    <loc>https://www.xperion.ai/about</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/leadership</loc>
+    <loc>https://www.xperion.ai/leadership</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/how-we-work</loc>
+    <loc>https://www.xperion.ai/how-we-work</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/services</loc>
+    <loc>https://www.xperion.ai/services</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/book-a-call</loc>
+    <loc>https://www.xperion.ai/book-a-call</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -113,101 +113,83 @@
 
   <!-- Careers + live roles -->
   <url>
-    <loc>https://xperion.ai/careers</loc>
+    <loc>https://www.xperion.ai/careers</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/job</loc>
+    <loc>https://www.xperion.ai/job</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/job?id=staff-principal-backend-engineer</loc>
+    <loc>https://www.xperion.ai/job?id=staff-principal-backend-engineer</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/job?id=senior-fullstack-engineer-typescript</loc>
+    <loc>https://www.xperion.ai/job?id=senior-fullstack-engineer-typescript</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/job?id=llm-retrieval-engineer</loc>
+    <loc>https://www.xperion.ai/job?id=llm-retrieval-engineer</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/job?id=mlops-ai-platform-engineer</loc>
+    <loc>https://www.xperion.ai/job?id=mlops-ai-platform-engineer</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/job?id=senior-product-designer</loc>
+    <loc>https://www.xperion.ai/job?id=senior-product-designer</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- Insights -->
+  <!-- Insights — landing only; article templates excluded until real content lives there -->
   <url>
-    <loc>https://xperion.ai/insights</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xperion.ai/insights-article</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xperion.ai/insights-case-study</loc>
-    <lastmod>2026-06-10</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://xperion.ai/insights-thought-leadership</loc>
-    <lastmod>2026-06-10</lastmod>
+    <loc>https://www.xperion.ai/insights</loc>
+    <lastmod>2026-06-11</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Legal & trust -->
   <url>
-    <loc>https://xperion.ai/privacy</loc>
+    <loc>https://www.xperion.ai/privacy</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/terms</loc>
+    <loc>https://www.xperion.ai/terms</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/security</loc>
+    <loc>https://www.xperion.ai/security</loc>
     <lastmod>2026-06-10</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/cookies</loc>
+    <loc>https://www.xperion.ai/cookies</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://xperion.ai/accessibility</loc>
+    <loc>https://www.xperion.ai/accessibility</loc>
     <lastmod>2026-05-29</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>

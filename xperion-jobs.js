@@ -17,8 +17,8 @@
 
   var ORG = {
     name: 'Xperion',
-    site: 'https://xperion.ai',
-    logo: 'https://xperion.ai/xperion-favicon-512.png',
+    site: 'https://www.xperion.ai',
+    logo: 'https://www.xperion.ai/xperion-favicon-512.png',
     email: 'careers@xperion.ai'
   };
 

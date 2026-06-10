@@ -38,4 +38,4 @@ User-agent: Google-Extended
 Disallow: /
 
 # Sitemap for primary discovery
-Sitemap: https://xperion.ai/sitemap.xml
+Sitemap: https://www.xperion.ai/sitemap.xml
