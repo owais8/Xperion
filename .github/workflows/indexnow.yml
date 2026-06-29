@@ -1,0 +1,77 @@
+name: IndexNow ping
+
+# Notifies IndexNow (Bing, Yandex, Seznam, Naver, and other participating engines)
+# whenever HTML pages change on the default branch, so new/updated content is
+# crawled within minutes instead of waiting for a scheduled crawl.
+
+on:
+  push:
+    branches: [master]
+    paths:
+      - '**.html'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    env:
+      HOST: www.xperion.ai
+      KEY: 0ff59d6cd8039b5f38bce59df54868d6
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2   # need the previous commit to diff against
+
+      - name: Build changed-URL list and submit to IndexNow
+        run: |
+          # List .html files changed in this push (added/copied/modified/renamed).
+          changed=$(git diff --name-only --diff-filter=ACMR "${{ github.event.before }}" "${{ github.sha }}" -- '*.html' || true)
+          if [ -z "$changed" ]; then
+            echo "No HTML changes to submit."; exit 0
+          fi
+
+          python3 - "$changed" <<'PY'
+          import json, sys, urllib.request
+
+          host = "www.xperion.ai"
+          key  = "0ff59d6cd8039b5f38bce59df54868d6"
+          files = [f for f in sys.argv[1].split("\n") if f.strip()]
+
+          def to_url(f):
+              # Map repo file path -> canonical, extensionless public URL.
+              if f == "index.html" or f == "404.html":
+                  path = "" if f == "index.html" else "404"
+              else:
+                  path = f[:-5] if f.endswith(".html") else f
+              return f"https://{host}/{path}"
+
+          urls = sorted({to_url(f) for f in files})
+          print("Submitting %d URL(s):" % len(urls))
+          for u in urls: print("  ", u)
+
+          body = json.dumps({
+              "host": host,
+              "key": key,
+              "keyLocation": f"https://{host}/{key}.txt",
+              "urlList": urls,
+          }).encode()
+
+          req = urllib.request.Request(
+              "https://api.indexnow.org/indexnow",
+              data=body,
+              headers={"Content-Type": "application/json; charset=utf-8"},
+              method="POST",
+          )
+          try:
+              with urllib.request.urlopen(req, timeout=30) as r:
+                  print("IndexNow response:", r.status)
+          except urllib.error.HTTPError as e:
+              # 200/202 = accepted. Surface anything else but don't fail the deploy.
+              print("IndexNow HTTPError:", e.code, e.read().decode(errors="replace"))
+          PY
