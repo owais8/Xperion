@@ -324,5 +324,11 @@ function xpSubmitBookForm(e) {
   return false;
 }
 </script>
+<!-- FAQPage structured data: mirrors the visible FAQ so AI answer engines
+     (ChatGPT, Perplexity, Gemini, Google AI Overviews) and search can extract
+     each Q&A. Keep in sync with the questions/answers in the FAQ section above. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Will I actually talk to a senior partner on the first call?","acceptedAnswer":{"@type":"Answer","text":"Yes. Every first call is led by a senior partner, typically a practice director or the CEO, depending on what you're solving. No SDR pyramid, no relationship-manager intermediary."}},{"@type":"Question","name":"Do I need a brief or RFP ready?","acceptedAnswer":{"@type":"Answer","text":"No. The most useful first calls happen when you describe the problem in your own words. We can shape the brief together. If you do have an RFP, send it, we'll respond to it directly."}},{"@type":"Question","name":"What if you don't think we're a fit?","acceptedAnswer":{"@type":"Answer","text":"We'll tell you on the call. If we know who's a better fit for the work, we'll point you there. Honest fit calls are the foundation of long-term partnerships, and our reputation depends on them."}},{"@type":"Question","name":"What does the 48-hour proposal include?","acceptedAnswer":{"@type":"Answer","text":"Scope, approach, team shape, timeline, costs, and what we'd commit to as success metrics. Enough for you to take to a stakeholder or finance partner, not a 90-page sales document."}},{"@type":"Question","name":"Is the call free? Any obligation?","acceptedAnswer":{"@type":"Answer","text":"Yes, free, no obligation. The first call is a scoping conversation, not a sales pitch. We invest in it because we care about whether the work is the right work."}},{"@type":"Question","name":"Can I bring colleagues?","acceptedAnswer":{"@type":"Answer","text":"Yes, bring whoever needs to be in the room. We often have clients bring engineering leads, product, marketing, or compliance partners depending on the topic."}}]}
+</script>
 </body>
 </html>
