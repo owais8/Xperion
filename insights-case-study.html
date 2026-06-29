@@ -97,6 +97,9 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Organization","name":"Xperion","url":"https://www.xperion.ai","logo":"https://www.xperion.ai/xperion-favicon-512.png","sameAs":["https://www.linkedin.com/company/xperion-ai/"],"description":"Human + AI intelligence for enterprise transformation. Senior-led teams across the United States and Pakistan partnering with enterprises on resource augmentation, managed services, production AI, consulting, marketing, and design under one MSA.","contactPoint":{"@type":"ContactPoint","email":"info@xperion.ai","contactType":"sales"}}
 </script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","headline":"Ambient Clinical Documentation Playbook","description":"How Xperion structures HIPAA-aligned ambient clinical documentation builds: eval harness first, one specialty at a time, production inside a quarter.","datePublished":"2026-05-14","dateModified":"2026-05-14","author":{"@type":"Person","name":"Owais Qarni","jobTitle":"Head of Engineering","worksFor":{"@type":"Organization","name":"Xperion"}},"publisher":{"@type":"Organization","name":"Xperion","logo":{"@type":"ImageObject","url":"https://www.xperion.ai/xperion-favicon-512.png"}},"image":"https://www.xperion.ai/xperion-og-image.png","mainEntityOfPage":{"@type":"WebPage","@id":"https://www.xperion.ai/insights-case-study"},"about":["Ambient clinical documentation","Healthcare AI","HIPAA compliance"],"citation":[{"@type":"CreativeWork","name":"Allocation of Physician Time in Ambulatory Practice","author":{"@type":"Person","name":"Christine Sinsky"},"url":"https://www.acpjournals.org/doi/abs/10.7326/M18-3684"}]}
+</script>
 </head>
 <body class="xp-blog">
 <a href="#main" class="skip-link">Skip to content</a>
@@ -257,6 +260,11 @@
 
  <p>Most "AI in healthcare" stories die at the seam between the model and the workflow. The transcription works, the inference is fine, and then the note never makes it into the EHR, the specialist refuses to use it, or the compliance team kills it in pre-production review. This playbook sets out how we structure an ambient-documentation engagement so it survives that seam: the brief we push back on, the build order we follow, and the failure modes we plan around. The scenario is a composite of the briefs we see; the numbers are targets we put in writing at kickoff, not results we are claiming here.</p>
 
+ <div class="article-pullquote">
+ The reason these builds matter at all: physicians spend nearly two hours on EHR and desk work for every hour of direct patient care, and another one to two hours on documentation after clinic. Ambient documentation only earns its place if it gives that time back.
+ <cite>&mdash; Sinsky et al., <a href="https://www.acpjournals.org/doi/abs/10.7326/M18-3684" target="_blank" rel="noopener nofollow" style="color:var(--teal-2);">Annals of Internal Medicine</a> (2016)</cite>
+ </div>
+
  <h2 id="brief">The brief, and what we <span class="grad">decline.</span></h2>
  <p>The brief usually asks for "an ambient documentation platform" with a six-month timeline and a multi-vendor RFP. We push back, hard, on two assumptions baked into it. First, that the unit of delivery is a platform. It isn't, the unit of delivery is a clinician completing a usable note in under 90 seconds, in their specialty, with their charting conventions. Second, that the right shape is a single horizontal model serving every specialty identically. It isn't, and pretending otherwise is the most common reason these deployments stall.</p>
  <p>We come back with a different brief inside 48 hours: a 14-week production engagement, one specialty live in week six, the next wave in week ten, and the remainder in a staged rollout through weeks eleven to fourteen. Fixed scope. Fixed price for the first specialty, T&amp;M for the rest with a capped budget.</p>
@@ -303,6 +311,11 @@
  <h2 id="engagement">The engagement <span class="grad">shape.</span></h2>
  <p>An engagement like this combines three Xperion practices under one MSA: Resource Augmentation &amp; Managed Services for the integration engineering bench, Intelligent AI Solutions for the build, and Technology Consulting for the model-risk-governance work that closes the procurement review. No vendor handoffs, no separate contracts, and one named senior partner accountable from kickoff through post-launch hyper-care.</p>
  <p>This is the part a fragmented vendor stack cannot deliver. Not because any single vendor's model is wrong, but because their operating model cannot compress the integration, governance, and clinical-workflow work into one team. Ours is built to. <a href="how-we-work">How we work</a> explains why, in detail.</p>
+
+ <div class="case-block" style="margin-top:56px;">
+ <div class="case-block-label">Sources</div>
+ <p><a href="https://www.acpjournals.org/doi/abs/10.7326/M18-3684" target="_blank" rel="noopener nofollow" style="color:var(--teal-2);">Sinsky C, et al. &mdash; Allocation of Physician Time in Ambulatory Practice, <em>Annals of Internal Medicine</em>, 2016</a>. Physicians spend ~49% of the workday on EHR and desk work versus ~27% on direct clinical face time.</p>
+ </div>
 
  </div>
 
