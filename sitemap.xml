@@ -155,10 +155,28 @@
     <priority>0.7</priority>
   </url>
 
-  <!-- Insights — landing only; article templates excluded until real content lives there -->
+  <!-- Insights — landing + published articles -->
   <url>
     <loc>https://www.xperion.ai/insights</loc>
-    <lastmod>2026-06-11</lastmod>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.xperion.ai/insights-implement-resource-augmentation</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.xperion.ai/insights-choose-staff-augmentation-provider</loc>
+    <lastmod>2026-06-29</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.xperion.ai/insights-full-time-vs-augmented-marketing-cost</loc>
+    <lastmod>2026-06-29</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
