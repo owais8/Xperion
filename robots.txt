@@ -1,5 +1,5 @@
 # Xperion · robots.txt
-# Last updated: 2026-05-22
+# Last updated: 2026-06-29
 
 User-agent: *
 Allow: /
@@ -18,24 +18,41 @@ Disallow: /*.bak$
 Disallow: /*.md$
 Disallow: /_archive/
 
-# Block well-known AI training crawlers from scraping the editorial content
-# (insights pages). Adjust to taste - these directives are advisory but widely
-# honoured by responsible bots. Remove the next two blocks if you WANT your
-# thought leadership ingested by AI training corpora.
+# AI answer engines & assistants are explicitly welcomed so Xperion content
+# can surface and be cited in ChatGPT, Claude, Perplexity, Gemini, and others.
+# (Listed for clarity; each falls under the User-agent: * Allow rule above.)
 User-agent: GPTBot
-Disallow: /
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
 
 User-agent: ClaudeBot
-Disallow: /
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
 
 User-agent: CCBot
-Disallow: /
+Allow: /
 
 User-agent: PerplexityBot
-Disallow: /
+Allow: /
+
+User-agent: Perplexity-User
+Allow: /
 
 User-agent: Google-Extended
-Disallow: /
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
 
 # Sitemap for primary discovery
 Sitemap: https://www.xperion.ai/sitemap.xml

@@ -23,6 +23,15 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-ME04ZG3BD6"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-ME04ZG3BD6');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Senior-Led Resource Augmentation &amp; Managed Services | Xperion</title>
 <meta name="description" content="Senior-led resource augmentation, managed services, and IT outsourcing across the US and Pakistan. Vetted senior specialists placed in 1-2 weeks, one MSA.">
@@ -919,11 +928,12 @@
  </div>
 </section>
 
-<!-- FAQ section intentionally hidden (kept in markup for easy restore: remove the inline display:none). -->
-<section class="section faq" style="display: none;">
+<!-- FAQ section. Q&A content is mirrored into FAQPage JSON-LD below for AI-engine
+     and search extraction; keep the visible text and the schema in sync if edited. -->
+<section class="section faq" id="faq" aria-labelledby="faq-h">
  <div class="container scroll-3d">
  <div class="reveal" style="margin-bottom: 56px;">
- <h2>Questions clients ask, <span class="serif-italic-h">answered directly.</span></h2>
+ <h2 id="faq-h">Questions clients ask, <span class="serif-italic-h">answered directly.</span></h2>
  </div>
 
  <div class="faq-list reveal">
@@ -966,6 +976,13 @@
  </div>
  </div>
 </section>
+
+<!-- FAQPage structured data: mirrors the visible FAQ above so AI answer engines
+     (ChatGPT, Perplexity, Gemini, Google AI Overviews) and search can extract
+     each Q&A. Keep in sync with the questions/answers in the section above. -->
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the team structured?","acceptedAnswer":{"@type":"Answer","text":"Senior-led, by design. Senior specialists across the United States and Pakistan lead every engagement, blended with hand-picked junior talent where it buys you cost headroom or speed, vetted through the same screen and working under senior review gates. The person who scopes your work is senior, and nothing ships without senior sign-off. We scope to fit rather than promise to stand up forty people next week; when we say yes, it's because we can deliver it."}},{"@type":"Question","name":"What if we're optimising for the lowest rate?","acceptedAnswer":{"@type":"Answer","text":"If the lowest rate is the only criterion, a volume shop will win. That is a different product. What we engineer is the cost-quality trade: senior-led pods blend hand-picked junior capacity at lower blended rates, Pakistan engineering keeps senior work below US-agency pricing, and every deliverable passes senior review before it reaches you. Cost headroom without surrendering accountability."}},{"@type":"Question","name":"Do we sign one MSA, or a separate contract per practice?","acceptedAnswer":{"@type":"Answer","text":"One MSA. Add new practices, new roles, or new scopes under the existing agreement via change orders. Xperion exists specifically to eliminate the procurement overhead of managing separate vendors."}},{"@type":"Question","name":"How do you handle confidentiality and IP?","acceptedAnswer":{"@type":"Answer","text":"Mutual NDA, work-for-hire IP assignment, and your security review pack covered by default. We can sign your paper, or our paper, or a redlined hybrid, whatever closes faster."}},{"@type":"Question","name":"What if a specialist or build engagement doesn't work out?","acceptedAnswer":{"@type":"Answer","text":"30-day satisfaction guarantee. If a specialist isn't a fit in the first 30 days, we replace at no additional cost. Build engagements ship with structured hyper-care and a course-correction protocol that catches issues in week one or two."}},{"@type":"Question","name":"Can we end the engagement early?","acceptedAnswer":{"@type":"Answer","text":"Yes. Our standard contracts have 30-day notice for termination on either side. We do not believe in lock-ins that hide poor performance, engagements continue because they're working, not because they're contractual."}},{"@type":"Question","name":"Do you work fixed-price or T&M?","acceptedAnswer":{"@type":"Answer","text":"Both, depending on the practice. Strategy sprints and AI pilots are typically fixed-price with a defined deliverable. Augmentation and build programmes are typically monthly retainers or T&M with sprint-aligned billing."}},{"@type":"Question","name":"How quickly can we start?","acceptedAnswer":{"@type":"Answer","text":"From signed brief to embedded specialist: 1-2 weeks. From signed brief to AI pilot kickoff: typically inside a week. From signed brief to first marketing campaign live: 2-3 weeks for the right scope. Faster than your in-house hiring cycle, in every case."}},{"@type":"Question","name":"Where do you operate?","acceptedAnswer":{"@type":"Answer","text":"North America, EMEA, and APAC. Our delivery teams operate in the time zones our clients need to work in, including hybrid models that cover both business-hours collaboration and overnight delivery cycles."}}]}
+</script>
 
 <!-- ═══ CTA FINALE ══════════════════════════════════════════════════ -->
 <section class="cta-finale">
