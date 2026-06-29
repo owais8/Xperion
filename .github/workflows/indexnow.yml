@@ -22,7 +22,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       HOST: www.xperion.ai
-      KEY: 0ff59d6cd8039b5f38bce59df54868d6
+      KEY: 2583219550fa4d2387a2ad3e52effb50
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,7 +40,7 @@ jobs:
           import json, sys, urllib.request
 
           host = "www.xperion.ai"
-          key  = "0ff59d6cd8039b5f38bce59df54868d6"
+          key  = "2583219550fa4d2387a2ad3e52effb50"
           files = [f for f in sys.argv[1].split("\n") if f.strip()]
 
           def to_url(f):
